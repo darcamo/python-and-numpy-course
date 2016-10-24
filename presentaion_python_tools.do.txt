@@ -1,0 +1,24 @@
+
+!split
+===== IPython =====
+
+* "Terminal interativo": "http://ipython.org/ipython-doc/stable/interactive/tutorial.html" para a linguagem python que oferece:
+  * "Completar um comando": "http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#tab-completion" (após digitar parte dele) com <tt class="green">TAB</tt>
+  * "Histórico de comandos": "http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#history"
+* "Obtendo Ajuda com '?'": "http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#exploring-your-objects" <span style="font-size: 50%; float:right;">(se necessário aperte "q" para sair do help)</span>
+  
+<div class="example">
+<div class="example-title">darlan@darlan-G75VX</div>
+<div class="example-body terminal">
+<pre><code class="python" data-noescape><span class="green">In [1]:</span> abs?
+<span class="red">Docstring</span>: Return the absolute value of the argument.
+<span class="red">Type:</span>      builtin_function_or_method</code></pre></div></div>
+
+* "Funções mágicas": "http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#magic-functions"
+  * <tt class="green">%whos</tt>: Veja variáveis e funções atuais
+  * <tt class="green">%run</tt>: Executa um arquivo como um script
+  * <tt class="green">%paste</tt>: Cola e executa um bloco de código
+  * <tt class="green">%timeit</tt>: Executa uma expressão e mostra tempo decorrido
+  <!-- * <tt class="green">%macro</tt>: Define um macro para futura execução</li> -->
+  * <tt class="green">%quickref</tt>: Cartão de referência do IPython
+  <!-- <li class="fragment"><tt class="green">%autocall</tt>: Dispensa os parêntesis em uma chamada de função</li> -->

@@ -1,0 +1,32 @@
+TITLE: Título da Apresentação
+AUTHOR: Darlan Cavalcante Moreira
+DATE: today
+TOC: off
+
+# Quickref de doconce: http://hplgit.github.io/doconce/doc/pub/quickref/html/quickref.html
+# Comandos para compilar: http://hplgit.github.io/doconce/doc/pub/slides/demo/index.html
+
+#Terminal> doconce format html myslides \
+#          --pygments_html_style=native --keep_pygments_html_bg
+#Terminal> doconce slides_html myslides reveal \
+#          --html_slide_theme=darkgray
+
+
+# How do I get “Figure” written in another language?
+# http://hplgit.github.io/doconce/doc/pub/trouble/html/trouble.html#how-do-i-get-figure-written-in-another-language
+
+!split
+======= Python Language Overview =======
+
+# #include "presentaion_basic_python.do.txt"
+
+!split
+===== IPython, IDEs, Debugging, etc =====
+
+# # include "presentaion_python_tools.do.txt"
+
+!split
+======= Numpy =======
+
+# #include "presentaion_numpy.do.txt"
+

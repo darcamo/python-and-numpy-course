@@ -1,0 +1,13 @@
+
+
+!split
+===== Porque aprender Python? =====
+
+!bpop
+* Fácil de entender e aprender
+* Muito Flexível
+* Linguagem muito poderosa Extensa biblioteca disponível Excelente para iniciantes e experts
+* Ouvi dizer que vai ser útil mais na frente
+* Vamos utilizar aqui Python
+!epop
+
