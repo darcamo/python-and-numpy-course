@@ -1,31 +1,1114 @@
 <!doctype html>
 <html>
 	<head>
+        <meta name="description" content="Uma apresentação sobre Python para quem já tem noção de programação">
+		<meta name="author" content="Darlan Cavalcante Moreira">
+        
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Introdução ao Python, Numpy e amigos</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+        <link rel="stylesheet" href="css/mystyles.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		 var link = document.createElement( 'link' );
+		 link.rel = 'stylesheet';
+		 link.type = 'text/css';
+		 link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		 document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+                <section data-background-image="imagens/hello_python.png" data-background-size="30%" data-background-position="bottom">
+                    <h1>Programando Python</h1>
+                    <h2>Um Curso Relâmpago</h2>
+                    <h3>Prof: Darlan Cavalcante Moreira</h3>
+                </section>
+				<section>
+                    <!-- <h2>O que é Python</h2>
+
+                         <p class="fragment">É uma linguagem de programação interativa e
+                         orientada a objetos</p> -->
+
+                    <h2>Porque aprender Python?</h2>
+
+                    <div class="fragment">
+                        <ul>
+                            <li>Fácil de entender e aprender</li>
+                            <li>Muito Flexível</li>
+                            <li>Linguagem muito poderosa Extensa biblioteca
+                                disponível Excelente para iniciantes e experts</li>
+                            <li class="fragment"><strong>Ouvi dizer que vai ser útil mais na frente</strong></li>
+                            <li class="fragment"><span class="green">Vamos utilizar aqui Python 3</span></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Recursos</h2>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/tutorial/">The Python Tutorial</a></li>
+                        <li><a href="http://hplgit.github.io/primer.html/doc/pub/half/book.pdf">A Primer on Scientific Programming with Python</a></li>
+                        <li><a href="http://www.diveinto.org/python3/">Dive Into Python</a></li>
+                        <li><a href="https://developers.google.com/edu/python/?csw=1">Google's Python Class</a></li>
+                        <li><a href="http://learnpythonthehardway.org/book/">Learn Python the Hard Way (Python 2)</a></li>
+                        <li><a href="https://www.coursera.org/learn/interactive-python-1">An Introduction to Interactive Programming in Python</a></li>
+                        <li><a href="https://www.coursera.org/learn/python">Programming for Everybody (Getting Started with Python)</a></li>
+                        <li><a href="http://www.pythontutor.com/">Python Tutor</a></li>
+                        
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Instalando Python</h2>
+
+                    <ul>
+                        <li>Python possui duas versões: Python2 e Python3</li>
+                        <li>Aqui usaremos a versão 3</li>
+                        <li>Podem baixar a partir do site oficial em https://www.python.org/downloads/</li>
+                        <li>Ou podemos usar umas das <em>distribuições</em> disponíveis
+                            <ul>
+                                <li><a href="https://www.continuum.io/downloads/">Anaconda</a></li>
+                                <li><a href="https://www.enthought.com/products/canopy/">Canopy</a></li>
+                                <li><a href="https://winpython.github.io/">WinPython</a> (possui versão portable)</li>
+                            </ul></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Diferenças Gerais do C++</h2>
+
+                        <ul>
+                            <li>Não é preciso declarar variáveis <span class="fragment green"><i class="fa fa-hand-o-right"></i> Gostei!</span></li>
+                            <li>Não é preciso colocar ";" no final <span class="fragment green"><i class="fa fa-hand-o-right"></i> Show!</span></li>
+                            <li>Não é preciso utilizar chaves <i class="fa fa-hand-o-right"></i> O escopo é
+                                controlado por espaço <span class="fragment green"><i class="fa fa-hand-o-right"></i> Depois digo se gostei</span></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>O que esse programa faz?</h2>
+                        <pre><code class="python">for i in range(1, 101):  # Não há chaves {}
+    if i % 15 == 0:  # Não é necessário parêntesis para a condição
+        print("FizzBuzz")
+    elif i % 3 == 0:
+        print("Fizz")
+    elif i % 5 == 0:     # elif combina 'else' com 'if'
+        print("Buzz")
+    else:
+        print(i)</code></pre>
+                        <ul>
+                            <li class="fragment" data-fragment-index="1">A função <code>range</code> cria uma "lista" de elementos
+                                <ul class="fragment" data-fragment-index="1">
+                                    <li><code>range(5)</code> vai criar de 0 a 4</li>
+                                </ul></li>
+                            <li class="fragment" data-fragment="1">O "<code>for</code>" em python itera em cada elemento de um <em>contêiner</em></li>
+                            <li class="fragment">Não precisamos de parêntesis para as condições</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2 style="margin-bottom: 0px;">Tipos Primitivos em Python</h2>
+                        <p style="margin: 0px; padding: 0px;"><small>Tipos já embutidos no núcleo da linguagem</small></p>
+
+                        <ul>
+                            <li>Aqui vamos fazer um <em>overview</em> dos tipos primitivos em Python</li>
+                            <li>Falamos em maiores detalhes de cada um deles</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h2>Tipos Simples</h2>
+                        <!-- <div style="display:flex; align-items: center;"> -->
+                        <pre><code class="python">idade = 4            # Inteiro (int)
+nome = "Kadu"        # String (str)
+peso = 10.4          # Float (float)
+vacinado = True      # Booleano (bool)
+dono_anterior = None # Representa um tipo vazio (None)
+peso_int = int(peso) # Inteiro convertido a partir de um float
+c = 1-3j             # Número complexo</code></pre>
+
+                        <ul>
+                            <li>Utilize "<code>type</code>" para determinar o tipo de uma variável
+                                <div class="example">
+                                    <div class="example-title">darlan@darlan-G75VX</div>
+                                    <div class="example-body terminal">
+                                        <pre><code class="python">>>> type(peso)
+float
+>>> type(peso_int)
+int
+>>> type(nome)
+str</code></pre></div></div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h2>Tipos Compostos (contêineres)</h2>
+                        <pre><code class="python">uma_lista = [2, 3, 5.5, 7, 11, "lala"] # Lista (list, [])
+uma_tupla = (2, "lala", 4)             # Tupla (tuple, ())
+um_dict = {'nome': "Silvio Santos",    # Dicionário (dict)
+          'idade': 86,
+          "profissões": ["apresentador", "empresário"]}
+um_conjunto = {1, 4, 8, 10, "lala"}    # Conjunto (set)</code></pre>
+                        <ul>    
+                            <li>Python possui vários estruturas de dados flexíveis como listas, tuplas, dicionários e conjuntos</li>
+                            <li>Podemos armazenar valores de diferentes tipos nesses contêineres</li>
+                        </ul>
+                    </section>
+                    
+                </section>
+
+                <section>
+                    <h2>Entrada e Saída</h2>
+
+                    <ul>
+                        <li>Em python imprimimos usando a função <code>print</code>
+                            <div class="example">
+                                <div class="example-title">darlan@darlan-G75VX</div>
+                                <div class="example-body terminal">
+                                    <pre><code>>>> print("Tá muito fácil")
+Tá muito fácil
+>>> x=10;
+>>> print("Ele tinha", x, "anos")  # Separador padrão: espaço
+Ele tinha 10 anos
+                                    </code></pre></div></div></li>
+                        <li class="fragment" data-fragment-index="1">Em python recebemos uma entrada com a função <code>input</code>
+                            <ul>
+                                <li><code>input</code> sempre retorna uma string</li>
+                            </ul>
+                            <div class="example">
+                                <div class="example-title">darlan@darlan-G75VX</div>
+                                <div class="example-body terminal">
+                                    <pre><code class="python">>>> print("Digite o nome")
+>>> nome = input()
+>>> print("Digite a idade")
+>>> x = int(input())               # Input retorna um texto
+>>> print(nome, "tem", x, "anos")  # Digitou 'John Doe' e '20'
+John Doe tem 20 anos
+                                    </code></pre></div></div></li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <section><h2>Operadores em Python</h2></section>
+                    <section>
+                        <h2>Operadores Aritméticos</h2>
+                        <ul style="font-size: 90%">
+                            <li>Os operadores aritméticos em Python são os
+                                mesmos do C/C++
+                                <div style="width: auto; font-size: 80%; text-align:center; font-family:'monospace'">+, -, *, /, <span class="fragment highlight-current-green" data-fragment-index="1">//</span>, %, <span class="fragment highlight-current-green" data-fragment-index="1">**</span>, +=, -=, *=, /=, %=, <span class="fragment highlight-current-green" data-fragment-index="1">**=</span>, <span class="fragment highlight-current-green" data-fragment-index="1">\\=</span></div></li>
+                            <li class="fragment" data-fragment-index="1">Com
+                                adição de um operador para divisão de
+                                inteiros e um para potenciação</li>
+                            <li class="fragment" data-fragment-index="2">Mas não temos os operadores unários <code>++</code> e <code>--</code></li>
+                        </ul>
+                        <div class="example">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python" data-noescape>>>> a = 1
+>>> b = 2
+>>> print(a + b)
+3
+>>> a = 5
+>>> print(a / b)  # 'a' e 'b' são inteiros, mas a divisão é em float
+2.5
+                                    <span class="fragment" data-fragment-index="1">>>> print(a // b)
+                                        2
+                                        >>> print(a**2)
+                                        25</span></code></pre></div></div>
+                    </section>
+
+                    <section>
+                        <h2>Operadores Relacionais</h2>
+                        <ul>
+                            <li>Temos os mesmos operadores relacionais do C/C++
+                                <div style="width: auto; font-size: 90%; text-align:center; font-family:'monospace'">> , < , ==, !=, >=, <=</div>
+                            </li>
+                            <li class="fragment" data-fragment-index="1">Além deles, temos também os operadores "<code>is</code>" e "<code>in</code>"</li>
+                        </ul>
+
+                        <div class="example" style="width: 100%; float:right;">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal" style="font-size: 90%;">
+                                <pre><code data-noescape>>>> a = 1;  b = 2  # Usamos ";" para colocar dois comandos na mesma linha
+>>> a == b
+False
+>>> a > b
+False
+>>> a = [1, 2, 3]; b = [1, 2, 3]  # Duas listas contendo os mesmos elementos
+>>> a == b  # 'a' e 'b' são iguais (possuem o mesmo valor) ...
+True
+
+                                    <span class="fragment" data-fragment-index="1">>>> a is b  # ... mas 'a' e 'b' são variáveis diferentes
+                                        False
+                                        >>> a = b  # Agora a e b são a mesma variável (modifique um e o outro muda)
+                                        >>> a is b
+                                        True
+                                        >>> l = [2, 5, 10]
+                                        >>> 5 in l  # O número 5 está na lista 'l'?
+                                        True
+                                        >>> 4 in l  # O número 4 está na lista 'l'?
+                                        False</span></code></pre></div>
+                        </div>
+                        
+                    </section>
+
+                    <section>
+                        <h2>Operadores Lógicos</h2>
+
+                        <ul>
+                            <li>Ao invés de <code>&&</code> e
+                                <code>||</code> temos as palavras chave <code>and</code>
+                                e <code>or</code></li>
+                            <li>Ao invés de <code>!</code> temos a palavra chave <code>not</code></li>
+                            <li class="fragment" data-fragment-index="1">Também temos os operadores lógicos bit-a-bit <code>&</code>, <code>|</code>, <code>^</code>, assim como um operador inverter os bits de um inteiro <code>~</code> </li>
+                        </ul>
+
+                        <div class="example" style="width: 100%; float:right;">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code data-noescape>>>> 3 < 5 and 4 <= 2
+False
+>>> 3 <= 5 or 4 < 2
+True
+>>> not (3 <= 5 or 4 < 2)
+False
+
+                                    <span class="fragment" data-fragment-index="1">>>> 5 | 2  # Aquele item na 5 questão da prova
+                                        7
+                                        >>> 5 & 2  # Aquele outro item na 5 questão da prova
+                                        0
+                                        >>> 16 ^ 6 ^ 10 ^ 15 ^ 16 ^ 6 ^ 10  # Aquela questão que pouca gente acertou
+                                        15
+                                        >>> ~7  # Invertemos cada bit de 7 (incluindo o bit de sinal)
+                                        -8</span></code></pre></div></div>
+                        
+                    </section>
+                    
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Controle de Fluxo em Python</h2>
+                    </section>
+
+                    <section>
+                        <h2>Estruturas Condicionais</h2>
+
+                        <ul>
+                            <li>O escopo em Python é controlado por <span class="green">indentação</span></li>
+                            <li class="fragment">Python possui as estruturas condicionais <code>if</code>, <code>else</code> e <code>elif</code>
+                                <ul>
+                                    <li><code>elif</code> corresponde a um <code>else</code> seguido de um <code>if</code> e existe para evitar indentação excessiva</li>
+                                </ul></li>
+                        </ul>
+                        
+                        <pre class="fragment python"><code>if x == 42:
+    # Código executado de x for igual a 42
+    print("x vale 42")
+elif x > 0:
+    print("x não vale 42, mas pelo menos é maior que 0")
+else:
+    print("Nenhuma das condições anteriores foi verdadeira")</code></pre>
+
+                        <p class="fragment">Nota: Não existe "switch case" em Python, mas temos uma alternativa</p>
+                        
+                    </section>
+
+                    <section>
+                        <h2>Estruturas de Repetição</h2>
+
+                        <ul>
+                            <li>O <code>for</code> em Python difere do <code>for</code> em
+                                C/C++</li>
+                            <li>Em Python ele itera através dos
+                                <span class="green">itens de uma sequência</span>
+                                (uma lista, uma string, etc) na ordem em
+                                que eles aparecem
+                                <pre><code class="python">palavras = ['gato', 'janela', 'paralelepípedo']
+for palavra in palavras:
+    print (palavra.upper())</code></pre></li>
+                            <li class="fragment">Para iterar em uma sequência de números use <code>range</code>
+                                <pre><code class="python">range(5, 10)          # 5, 6, 7, 8, 9
+range(0, 10, 3)       # 0, 3, 6, 9
+range(-10, -100, -30) # -10, -40, -70
+range(-10, -101, -30) # -10, -40, -70 -100</code></pre>
+                                <div class="example" style="width: 100%; float:right;">
+                                    <div class="example-title">darlan@darlan-G75VX</div>
+                                    <div class="example-body terminal">
+                                        <pre><code>>>> for i in range(5, 8):
+...     print(i**2)
+25
+36
+49
+                                        </code></pre></div></div></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Estruturas de Repetição</h2>
+
+                        <ul>
+                            <li>Também temos <code>while</code> em Python, que funciona de forma semelhante ao C/C++
+                                <pre><code class="python">N = 6
+f = 1
+while N > 1:
+    f = f * N
+    N -= 1  # Não existe ++ ou -- em Python</code></pre></li>
+                            <li class="fragment">Em um bloco de código (corpo de um <code>if</code>, <code>for</code>, <code>while</code>, etc) podemos usar <code>pass</code> para não "fazer nada"
+                                <pre><code class=python">while True:
+    pass</code></pre></li></li>
+                        </ul>
+                        
+                    </section>
+                    
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>Mais sobre os tipos de dados em Python</h2>
+                        <p style="margin: 0px; padding: 0px;"><small>Vamos agora mostrar em maiores detalhes os tipos de dados em Python</small></p>
+                    </section>
+
+                    <section>
+                        <h2>Strings em Python</h2>
+
+                        <ul>
+                            <li>Strings são escritas com aspas simples ou duplas</li>
+                            <li class="fragment">O operador "+" pode ser usado para concatenar strings
+                                <ul>
+                                    <li>Ex: <code>"a" + "b"</code> é o mesmo que <code>"ab"</code></li>
+                                </ul></li>
+                            <li class="fragment">O operador "<code>*</code>" pode ser usado para repetir strings
+                                <ul>
+                                    <li>Ex: <code>"a" * 10</code> é o mesmo que <code>"aaaaaaaaaa"</code></li>
+                                </ul></li>
+                            <li class="fragment">Caracteres não imprimíveis podem ser
+                                expressos usando notação "barra-invertida"
+                                <ul>
+                                    <li><code>\n</code> é o mesmo que <em>new line</em></li>
+                                    <li><code>\t</code> é o mesmo que <em>tab</em></li>
+                                    <li><code>\\</code> é o mesmo que \</li>
+                                    <li><code>\"</code> e <code>\'</code> é o mesmo que <code>"</code> e <code>'</code>, respectivamente</li>
+                                </ul></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Strings em Python</h2>
+
+                        <ul>
+                            <li>Também é possível escrever string em várias
+                                linhas incluindo as quebras de linha usando
+                                três aspas
+                                <div class="example">
+                                    <div class="example-title">darlan@darlan-G75VX</div>
+                                    <div class="example-body terminal">
+                                        <pre><code>>>> print("""
+Um tigre
+dois tigres
+três tigres""")</code></pre></div></div></li>
+                            <li class="fragment">Strings possuem muitos métodos úteis, como <code>format</code>, <code>split</code>, <code>join</code>, <code>strip</code>
+                                <div class="example">
+                                    <div class="example-title">darlan@darlan-G75VX</div>
+                                    <div class="example-body terminal">
+                                        <pre><code class="python">>>> disciplina = "Fundamentos de Programação"
+>>> professor = "Darlan"
+>>> print("{0} é o professor de \"{1}\"".format(professor, disciplina))
+Darlan é o professor de "Fundamentos de Programação"
+                                        </code></pre></div></div></li>
+                            <li class="fragment">Veja a <a href="https://docs.python.org/3/library/stdtypes.html#string-methods">documentação</a> de
+                                strings para métodos úteis</li>
+                        </ul>
+                        
+                    </section>
+                    
+                    <section>
+                        <h2>Índices e Slices</h2>
+
+                        <ul>
+                            <li>É possível pegar um caractere de uma string
+                                com a notação <code>string[índice]</code></li>
+                            <li>Um índice negativo endereça <strong>em sentido inverso</strong></li>
+                            <li class="fragment" data-fragment-index="1">Podemos endereçar <span class="green">fatias</span> (slices) com notação <code>[início:fim:passo]</code></li>
+                        </ul>
+
+                        <div class="example">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python" data-noescape>>>> a = "abcde"
+>>> a[0]    # Pega o primeiro elemento
+a
+>>> a[-1]   # Pega o último elemento
+e
+>>> a[-2]   # Pega o penúltimo elemento
+d
+
+                                    <spam class="fragment" data-fragment-index="1">>>> a[2:4]  # Pega os elementos do índice 2 ao índice 3
+                                        cd
+                                        >>> a[-2:]  # Dois últimos elementos
+                                        de
+                                        >>> a[::-2] # Pega os elementos do primeiro ao último pulando de 2 em 2
+                                        ace</spam></code></pre></div></div>
+                        
+                    </section>
+
+                    <section>
+                        <h2>Listas</h2>
+
+                        <ul>
+                            <li>Python possui vários tipos compostos,
+                                usados para agrupar outros valores.</li>
+                            <li class="fragment">O mais versátil de todos é a lista
+                                <div class="example">
+                                    <div class="example-title">darlan@darlan-G75VX</div>
+                                    <div class="example-body terminal">
+                                        <pre><code class="python">>>> l1 = [15, 34.5, 44]  # itens são separados por vírgulas
+>>> l2 = ["Brasil", "Estados Unidos", "Japão", "França"]
+>>> l3 = [1, 2, "três", "quatro"]  # Itens podem ter tipos diferentes
+                                        </code></pre></div></div>
+                            </li>
+                            <aside class="notes">Listas podem conter itens de diferentes tipos, mas normalmente todos os itens possuem o mesmo tipo</aside>
+                            <li class="fragment">A lista é um tipo <span class="green">mutável</span> <i class="fa fa-hand-o-right"></i> é possível modificar seus elementos
+                                <div class="example">
+                                    <div class="example-title">darlan@darlan-G75VX</div>
+                                    <div class="example-body terminal">
+                                        <pre><code class="python">>>> a = [1, 5, 10, 15, 20]
+>>> a[2] = 100
+>>> print(a)
+[1, 5, 100, 15, 20]</code></pre></div></div>
+                            </li>
+                            <li class="fragment">Podemos indexar strings, mas <span class="green">strings são imutáveis</span>
+                                <ul>
+                                    <li>Não podemos modificar uma letra de uma string</li>
+                                    <li>Precisamos criar uma nova string nesse caso</li>
+                            </li>
+                                </ul>
+                                
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Listas</h2>
+
+                        <ul>
+                            <li>Assim como em strings, podemos indexar uma
+                                lista para pegar um elemento em particular ou
+                                uma fatia (slice)</li>
+                            <li class="fragment" data-fragment-index="1">Também é possível
+                                concatenar duas listas com o operador <code>+</code> assim como fazemos com strings</li>
+                            <li class="fragment" data-fragment-index="2">Uma operação comum em um lista consiste em adicionar um ou mais elementos: use os métodos <code>append</code> e <code>extend</code></li>
+                        </ul>
+                        <div class="example fragment" data-fragment-index="2">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python">>>> a = [1, 5, 10]
+>>> a.append(15)  # Adiciona o número 15 na lista
+>>> print(a)
+[1, 5, 10, 15]
+>>> b = [100, 200]
+>>> a.extend(b)  # Adiciona os elementos da lista 'b' na lista 'a'
+>>> print(a)
+[1, 5, 10, 15, 100, 200]</code></pre></div></div>
+                    </section>
+
+                    <section>
+                        <h2>Listas</h2>
+
+                        <ul>
+                            <li>Podemos usar slices também para fazer atribuições</li>
+                            <li class="fragment" data-fragment-index="1">Para remover um elemento podemos usar <code>remove</code></li>
+                            <li class="fragment" data-fragment-index="2"><code>pop</code> remove e retorna o último elemento da lista</li>
+                            <li class="fragment" data-fragment-index="3">Para remover um elemento pelo índice use <code>del</code></li>
+                        </ul>
+
+                        <div class="example">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python" data-noescape>>>> a = [1, 5, 10, 15, 100, 200]
+>>> a[1::2] = [1000, 2000, 3000]  # a[1::2] -> posições 1, 3 e 5
+>>> print(a)
+[1, 1000, 10, 2000, 100, 3000]
+                                    <span class="fragment" class="fragment" data-fragment-index="1">>>> a.remove(10)  # Encontra o primeiro 10 na lista e remove
+                                        >>> print(a)
+                                        [1, 1000, 2000, 100, 3000]</span>
+                                    <span class="fragment" data-fragment-index="2">>>> b = a.pop()   # Remove o último elemento da lista (3000) e retorna
+                                        >>> print(b)
+                                        3000</span>
+                                    <span class="fragment" data-fragment-index="3">>>> del a[0:2]  # Remove os 2 primeiros elementos</span>
+                                </code></pre></div></div>
+                    </section>
+
+                    <section>
+                        <h2>Listas</h2>
+
+                        <ul>
+                            <!-- <li>Esse é o 4 slide sobre listas <i class="fa fa-hand-o-right"></i> Elas são realmente flexíveis</li> -->
+                            <li>É comum querermos construir uma lista efetuando uma operação em cada elemento de outra lista</li>
+                            <li class="fragment" data-fragment-index="1">Para isso Python forcece o conceito de <span class="green">list comprehensions</span></li>
+                            <li class="fragment" data-fragment-index="3">Suponha que queremos criar um conjunto com valores definidos por \(\{x^2 : x \in \{0, ..., 9\}\}\)</li>
+                            <li class="fragment green" data-fragment-index="4">E se quisermos o quadrado apenas dos números pares?</li>
+                        </ul>
+                        <div class="example fragment" class="fragment" data-fragment-index="3">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python" data-noescape>>>> a = [x**2 for x in range(10)]
+>>> print(a)
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+                                    <span class="fragment" data-fragment-index="4">>>> a = [x**2 for x in range(10) if x % 2 == 0]
+                                        >>> print(a)
+                                        [0, 4, 16, 36, 64]</span></code></pre></div></div>
+
+                        <p class="fragment">Veja mais na <a href="https://docs.python.org/3/tutorial/introduction.html#lists">documentação oficial</a>
+
+                    </section>
+                    
+                    <section>
+                        <h2>Tuplas</h2>
+                        <ul>
+                            <!-- <li>Listas e strings possuem muitos métodos em comum, como indexar, usar slices, etc</li>
+                                 <li>Outro tipo padrão sào as <span class="green">tuplas</span></li> -->
+                            <li>Tuplas consistem de um conjunto de valores em parêntesis separados por vírgula</li>
+                            <li class="fragment" data-fragment-index="1">Tuplas são semelhante as listas, mas tuplas
+                                são <span class="green">imutáveis</span>
+                                <ul>
+                                    <li>Seus valores não podem ser modificados e não é possível adicionar ou remover valores</li>
+                                </ul></li>
+                            <li class="fragment" data-fragment-index="2">Também podemos acessar os elementos de uma
+                                tupla (ou qualquer sequência) é via <span class="green">unpacking</span></li>
+                        </ul>
+
+                        <div class="example">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python" data-noescape>>>> minha_tupla = (1, 2, 3, "e", "já")
+
+                                    <span class="fragment" data-fragment-index="1">>>> minha_tupla[0] = 10  # ERRO -> tuplas são imutáveis!</span>
+
+                                    <span class="fragment" data-fragment-index="2">>>> a, b, c, d, e = minha_tupla  # Coloca os elementos nas variáveis
+                                        >>> print(b)
+                                        2
+                                        >>> print(e)
+                                        já
+                                    </span></code></pre></div></div>
+                        
+                    </section>
+                    <section>
+                        <h2>Dicionários</h2>
+                        <ul>
+                            <li>Um dicionário mapeia uma <span class="green">chave</span> e um <span class="green">valor</span></li>
+                            <li>As chaves precisam ser imutáveis (e únicas)</li>
+                            <li class="fragment" data-fragment-index="1">Podemos testar se uma chave está no dicionário com <code>in</code></li>
+                            <li class="fragment" data-fragment-index="2">O método <code>keys()</code> retorna as chaves no dicionário</li>
+                            <li class="fragment" data-fragment-index="3">Use <code>del</code> para remover um par chave/valor do dicionário</li>
+                        </ul>
+                        <div class="example">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python" data-noescape>>>> telefones = {"Polícia": 190, "Ambulância": 192}
+>>> telefones["Polícia"]
+190
+                                    <span class="fragment" data-fragment-index="1">>>> "Bombeiros" in telefones
+                                        False
+                                        >>> telefones["Bombeiros"] = 193
+                                        >>> "Bombeiros" in telefones
+                                        True</span>
+                                    <span class="fragment" data-fragment-index="2">>>> print(list(telefones.keys()))  # Imprime uma lista com as chaves
+                                        ['Bombeiros', 'Ambulância', 'Polícia']</span>
+                                    <span class="fragment" data-fragment-index="3">>>> del telefones['Ambulância']
+                                        >>> print(list(telefones.keys()))  # Imprime uma lista com as chaves
+                                        ['Bombeiros', 'Polícia']</span>
+                                </code></pre></div></div>
+                    </section>
+
+                    <section>
+                        <h2>Dicionários</h2>
+
+                        <ul>
+                            <li>Podemos iterar sobre um dicionário com um <code>for</code></li>
+                            <li>use <code>d.items()</code> para retornar uma "lista de pares" de chave e valor que pode ser usada em um <code>for</code>, por exemplo</li>
+                        </ul>
+                        <pre><code class="python">d = {"pi": 3.141592,
+     "e": 2.718282,
+     "número de ouro": 1.6180}
+
+for chave, valor in d.items():
+    pass  # Faça alguma coisa com a chave e o valor</code></pre>
+                        <p>Exemplo
+                            <div class="example">
+                                <div class="example-title">darlan@darlan-G75VX</div>
+                                <div class="example-body terminal">
+                                    <pre><code class="python">>>> for chave, valor in d.items():
+...   print("{0}: {1}".format(chave, valor))
+e: 2.718282
+pi: 3.141592
+número de ouro: 1.618</code></pre></div></div></p>
+
+                    </section>
+                    
+                    <section>
+                        <h2>Conjuntos</h2>
+
+                        <ul>
+                            <li>Um conjunto em python é uma coleção de
+                                items <span class="green">sem ordem
+                                definida</span> e <span class="green">sem elementos
+                                duplicados</span></li>
+                            <li class="fragment" data-fragment-index="1">Criamos um conjunto usando chaves ou usando <code>set</code></li>
+                            <li class="fragment" data-fragment-index="2">Ações
+                                básicas: <span class="fragment highlight-current-green" data-fragment-index="2">testar pertinência</span>, <span class="fragment highlight-current-green" data-fragment-index="3">união,</span> <span class="fragment highlight-current-green" data-fragment-index="4">interseção,</span> <span class="fragment highlight-current-green" data-fragment-index="5">diferença</span> <span class="fragment highlight-current-green" data-fragment-index="6">e diferença simétrica</span></li>
+                        </ul>
+
+                        <div class="example fragment" data-fragment-index="1">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python" data-noescape>>>> cesta = {'maçã', 'laranja', 'maçã', 'pera', 'laranja', 'banana'}
+>>> print(cesta)  # Perceba que duplicatas foram eliminadas
+{'pera', 'banana', 'laranja', 'maçã'}
+                                    <span class="fragment" data-fragment-index="2">>>> 'laranja' in cesta
+                                        True
+                                        >>> 'limão' in frutas
+                                        False
+                                        <span class="fragment" data-fragment-index="3">>>> A = set('abracadabra'); B = set('alacazam')  # Vamos testar operaçoes
+                                            >>> A | B  # União: Letras em a ou b
+                                            {'a', 'b', 'c', 'd', 'l', 'm', 'r', 'z'}</span>
+                                        <span class="fragment" data-fragment-index="4">>>> A & B  # Interseção: Letras em a e em b
+                                            {'a', 'c'}</span>
+                                        <span class="fragment" data-fragment-index="5">>>> A - B  # Diferença: Letras em a que não estão em b
+                                            {'b', 'd', 'r'}</span>
+                                        <span class="fragment" data-fragment-index="6">>>> A ^ B  # Diferença simétrica: Letras em a ou em b, mas não em ambos
+                                            {'b', 'd', 'l', 'm', 'r', 'z'}</span></span>
+                                </code></pre></div></div>
+                    </section>
+                </section>  <!-- Fim de Mais sobre tipos de dados -->
+
+                <section>
+                    <section>
+                        <h2>Funções</h2>
+                    </section>
+                    
+                    <section>
+                        <h2>Definindo novas Funções</h2>
+                        
+                        <!-- <pre><code data-trim>
+                             def shout(message="Hi"):
+                             print("%s!".format(message))
+
+                             shout() # Prints "Hi!"
+                             shout("I love python")
+                             shout(message="And keyword arguments")
+                             </code></pre> -->
+
+                        <ul>
+                            <li>Funções são definidas com a palavra chave <code>def</code>
+                                <div class="example">
+                                    <div class="example-title">darlan@darlan-G75VX</div>
+                                    <div class="example-body terminal">
+                                        <pre><code class="python" data-noescape>>>> def fib(n):
+                                            <span class="fragment" data-fragment-index="1">...     """Imprime a série de Fibonacci até n. Essa função não retorna nada."""</span>
+...     a, b = 0, 1
+...     while a < n:
+...         print(a, end=" ")
+...         a, b = b, a+b
+...     print()
+>>> fib(1000)
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
+
+                                            <span class="fragment" data-fragment-index="3">>>> fib
+                                                &ltfunction __main__.fib&gt
+                                                >>> f = fib
+                                                >>> f
+                                                &ltfunction __main__.fib&gt
+                                                >>> f(1000)  # Chama a função passando 1000 para o parâmetro n
+                                                0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
+                                            </span></code></pre></div></div>
+                            </li>
+                            <li class="fragment" data-fragment-index="1">A primeira declaração na função pode ser uma string, que será usada como documentação (<span class="green">docstring</span>)
+                                <ul class="fragment" data-fragment-index="2">
+                                    <li> Pode ser vista com <code class="python">fib?</code> no IPython ou <code class="python">help(fib)</code></li>
+                                </ul></li>
+                            <li class="fragment" data-fragment-index="3">Definir uma função introduz a mesma na tabela de símbolos atual</li>
+                            
+                            <!-- <li>Os argumentos das funções podem ter valores padrão</li>
+                                 <li>Argumentos adicionais com valores padrão podem ser nomeados quando chamados (argumento com palavra chave</li> -->
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Funções com valor de retorno</h2>
+                        <ul>
+                            <li>Uma função pode ou não ter um <code>return</code></li>
+                            <li>Funções sem <code>return</code> retornam <code>None</code></li>
+                        </ul>
+                        <div class="example">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python" data-noescape>>>> def fib2(n):
+...     """Retorna (lista) a série de Fibonacci até n."""
+...     result = []  # Cria uma lista vazia
+...     a, b = 0, 1
+...     while a < n:
+...         result.append(a)  # Adiciona um elemento na lista
+...         a, b = b, a+b
+...     return result
+...   
+>>> f100 = fib2(100)    # chama a função
+>>> f100  # Notem que f100 é uma lista
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]</code></pre></div></div>
+                    </section>
+
+                    <section>
+                        <h2>Parâmetros com valor padrão</h2>
+
+                        <ul>
+                            <li>Os parâmetros de uma função podem ter um <span class="green">valor padrão</span></li>
+                            <li>Isso permite chamar a função com menos parâmetros do que foram definidos</li>
+
+                            <!-- <li>Considere a função que retorna a posição de um
+                                 móvel dada uma posição inicial, velocidade e
+                                 aceleração \[s = s_0+v_0 t + \frac{1}{2}a t^2\]</li> -->
+                            <li class="fragment" data-fragment-index="1">Exemplo: <span class="green" style="margin-left: 3%;">\(s = s_0+v_0 t + \frac{1}{2}a t^2\)</span> 
+                                <pre><code class="python">def calc_s(t, s0=0, v0=1, a=0.5):
+    """Calcula posição final dados s0, v0, a e t."""
+    return s0 + v0*t + 0.5 * a * t**2</code></pre></li>
+                            <li class="fragment" data-fragment-index="4">Também é possível especificar um parâmetro pelo nome</li>
+                        </ul>
+                        
+                        <div class="example fragment" data-fragment-index="3">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python" data-noescape>>>> calc_s(5)  # Chama a função apenas com o parâmetro obrigatório
+11.25
+>>> calc_s(5, 10)  # Passa os 2 primeiros parâmetros
+21.25
+                                    <span class="fragment" data-fragment-index="4">>>> calc_s(5, 10, a=1.0)  # Passa 't' e 's0' pela posição e 'a' pelo nome
+                                        27.5</span>
+                                </code></pre></div></div>
+                        <p class="fragment" data-fragment-index="5">Nota: Não use tipos mutáveis para valores padrão</p>
+                    </section>
+
+                    <section>
+                        <h2>Funções com quantidade variável de argumentos</h2>
+                        <ul>
+                            <li>Funções podem aceitar uma quantidade
+                                variável de argumentos tanto via posição quanto
+                                via palavra chave</li>
+                            <li class="fragment">Para isso use o prefixo 
+                                <code>*</code> e/ou <code>**</code> antes
+                                do argumento final</li>
+                            <li class="fragment">Se houverem multiplos
+                                parâmetros via posição e nome use os dois
+                                prefixos
+                                <pre><code data-trim>
+def my_func(a, b, *args, **kwargs):  # 'a' é um 'b' são parâmetros obrigatórios
+    print(a)
+    print(b)
+    # tupla de todos os parâmetros via posição 
+    print(args)
+
+    # Dicionário com todos os parâmetros fornecidos via palavra chave
+    print(kwargs)
+                                </code></pre></li>
+                        </ul>
+
+                        <div class="example fragment">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python" data-noescape>>>> my_func(1, 2, 3, "e", "já",  modelo="Fusca", cor="Amarelo")
+1
+2
+(3, 'e', 'já')
+{'cor': 'Amarelo', 'modelo': 'Fusca'}
+                                </code></pre></div></div>
+
+                    </section>
+                    
+                    <section>
+                        <h2>Funções Anônimas: lambda functions</h2>
+
+                        <ul>
+                            <li>As vezes precisamos efetuar algum cálculo
+                                simples, que possivelmente utilizaremos uma
+                                única vez logo em seguida</li>
+                            <!-- <li class="fragment">Declarar uma função de maneira tradicional
+                                 poderia ser <strong>trabalho demais só para isso</strong></li> -->
+                            <li class="fragment">Nesses casos podemos criar uma "<strong>função anônima</strong>"</li>
+                            <li class="fragment">Notação: <code>lambda variáveis: expressão</code>
+                                <div class="example">
+                                    <div class="example-title">darlan@darlan-G75VX</div>
+                                    <div class="example-body terminal">
+                                        <pre><code class="python">>>> f = lambda a, b: a+b
+>>> f(3, 4)
+7
+>>> f = lambda x: x**2
+>>> f(4)
+16</code></pre></div></div></li>
+
+                            
+                        </ul>
+                    </section>
+                    
+                </section>  <!-- Fim de funções -->
+
+                <!-- <section>
+                     <section>
+                     <h2>Iteração</h2>
+                     </section>
+                     
+                     <section>
+                     <h2>Iteração</h2>
+                     
+                     <ul>
+                     <li>Todos os contêineres podem ser iterados com <br/><code>for ... in ....</code>
+                     <pre><code data-trim class="python">
+                     bebida = None
+                     for geladeira in escritorio:
+                     if 'Coca-Cola' in geladeira:
+                     bebida = geladeira.remove('Coke-Cola')
+                     break
+                     if not bebida:
+                     shout("Onde está minha Coca!?")</code></pre></li>
+                     </ul>
+                     
+                     </section>
+
+                     <section>
+                     <h2>Iterando sobre dicionários</h2>
+
+                     <ul>
+                     <li>If all containers can be iterated over, what happens when you iterate over a dictionary?</li>
+                     </ul>
+                     <pre><code data-trim>
+                     for key in mapping:
+                     print "%s=%s" % (key, mapping[key])
+
+                     for value in mapping.values():
+                     print "???=%s" % value
+
+                     for (k, v) in mapping.items():
+                     print "%s=%s" % (k, v)
+                     </code></pre>
+                     </section>
+
+                     </section> -->
+
+                <section>
+                    <section>
+                        <h2>Módulos e Scripts</h2>
+                    </section>
+
+                    <section>
+                        <h2>Criando Scripts</h2>
+
+                        <ul>
+                            <li>Python é uma linguagem interpretada
+                                <ul>
+                                    <li class="fragment">Não precisamos compilar nosso programa</li>
+                                    <li class="fragment">Podemos executar os comandos
+                                        diretamente no terminal
+                                        <ul class="fragment">
+                                            <li>Mas isso será perdido se fecharmos o terminal</li>
+                                        </ul></li>
+                                    
+                                    <li class="fragment">Se salvarmos o código em
+                                        um arquivo (script) poderemos <span class="green">rodar
+                                        o programa</span> sempre que quisermos</li>
+                                </ul></li>
+                            <li class="fragment">Para criar um script basta colocar o código em
+                                um arquivo com extensão <code>.py</code></li>
+                            <li class="fragment">Rode o interpretador python passando o
+                                script como parâmetro 
+                                <!-- <pre><code class="bash">python meu_script.py</code></pre> -->
+                                <div class="example fragment">
+                                    <div class="example-title">darlan@darlan-G75VX</div>
+                                    <div class="example-body terminal">
+                                        <pre><code class="bash">~$ python meu_script.py</code></pre></div></div>
+                            </li>
+                            <li class="fragment">Nota: É necessário ter o Python instalado no computador</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Criando Módulos</h2>
+
+                        <ul>
+                            <li>Outra alternativa é criar um <span class="green">módulo</span> e <span class="green">importá-lo</span></li>
+                            <li>Supuponha que o arquivo <code>my_funcs.py</code> contém
+                                <pre><code class="python">def dobra(x):
+    return 2*x
+
+def triplica(x):
+    return 3*x</code></pre>É possíve importar as definições do módulo <code>my_funcs</code></li>
+                        </ul>
+
+                        <div class="example">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python">>>> from my_funcs import dobra, triplica
+>>> dobra(5)
+10
+>>> triplica(5)
+15</code></pre></div></div>
+
+                        <div class="example">
+                            <div class="example-title">darlan@darlan-G75VX</div>
+                            <div class="example-body terminal">
+                                <pre><code class="python">>>> import my_funcs as mf
+>>> mf.dobra(5)
+10
+>>> mf.triplica(5)
+15</code></pre></div></div>
+
+                    </section>
+                </section>
+
+
+                <section>
+                    <h2>IPython</h2>
+                    <ul>
+                        <li><a href="http://ipython.org/ipython-doc/stable/interactive/tutorial.html">Terminal interativo</a> para a linguagem python que oferece:
+                            <ul>
+                                <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#tab-completion">Completar um comando</a> (após digitar parte dele) com <tt class="green">TAB</tt></li>
+                                <!-- <li>Sintaxe adicional para o shell</li> -->
+                                <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#history">Histórico de comandos</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#exploring-your-objects">Obtendo Ajuda com "?"</a> <span style="font-size: 50%; float:right;">(se necessário aperte "q" para sair do help)</span>
+                            <div class="example">
+                                <div class="example-title">darlan@darlan-G75VX</div>
+                                <div class="example-body terminal">
+                                    <pre><code class="python" data-noescape><span class="green">In [1]:</span> abs?
+                                        <span class="red">Docstring</span>: Return the absolute value of the argument.
+                                        <span class="red">Type:</span>      builtin_function_or_method</code></pre></div></div>
+                        </li>
+                        <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#magic-functions">Funções mágicas</a> <i class="fa fa-hand-o-right"></i> <span class="green">Muito úteis</span>
+                            <ul>
+                                <li><tt class="green">%whos</tt>: Veja variáveis e funções atuais</li>
+                                <li><tt class="green">%run</tt>: Executa um arquivo como um script</li>
+                                <li><tt class="green">%paste</tt>: Cola e executa um bloco de código</li>
+                                <li><tt class="green">%timeit</tt>: Executa uma expressão e mostra tempo decorrido</li>
+                                <!-- <li><tt class="green">%macro</tt>: Define um macro para futura execução</li> -->
+                                <li><tt class="green">%quickref</tt>: Cartão de referência do IPython</li>
+                                <!-- <li class="fragment"><tt class="green">%autocall</tt>: Dispensa os parêntesis em uma chamada de função</li> -->
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+
+                <section>
+                    <h2>Exemplos de Programas</h2>
+
+                    <ul>
+                        <li>Calcula quando precisei pagar de frutas no supermercado</li>
+                    </ul>
+                    <pre><code class="python">precos = {"banana prata": 3.50,
+          "coco verde": 2.0,
+          "maçã nacional": 4.50,
+          "manga tommy": 5.0,
+          "uva red glob": 5.0}
+minhas_compras = {"banana prata": 1.2,
+                  "coco verde": 6,
+                  "uva red glob": 0.6}
+
+# Usa um list comprehension para gerar uma lista e soma os seus valores
+conta = sum([precos[fruta] * minhas_compras[fruta] for fruta in minhas_compras])
+print("Eu precisei pagar o total de R$ {0:.2f} em frutas".format(conta))</code></pre>
+                    
+                </section>
+
+                
+                <section>
+                    <h2>Exemplos de Programas</h2>
+
+                    <ul>
+                        <li>Conta o número de palavras em um texto</li>
+                    </ul>
+                    <pre><code class="python">texto = '''"Aonde fica a saída?", Perguntou Alice ao gato que ria.
+"Depende", respondeu o gato.
+"De quê?", replicou Alice;
+"Depende de para onde você quer ir..."'''
+palavras = texto.split()  # Separa o texto em uma lista de palavras
+print("O texto tem {0} palavras, sendo {1} delas diferentes.".format(
+    len(palavras),      # Número de palavras
+    len(set(palavras))  # Número de palavras únicas
+))</code></pre>
+                    
+                </section>
+
+
+                <section>
+                    <h2>O que aprender em seguida</h2>
+
+                    <ul>
+                        <li><span class="green">baterias incluídas</span>: Python possui uma biblioteca extensa</li>
+                        <ul class="fragment">
+                            <li>Já existe uma biblioteca apropriada para o que você quer fazer</li>
+                        </ul>
+                        <li class="fragment">Em computação numérica você vai querer usar o <a href="http://www.numpy.org/">numpy</a> <span class="fragment green">e bibliotecas que são construídas em cima do numpy como:</span>
+                            <ul class="fragment">
+                                <li><a href="http://matplotlib.org/">matplotlib</a>:
+                                    plotar diversos tipos de gráficos</li>
+                                <li><a href="https://www.scipy.org/">scipy</a>:
+                                    coleção de algoritmos numéricos para
+                                    processamento de sinais, otimização,
+                                    estatística, etc</li>
+                                <li><a href="http://pandas.pydata.org/">pandas</a>:
+                                    estrutura de dados para análise de dados</li>
+                            </ul>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Conteúdo Extra</h2>
+                    </section>
+                    <section>
+                        <h2>Conversão de Base</h2>
+
+                        <ul>
+                            <li><code>bin</code>: converte para representação em base 2</li>
+                            <li><code>oct</code>: converte para representação em base 8</li>
+                            <li><code>hex</code>: converte para representação em base 16</li>
+                            <li><code>int('0b1010', base=2)</code>: converte a partir de uma base para um inteiro (em base 10)</li>
+                            <li>Podemos entrar com um número em uma base com prefixos <code>0b</code>, <code>0o</code> e <code>0x</code><br/>Ex: <code>x = 0o20</code>  (20 em octal -> 16 em decimal)</li>
+                            
+                        </ul>
+                        
+                    </section>
+
+                    <section>
+                        <h2>Classes</h2>
+
+                        <!-- <pre><code data-trim>
+                             class LoudTalker(object):
+                             def say(self, message):
+                             shout(message)
+
+                             shaun = LoudTalker()
+                             shaun.say("Herpa derpa")
+                             </code></pre>
+                             <ul>
+                             <li>Classes are declared using the class keyword, and methods are declared as functions inside the class body (indicated by indentation). </li>
+                             <li>Instances are created by calling the class object, there is no new keyword.</li>
+                             </ul> -->
+                    </section>
+
+                </section>  <!-- Fim do conteúdo extra -->
 			</div>
 		</div>
 
@@ -33,18 +1116,125 @@
 		<script src="js/reveal.js"></script>
 
 		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+		 // More info https://github.com/hakimel/reveal.js#configuration
+		 Reveal.initialize({
+             minScale: 0.3,
+             maxScale: 1.0,
+             // Display controls in the bottom right corner
+             controls: true,
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
+             // Display a presentation progress bar
+             progress: true,
+
+             // Display the page number of the current slide
+             slideNumber: true,
+             
+			 history: true,
+
+             // Enable keyboard shortcuts for navigation
+             keyboard: true,
+
+             // Enable the slide overview mode
+             overview: true,
+
+             // Vertical centering of slides
+             center: true,
+
+             // Enables touch navigation on devices with touch input
+             touch: true,
+
+             // Turns fragments on and off globally
+             fragments: true,
+
+             // Flags if the presentation is running in an embedded mode,
+             // i.e. contained within a limited portion of the screen
+             embedded: false,
+
+             // Flags if we should show a help overlay when the questionmark
+             // key is pressed
+             help: true,
+
+             // Flags if speaker notes should be visible to all viewers
+             showNotes: false,
+
+             // Number of milliseconds between automatically proceeding to the
+             // next slide, disabled when set to 0, this value can be overwritten
+             // by using a data-autoslide attribute on your slides
+             //autoSlide: 0,
+
+             // Stop auto-sliding after user input
+             //autoSlideStoppable: true,
+
+             // Use this method for navigation when auto-sliding
+             //autoSlideMethod: Reveal.navigateNext,
+
+             // Enable slide navigation via mouse wheel
+             mouseWheel: false,
+
+             // Hides the address bar on mobile devices
+             hideAddressBar: true,
+
+             // Opens links in an iframe preview overlay
+             previewLinks: false,
+
+             // Transition style
+             transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+             // Transition speed
+             transitionSpeed: 'default', // default/fast/slow
+
+             // Transition style for full page slide backgrounds
+             backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+             // Number of slides away from the current that are visible
+             viewDistance: 3,
+
+             // Parallax background image
+             //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+             // Parallax background size
+             //parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+             // Number of pixels to move the parallax background per slide
+             // - Calculated automatically unless specified
+             // - Set to 0 to disable movement along an axis
+             //parallaxBackgroundHorizontal: null,
+             //parallaxBackgroundVertical: null
+
+             zoomKey: 'shift',
+
+             math: {
+                 mathjax: 'node_modules/mathjax/MathJax.js',
+                 config: 'TeX-AMS_HTML-full,http://localhost:8000/js/MathJax_local.js' // See http://docs.mathjax.org/en/latest/config-files.html
+             },
+             
+			 // More info https://github.com/hakimel/reveal.js#dependencies
+			 dependencies: [
+				 { src: 'plugin/markdown/marked.js' },
+				 { src: 'plugin/markdown/markdown.js' },
+				 { src: 'plugin/notes/notes.js', async: true },
+				 { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                 // Zoom in and out with Alt+click
+                 { src: 'plugin/zoom-js/zoom.js', async: true },
+                 // MathJax
+                 { src: 'plugin/math/math.js', async: true },
+                 /*                  { src: 'js/MathJax_local.js', async: true },*/
+			 ]
+		 });
 		</script>
+        <!-- <srcipt>
+             Reveal.addEventListener( 'ready', function( event ) {
+             // event.currentSlide, event.indexh, event.indexv
+             MathJax.Hub.Config({
+             TeX: {
+             Macros: {
+             vtY: "{\\boldsymbol{y}}",
+             <!-- bold: ["{\\bf #1}",1],
+             Abs: ['\\left\\lvert #2 \\right\\rvert_{\\text{#1}}', 2, ""] -->
+        }
+        }
+        });
+        } );
+        </srcipt> -->
 	</body>
 </html>
