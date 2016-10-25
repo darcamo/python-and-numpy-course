@@ -1,0 +1,34 @@
+<link rel="import"  href="../bower_components/polymer/polymer.html">
+<link rel="import" href="./terminal-tag.html">
+
+<dom-module id="code-terminal">
+    <style>
+     /* Sobrescreve o que a biclioteca highlight.js seta caso eu coloque a
+        classe 'terminal' */
+     code {
+         background-color: #272822 !important;
+     }
+    </style>
+
+    <template>
+        <terminal-tag hostname="{{hostname}}"><code class$="{{codeclass}}" data-noescape><content></content></code></terminal-tag>
+    </template>
+
+    <script>
+     Polymer({
+         is: "code-terminal",
+         properties: {
+             // declare the hostname property
+             hostname: {
+                 type: String,
+                 value: "darlan@darlan-G75VX"
+             },
+             codeclass: {
+                 type: String,
+                 value: "python"
+             },
+         }
+     });
+    </script>
+
+</dom-module>

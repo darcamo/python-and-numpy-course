@@ -12,7 +12,9 @@
     "Hakim El Hattab <hakim.elhattab@gmail.com>"
   ],
   "dependencies": {
-    "headjs": "~1.0.3"
+    "headjs": "~1.0.3",
+    "platform": "Polymer/platform#^0.4.2",
+    "polymer": "Polymer/polymer#^1.7.0"
   },
   "repository": {
     "type": "git",

@@ -6,65 +6,7 @@
     color: #17ff2e;
 }
 
-.reveal .example {
-    /* width: 95%; */
-    /* margin-left: 2.5%; */
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: 2%;
-    margin-right: 2%;
-    background-color: seashell;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
-    border-radius: .5em;
-    /* margin-top: 0.3em; */
-    /* margin-bottom: 0.3em; */
-    /* box-shadow: 3px 2px 2px 1px gray; */
-    font-family: 'Ubuntu Mono';
 
-}
-
-.reveal .example-title {
-    color: white;
-    /* position: relative; */
-    /* margin-left: -2%; */
-    background-color: black;
-    border-top-left-radius: .5em;
-    border-top-right-radius: .5em;
-    width: auto;
-
-    /* padding-left: 5%; */
-    /* padding-right: 5%; */
-    font-size: 60%;
-    text-align: center;
-}
-
-.reveal .example-body {
-    border-bottom-left-radius: .5em;
-    border-bottom-right-radius: .5em;
-    color:black;
-}
-
-.reveal .example-body pre {
-    margin: 0px;
-    padding-left: 0.4em;
-    padding-right: 0.2em;
-    padding-top: 0.2em;
-    padding-bottom: 0.5em;
-    width: auto;
-}
-
-/* Adicione a classe terminal no mesmo div que tem a classe example-body */
-.reveal .example-body.terminal {
-    color:white;
-    background-color: #272822;
-}
-
-/* Sobrescreve o que a biclioteca highlight.js seta caso eu coloque a classe 'terminal'  */
-.terminal code {
-    background-color: #272822 !important;
-}
 
 /* Se tiver uma tag code dentro de um item de uma lista */
 li>code {
@@ -78,6 +20,23 @@ li>code {
 .reveal li>pre {
     width: auto;
     margin-right: 3%;
+}
+
+body {
+    counter-reset: ipython-in;
+    /* counter-increment: ipython-in; */
+}
+
+
+.ipython-in:before {
+    counter-increment: ipython-in;
+    content: "In  [" counter(ipython-in) "]: ";
+    color:#17ff2e;
+}
+
+.ipython-out:before {
+    content: "Out [" counter(ipython-in) "]: ";
+    color:#ff2c2d;
 }
 
 /* Local Variables: */
