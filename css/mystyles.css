@@ -39,6 +39,47 @@ body {
     color:#ff2c2d;
 }
 
+@media print {
+    li>code {
+        color: #b8860b;
+    }
+
+    .green {
+        color: DarkGreen;
+    }
+
+    .red {
+        color: DarkRed;
+    }
+
+    .ipython-in:before {
+        color: DarkGreen;
+    }
+
+    .ipython-out:before {
+        color: DarkRed;
+    }
+
+    /* Code block font is too slim in print. Let's make it bolder */
+    pre code {
+        font-weight: 900 !important;
+    }
+}
+
+.reveal .displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.reveal .numpy_table table td{
+    color: black;
+    border: 1px solid gray;
+    background-color: white;
+}
+
+
 /* Local Variables: */
 /* eval: (rainbow-mode t) */
 /* End: */

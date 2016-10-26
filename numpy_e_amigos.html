@@ -1,0 +1,516 @@
+<!doctype html>
+<html>
+	<head>
+        <meta name="description" content="Uma apresentação sobre Python para quem já tem noção de programação">
+		<meta name="author" content="Darlan Cavalcante Moreira">
+        
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Introdução ao Python, Numpy e amigos</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+        <link rel="stylesheet" href="css/mystyles.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+		 var link = document.createElement( 'link' );
+		 link.rel = 'stylesheet';
+		 link.type = 'text/css';
+		 link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		 document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+        <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+        <!-- My custom polymer element with a terminal and inside python code -->
+        <link rel="import" href="/my_polymer_elements/terminal-tag.html">
+        <link rel="import" href="/my_polymer_elements/code-terminal.html">
+
+        <!-- <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script> -->
+        <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section data-background-image="imagens/hello_python.png" data-background-size="30%" data-background-position="bottom">
+                    <h1>Programando Python</h1>
+                    <h2>Um Curso Relâmpago</h2>
+                    <h3>Prof: Darlan Cavalcante Moreira</h3>
+                </section>
+				<section>
+                    <h2>Objetivos</h2>
+                    <ul>
+                        <li>Aprender como usar a pilha de bibliotecas para computação científica em python</li>
+                        <li>Fazer uma simulação em python e obter uma curva como abaixo
+                            <img data-src="/imagens/numpy_part/comic_plot.png" width="600" class="displayed"/>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Qual "bateria" devo usar?</h2>
+
+                    <ul>
+                        <li>Python é uma linguagem de programação de uso geral</li>
+                        <li>Mas possui várias bibliotecas voltadas para computação científica</li>
+                        <li>Nesse curso vamos ver parte dessas ferramentas</li>
+                    </ul>
+                    <!-- https://indranilsinharoy.com/2013/01/06/python-for-scientific-computing-a-collection-of-resources/ -->
+                    <img data-src="/imagens/numpy_part/scientific_stack.png" class="displayed"/>
+                    <ul><li><span class="red">Nota:</span> A biblioteca <a href="http://www.numpy.org/">Numpy</a> é o núcleo da computação científica em Python e é a mais importante de se aprender bem</li></ul>
+                    
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Numpy Arrays</h2>
+
+                        <ul>
+                            <!-- <li>A biblioteca <a href="http://www.numpy.org/">Numpy</a> é o núcleo da computação científica em Python</li> -->
+                            <li>Numpy nos fornece um <em>array multidimensional</em> de alto desempenho e ferramentas para trabalhar com esses arrays</li>
+                            <li>Um array é um conjunto de valores, todos do mesmo tipo, possui um <span class="green">shape</span></li>
+                            <li>O <span class="green">shape</span> de um array é uma tupla de inteiros não negativos e seu número de elementos corresponde ao <span class="green">rank</span> do array</li>
+                            <li>Geralmente procuramos <em>vetorizar</em> nosso código como quando trabalhamos com <a href="http://scipy.github.io/old-wiki/pages/NumPy_for_Matlab_Users">MATLAB/Octave</a></li>
+                        </ul>
+
+                        <div>
+                        <div style="float: left;">
+                            <div>1D numpy array</div>
+                            <div id="numpy-1darray"></div>
+                            <div>Shape: (4,)</div>
+                        </div>
+                        <div style="float: left; margin-left:55px">
+                            <div>2D numpy array</div>
+                            <div id="numpy-2darray"></div>
+                            <div>Shape: (2,3)</div>
+                        </div>
+
+                        <div style="float: left; margin-left:55px">
+                            <div>3D numpy array</div>
+                            <div id="AAAAnumpy-3darray"></div>
+                            <div>Shape: (4,3,2)</div>
+                        </div>
+                        
+                        </div>
+                        
+                        
+                        <!-- <img src="imagens/numpy_part/numpy_1d_array.svg"/> -->
+                        
+                        <!-- <div class="numpy_table">
+                             <div>1d Numpy Array</div>
+                             <table><tbody>
+                             <tr>
+                             <td>7</td>
+                             <td>2</td>
+                             <td>9</td>
+                             <td>10</td>
+                             </tr>
+                             </tbody></table>
+                             <div>shape: (4,)</div>
+                             </div>
+                             <div class="numpy_table">
+                             <div>2d Numpy Array</div>
+                             <table><tbody>
+                             <tr>
+                             <td>5.2</td>
+                             <td>3.0</td>
+                             <td>4.5</td>
+                             </tr>
+                             <tr>
+                             <td>9.1</td>
+                             <td>0.1</td>
+                             <td>0.3</td>
+                             </tr>
+                             </tbody></table>
+                             <div>shape: (4,)</div>
+                             </div> -->
+                    </section>
+
+                    <section>
+                        <h2>Criando Arrays</h2>
+                        <div style="float: left; margin-left:55px">
+                            <div>3D numpy array</div>
+                            <div id="numpy-3darray"></div>
+                            <div>Shape: (4,3,2)</div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Indexando Arrays</h2>
+                    </section>
+
+                    <section>
+                        <h2>Datatype</h2>
+                    </section>
+                </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+		 // More info https://github.com/hakimel/reveal.js#configuration
+		 Reveal.initialize({
+             minScale: 0.3,
+             maxScale: 1.0,
+             // Display controls in the bottom right corner
+             controls: true,
+
+             // Display a presentation progress bar
+             progress: true,
+
+             // Display the page number of the current slide
+             slideNumber: true,
+             
+			 history: true,
+
+             // Enable keyboard shortcuts for navigation
+             keyboard: true,
+
+             // Enable the slide overview mode
+             overview: true,
+
+             // Vertical centering of slides
+             center: true,
+
+             // Enables touch navigation on devices with touch input
+             touch: true,
+
+             // Turns fragments on and off globally
+             fragments: true,
+
+             // Flags if the presentation is running in an embedded mode,
+             // i.e. contained within a limited portion of the screen
+             embedded: false,
+
+             // Flags if we should show a help overlay when the questionmark
+             // key is pressed
+             help: true,
+
+             // Flags if speaker notes should be visible to all viewers
+             showNotes: false,
+
+             // Number of milliseconds between automatically proceeding to the
+             // next slide, disabled when set to 0, this value can be overwritten
+             // by using a data-autoslide attribute on your slides
+             //autoSlide: 0,
+
+             // Stop auto-sliding after user input
+             //autoSlideStoppable: true,
+
+             // Use this method for navigation when auto-sliding
+             //autoSlideMethod: Reveal.navigateNext,
+
+             // Enable slide navigation via mouse wheel
+             mouseWheel: false,
+
+             // Hides the address bar on mobile devices
+             hideAddressBar: true,
+
+             // Opens links in an iframe preview overlay
+             previewLinks: false,
+
+             // Transition style
+             transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+             // Transition speed
+             transitionSpeed: 'default', // default/fast/slow
+
+             // Transition style for full page slide backgrounds
+             backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+             // Number of slides away from the current that are visible
+             viewDistance: 3,
+
+             // Parallax background image
+             //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+             // Parallax background size
+             //parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+             // Number of pixels to move the parallax background per slide
+             // - Calculated automatically unless specified
+             // - Set to 0 to disable movement along an axis
+             //parallaxBackgroundHorizontal: null,
+             //parallaxBackgroundVertical: null
+
+             zoomKey: 'shift',
+
+             math: {
+                 mathjax: 'node_modules/mathjax/MathJax.js',
+                 config: 'TeX-AMS_HTML-full,http://localhost:8000/js/MathJax_local.js' // See http://docs.mathjax.org/en/latest/config-files.html
+             },
+             
+			 // More info https://github.com/hakimel/reveal.js#dependencies
+			 dependencies: [
+				 { src: 'plugin/markdown/marked.js' },
+				 { src: 'plugin/markdown/markdown.js' },
+				 { src: 'plugin/notes/notes.js', async: true },
+				 { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                 // Zoom in and out with Alt+click
+                 { src: 'plugin/zoom-js/zoom.js', async: true },
+                 // MathJax
+                 /* { src: 'plugin/math/math.js', async: true },*/
+                 /*                  { src: 'js/MathJax_local.js', async: true },*/
+			 ]
+		 });
+		</script>
+        <script type="text/javascript">
+         var width = 65;
+         var height = 50;
+         
+         function create_1d2d_array(id, data) {
+             "use strict";
+             
+         var svg = d3.select(id)
+                     .append("svg")
+                     .attr("width", d3.max(data, function (d) {return (d.x+1)*width;}))
+                     .attr("height", d3.max(data, function (d) {return (d.y+1)*height;}))
+                     .style("background-color",  "white");
+
+         var rects = svg.selectAll("rect")
+                        .data(data)
+                        .enter()
+                        .append("rect");
+         
+         rects.style("fill", "white")
+              .style("stroke", "black")
+              .attr("height", function(d) {return height;})
+              .attr("width", function(d) {return width;})
+              .attr("x", function(d) {return d.x*width;})
+              .attr("y", function(d) {return d.y*height;});
+
+         var labels = svg.selectAll("text")
+                     .data(data)
+                     .enter()
+                     .append("text");
+         labels.attr("x", function(d) {return d.x*width+(width/2);})
+               .attr("y", function(d) {return d.y*height+(height/2);})
+               .attr("text-anchor", "middle")
+               .attr("alignment-baseline", "central")
+               .text(function(d){return d.value});
+         }
+
+         /* labels.text("123").
+          *       .style("color", "red");*/
+         
+         /* sampleSVG.append("rect")
+          *          .style("stroke", "gray")
+          *          .style("fill", "white")
+          *          .attr("width", 100)
+          *          .attr("height", 100)
+          *          .attr("x", 50)
+          *          .attr("y", 50)
+          *          .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
+          *          .on("mouseout", function(){d3.select(this).style("fill", "white");});*/
+        </script>
+
+        <script>
+         var data2 = [{"x": 0, "y":0, "value":5.2},
+                      {"x": 1, "y":0, "value":2},
+                      {"x": 2, "y":0, "value":9},
+                      {"x": 3, "y":0, "value":10},
+                      {"x": 0, "y":1, "value":10},
+                      {"x": 1, "y":1, "value":2},
+                      {"x": 2, "y":1, "value":9},
+                      {"x": 3, "y":1, "value":10}];
+
+         var data1 = [{"x": 0, "y":0, "value":7},
+                      {"x": 1, "y":0, "value":2},
+                      {"x": 2, "y":0, "value":9},
+                      {"x": 3, "y":0, "value":10}];
+         // Create the chart
+         create_1d2d_array("#numpy-1darray", data1);
+         create_1d2d_array("#numpy-2darray", data2);
+         /*          create_1d2d_array("#numpy-3darray", data2);*/
+        </script>
+        
+
+        <script>
+         function create_3d_array(id, data) {
+             "use strict";
+
+             var max_x = d3.max(data, function (d) {return (d.x+1)*width;});
+             var min_x = d3.min(data, function (d) {return (d.x)*width;});
+             
+             var max_y = d3.max(data, function (d) {return (d.y+1)*height;});
+             var min_y = d3.min(data, function (d) {return (d.y)*height;});
+
+             var svg_width = 300;
+             var svg_height = 300;
+             
+             var xScale = d3.scaleLinear()
+                            .domain([min_x, max_x+2*width])
+                            .range([0, svg_width]);
+             var yScale = d3.scaleLinear()
+                            .domain([min_y, max_y+2*height])
+                            .range([svg_height, 0]);
+             
+             var svg = d3.select(id)
+                         .append("svg")
+                         .attr("width", svg_width)
+                         .attr("height", svg_height)/* d3.max(data, function (d) {return (d.y+1)*height;}))*/
+                         .style("background-color",  "white");
+
+             var rects = svg.selectAll("rect")
+                            .data(data)
+                            .enter()
+                            .append("rect");
+             /* console.log(yScale(0*height));
+              * console.log(yScale(1*height));
+              * console.log(yScale(2*height));
+              * console.log(yScale(3*height));
+              * console.log(yScale(min_y));
+              * console.log(yScale(max_y));*/
+             
+             rects.style("fill", "white")
+                  .style("stroke", "black")
+                  .attr("height", function(d) {return yScale(0)-yScale(height);})
+                  .attr("width", function(d) {return xScale(width);})
+                  .attr("x", function(d) {return xScale(d.x*width);})
+                  .attr("y", function(d) {return yScale((d.y+1)*height);});
+
+             var labels = svg.selectAll("text")
+                         .data(data)
+                         .enter()
+                         .append("text");
+             labels.attr("x", function(d) {return xScale(d.x*width+(width/2));})
+                   .attr("y", function(d) {return yScale(d.y*height+(height/2));})
+                   .attr("text-anchor", "middle")
+                   .attr("alignment-baseline", "central")
+                   .text(function(d){return d.value});
+
+
+             function create_losangle_path(x, y, num_x, num_y, width, height) {
+                 "use strict"
+                 var x_skew = 0.5;
+                 var new_height = 0.7*height;
+                 
+                 for (var i=0; i < num_x; i++) {
+                     for(var j=0; j < num_y; j++) {
+                         var x_value = x*width+i*width + j*x_skew*width;
+                         var y_value = y*height+j*new_height;
+                         var s = "M{x1} {y1} L{x2} {y2} L{x3} {y3} L{x4} {y4} Z"
+                             .replace("{x1}", xScale(x_value))
+                             .replace("{y1}", yScale(y_value))
+                             .replace("{x2}", xScale(x_value+x_skew*width))
+                             .replace("{y2}", yScale(y_value+new_height))
+                             .replace("{x3}", xScale(x_value+(1+x_skew)*width))
+                             .replace("{y3}", yScale(y_value+new_height))
+                             .replace("{x4}", xScale(x_value+width))
+                             .replace("{y4}", yScale(y_value));
+
+                         var path = svg.append("path");
+                         path.style("stroke", "black")
+                             .style("fill", "white")
+                             .attr("d", s);
+                     }}
+                 console.log(x_value);
+                 console.log(y_value);
+                 /* 
+                  * var s2 = "M{x1} {y1} L{x2} {y2} L{x3} {y3} L{x4} {y4} Z"
+                  *     .replace("{x1}", xScale(x_value))
+                  *     .replace("{y1}", yScale(y_value))
+                  *     .replace("{x2}", xScale(x_value+x_skew*width))
+                  *     .replace("{y2}", yScale(y_value+new_height))
+                  *     .replace("{x3}", xScale(x_value+(1+x_skew)*width))
+                  *     .replace("{y3}", yScale(y_value+new_height))
+                  *     .replace("{x4}", xScale(x_value+width))
+                  *     .replace("{y4}", yScale(y_value));
+
+                  * var path2 = svg.append("path");
+                  * path2.style("stroke", "black")
+                  *      .style("fill", "white")
+                  *      .attr("d", s);*/
+             }
+             
+
+             create_losangle_path(0, 4, 3, 2, width, height);
+         }
+
+         var data3 = [{"x": 0, "y":0, "value":9},
+                      {"x": 0, "y":1, "value":1},
+                      {"x": 0, "y":2, "value":2},
+                      {"x": 0, "y":3, "value":1},
+                      {"x": 1, "y":0, "value":6},
+                      {"x": 1, "y":1, "value":3},
+                      {"x": 1, "y":2, "value":9},
+                      {"x": 1, "y":3, "value":4},
+                      {"x": 2, "y":0, "value":9},
+                      {"x": 2, "y":1, "value":0},
+                      {"x": 2, "y":2, "value":7},
+                      {"x": 2, "y":3, "value":7},
+
+                      /* {"x": 0, "y":0, "height":height, "skewX":skewX, "value":0},
+                       * {"x": 1, "y":0, "height":height, "skewX":skewX, "value":1},
+                       * {"x": 2, "y":0, "height":height, "skewX":skewX, "value":2},
+
+                       * {"x": 0, "y":1, "height":height, "skewX":skewX, "value":0},
+                       * {"x": 1, "y":1, "height":height, "skewX":skewX, "value":1},
+                       * {"x": 2, "y":1, "height":height, "skewX":skewX, "value":2},*/
+         ]
+         /*          create_3d_array("#numpy-3darray", data3);*/
+        </script>
+
+        <script>
+         var svg = d3.select("#numpy-3darray")
+                     .append("svg")
+                     .attr("width", 300)
+                     .attr("height", 200)/* d3.max(data, function (d) {return (d.y+1)*height;}))*/
+                     .style("background-color",  "white");
+         svg.append("rect")
+            .style("stroke","black")
+            .style("fill","gray")
+            .attr("x", 50)
+            .attr("y", 50)
+            .attr("width", 50)
+            .attr("height", 50);
+         svg.append("rect")
+            .style("stroke","black")
+            .style("fill","none")
+            .attr("x", 50)
+            .attr("y", 50)
+            .attr("width", 50)
+            .attr("height",50)
+            .attr("transform","skewX(40)");
+        </script>
+
+        <!-- <script type="text/javascript">
+
+             var width = 50;
+             var height = 50;
+             var data = [
+             {"x": 0, "y"=0, "width"=width, "height"=height},
+             {"x": 50, "y"=0, "width"=width, "height"=height},
+             {"x": 100, "y"=0, "width"=width, "height"=height},
+             {"x": 150, "y"=0, "width"=width, "height"=height}]
+             
+             var svg = d3.select("#numpy-1darray")
+             .append("svg")
+             .attr("width", 500)
+             .attr("height", 300)
+             .style("background-color",  "white");
+
+             rects = svg.select("rect")
+             .data(data)
+             .enter()
+             .append("rect");
+
+             rects.attr("width", function (d){ return d.width})
+             .attr("height", function (d){ return d.height});
+             /* .style("stroke", "gray")
+             * .style("fill", "white")
+             * .attr("width", 100)
+             * .attr("height", 100)
+             * .attr("x", 50)
+             * .attr("y", 50)
+             * .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
+             * .on("mouseout", function(){d3.select(this).style("fill", "white");});*/
+             </script> -->
+	</body>
+</html>
