@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/night.css">
         <link rel="stylesheet" href="css/mystyles.css">
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"/>
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -29,6 +30,7 @@
         <!-- My custom polymer element with a terminal and inside python code -->
         <link rel="import" href="/my_polymer_elements/terminal-tag.html">
         <link rel="import" href="/my_polymer_elements/code-terminal.html">
+        <link rel="import" href="/my_polymer_elements/cursor-tag.html">
 
         <!-- <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script> -->
         <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
@@ -66,86 +68,456 @@
                 </section>
 
                 <section>
-                    <section>
-                        <h2>Numpy Arrays</h2>
+                    <h2>Numpy Arrays</h2>
 
+                    <ul>
+                        <!-- <li>A biblioteca <a href="http://www.numpy.org/">Numpy</a> é o núcleo da computação científica em Python</li> -->
+                        <li>Numpy nos fornece um <em>array multidimensional</em> de alto desempenho e ferramentas para trabalhar com esses arrays</li>
+                        <li>Um array armazena um conjunto de valores, todos do mesmo <span class="green">tipo</span>, e possui um <span class="green">formato</span> (shape)</li>
+                        <li>O shape de um array é uma tupla de inteiros não negativos e seu número de elementos corresponde ao <span class="green">rank</span> do array</li>
+                        <!-- <li>Geralmente procuramos <em>vetorizar</em> nosso código como quando trabalhamos com <a href="http://scipy.github.io/old-wiki/pages/NumPy_for_Matlab_Users">MATLAB/Octave</a></li> -->
+                    </ul>
+                    <aside class="notes">
                         <ul>
-                            <!-- <li>A biblioteca <a href="http://www.numpy.org/">Numpy</a> é o núcleo da computação científica em Python</li> -->
-                            <li>Numpy nos fornece um <em>array multidimensional</em> de alto desempenho e ferramentas para trabalhar com esses arrays</li>
-                            <li>Um array é um conjunto de valores, todos do mesmo tipo, possui um <span class="green">shape</span></li>
-                            <li>O <span class="green">shape</span> de um array é uma tupla de inteiros não negativos e seu número de elementos corresponde ao <span class="green">rank</span> do array</li>
-                            <li>Geralmente procuramos <em>vetorizar</em> nosso código como quando trabalhamos com <a href="http://scipy.github.io/old-wiki/pages/NumPy_for_Matlab_Users">MATLAB/Octave</a></li>
+                            <li>RANK: Não confundir a noção esse rank
+                                com o rank de algebra linear.</li>
+                            <li>Um array pode ter quantas dimensões
+                                forem desejadas. Aqui temos exemplos com
+                                uma, duas, e três dimensões.</li>
                         </ul>
-
-                        <div>
-                        <div style="float: left;">
+                    </aside>                        
+                    <div class="container">
+                        <div class="element">
                             <div>1D numpy array</div>
                             <div id="numpy-1darray"></div>
                             <div>Shape: (4,)</div>
+                            <div>Tipo: int</div>
                         </div>
-                        <div style="float: left; margin-left:55px">
+                        <div class="element">
                             <div>2D numpy array</div>
                             <div id="numpy-2darray"></div>
                             <div>Shape: (2,3)</div>
+                            <div>Tipo: float</div>
                         </div>
 
-                        <div style="float: left; margin-left:55px">
+                        <div class="element">
                             <div>3D numpy array</div>
-                            <div id="AAAAnumpy-3darray"></div>
+                            <!-- <div id="AAnumpy-3darray"></div> -->
+                            <!-- <img src="imagens/numpy_part/numpy_3d_array.svg"/> -->
+                            <object type="image/svg+xml" data="imagens/numpy_part/numpy_3d_array_manual.svg"></object>
                             <div>Shape: (4,3,2)</div>
+                            <div>Tipo: int</div>
                         </div>
                         
-                        </div>
+                    </div>
+                    
+                    
+                    <!-- <img src="imagens/numpy_part/numpy_1d_array.svg"/> -->
+                    
+                    <!-- <div class="numpy_table">
+                         <div>1d Numpy Array</div>
+                         <table><tbody>
+                         <tr>
+                         <td>7</td>
+                         <td>2</td>
+                         <td>9</td>
+                         <td>10</td>
+                         </tr>
+                         </tbody></table>
+                         <div>shape: (4,)</div>
+                         </div>
+                         <div class="numpy_table">
+                         <div>2d Numpy Array</div>
+                         <table><tbody>
+                         <tr>
+                         <td>5.2</td>
+                         <td>3.0</td>
+                         <td>4.5</td>
+                         </tr>
+                         <tr>
+                         <td>9.1</td>
+                         <td>0.1</td>
+                         <td>0.3</td>
+                         </tr>
+                         </tbody></table>
+                         <div>shape: (4,)</div>
+                         </div> -->
+                </section>
+
+                <section>
+                    <h2>Criando Arrays</h2>
+                    <ul>
+                        <li>Existem diversas maneiras de criar um array</li>
+                        <li>A mais direta é listando seus elementos</li>
+                    </ul>
+                    <code-terminal><in>import numpy as np  # Importa numpy como 'np'</in>
+<in>a = np.array([7, -2, 9, 10])</in>
+<in>a</in>
+<output>array([ 7, -2,  9, 10])</output>
+<in>a.shape</in>
+<output>(4,)</output>
+<in></in>a.ndim
+<output>1</output>
+<in>b = np.array([[5.2, 2, -9, 10], [-10, 2, 9, 10]])</in>
+<in>b</in>
+<output>
+    array([[  5.2,   2. ,  -9. ,  10. ],
+    [-10. ,   2. ,   9. ,  10. ]])</output>
+<in>b.shape</in>
+<output>(2,4)</output></code-terminal>
+                </section>
+                    
+                <section>
+                    <h2>Datatype</h2>
+                    <ul>
+                        <li>Os elementos de um array só podem ser do mesmo tipo</li>
+                        <li>Um array é muito eficiente em armazenar e
+                            computar se o tipo for <code>int</code>, <code>float</code>, ou <code>complex</code></li>
+                        <li>Podemos verificar o tipo de um array através da propriedade "dtype"</li>
+                    </ul>
+                    <code-terminal><in>a = np.array([1, 5, -7, 15, -22, 4])</in>
+<in>a.dtype</in>
+<output>dtype('int64')</output>
+<in>b = np.array([[1, 5, -7], [15, -22, 4]])</in>
+<in>b.dtype</in>
+<output>dtype('float64')</output>
+<in>c = np.array([2, 4, 2-4j])</in>
+<output>dtype('complex128')</output>
+<in>d = np.array([-2,55.3, 22.1], <span class="green">dtype=complex</span>)  # Specifica o dtype</in>
+<in>d.dtype</in>
+<output>dtype('complex128')</output>
+</code-terminal>
+                </section>
+
+                <section>
+                    <h2>Data Shape</h2>
+                    <ul>
+                        <li>Podemos verificar o formado de um array através da propriedade <span class="green">shape</span></li>
+                        <li>Além da propriedade shape podemos usar <span class="green">size</span> para determinar o número de elementos em um array</li>
+                        <li>Use o método <span class="green">reshape</span> para mudar o formato do array</li>
+                    </ul>
+                    <code-terminal><in>a = np.array([[1, 5, -7, 12], [7, 15, -22, 4], [1, 2, 3, 4]])</in>
+<in>a.shape</in>
+<output>(3, 4)</output>
+<in>a.size</in>
+<output>12</output>
+<in>a = a.reshape((2, 6))  # reshape(2, 6) também funciona</in>
+<in>a.shape</in>
+<output>(2, 6)</output>
+<in>a = a.reshape(2,-1,2)  # Use -1 para determinar o valor automaticamente</in>
+<in>a.shape</in>
+<output>(2, 3, 2)</output></code-terminal>
+                </section>
+                
+                <section>    
+                    <section>
+                        <h2>Criando Arrays</h2>
+
+                        <ul>
+                            <li>Há várias funções que retornam arrays no numpy</li>
+                            <li>Mais comuns: <code>zeros</code>, <code>ones</code>, <code>eye</code>, <code>empty</code></li>
+                        </ul>
                         
-                        
-                        <!-- <img src="imagens/numpy_part/numpy_1d_array.svg"/> -->
-                        
-                        <!-- <div class="numpy_table">
-                             <div>1d Numpy Array</div>
-                             <table><tbody>
-                             <tr>
-                             <td>7</td>
-                             <td>2</td>
-                             <td>9</td>
-                             <td>10</td>
-                             </tr>
-                             </tbody></table>
-                             <div>shape: (4,)</div>
-                             </div>
-                             <div class="numpy_table">
-                             <div>2d Numpy Array</div>
-                             <table><tbody>
-                             <tr>
-                             <td>5.2</td>
-                             <td>3.0</td>
-                             <td>4.5</td>
-                             </tr>
-                             <tr>
-                             <td>9.1</td>
-                             <td>0.1</td>
-                             <td>0.3</td>
-                             </tr>
-                             </tbody></table>
-                             <div>shape: (4,)</div>
-                             </div> -->
+                        <code-terminal><in>a = np.zeros((2,2))  # Cria um arra de zeros</in>
+<in>b = np.ones((2,3))</in>
+<in>c = np.eye(2, dtype=complex) # Especificamos o dtype como complex</in>
+<in>print(a), print(b), print(c)</in>
+[[ 0.  0.]
+ [ 0.  0.]]
+[[ 1.  1.  1.]
+ [ 1.  1.  1.]]
+[[ 1.+0.j  0.+0.j]
+ [ 0.+0.j  1.+0.j]]
+<in>d = np.empty((2,3), dtype=np.int16)  # Inteiro de apenas 16 bits</in>
+<in>print(d)</in>
+[[91  0 34]
+ [ 7 24 44]]</code-terminal>
+                        <aside class="notes">
+                            <ul>
+                                <li>Percebam que passamos uma tupla como datashape </li>
+                                <li>Há parâmetros opcionais como o dtype</li>
+                            </ul>
+                        </aside>
                     </section>
 
                     <section>
                         <h2>Criando Arrays</h2>
-                        <div style="float: left; margin-left:55px">
-                            <div>3D numpy array</div>
-                            <div id="numpy-3darray"></div>
-                            <div>Shape: (4,3,2)</div>
-                        </div>
+                        <ul>
+                            <li>Podemos também criar arrays com valores aleatórios, em um intervalo, etc</li>
+                        </ul>
+                        <code-terminal><in>np.random.random((2,3))  # Números aleatórios entre 0 e 1</in>
+<output>
+[[ 0.17926073  0.55768193  0.91629068]
+ [ 0.42331764  0.81109184  0.94441903]]</output>
+<in>np.random.normal(loc=10, scale=3, size=(2,4)) # mean=10, var=3</in>
+<output>
+array([[  0.57156707,   2.24492393,  11.96929131,   5.72524926],
+       [  8.42069327,   6.6472876 ,  11.46130987,   6.91887518]])
+</output>
+<in>10 + math.sqrt(3) * np.random.randn(2,4)  # Mesmo que o comando anterior</in>
+<output>
+array([[  8.6556823 ,  11.76621921,  13.06145845,  10.29941938],
+       [  7.71243543,   6.75014684,   8.8052951 ,   8.84438892]])
+</output>
+<in>np.arange(3, 15, 2)  # Varia de 3 a 15 (sem incluir o 15) com passo 2</in>
+<output>array([ 3,  5,  7,  9, 11, 13])</output>
+<in>np.linspace(0, 20, 9)  # 9 valores, indo de 0 a 20</in>
+<output>array([  0. ,   2.5,   5. ,   7.5,  10. ,  12.5,  15. ,  17.5,  20. ])</output></code-terminal>
                     </section>
-                    
+                </section>
+
+                <section>
                     <section>
-                        <h2>Indexando Arrays</h2>
+                        <h2>Operações Básicas</h2>
+                        <ul>
+                            <li>Operadores aritméticos em arrays operam elemento-a-elemento</li>
+                        </ul>
+                        <code-terminal><in>a = np.array([20,30,40,50])</in>
+<in>b = np.arange( 4 )</in>
+<in>b</in>
+<output>array([0, 1, 2, 3])</output>
+<in>c = a-b</in>
+<in>c</in>
+<output>array([20, 29, 38, 47])</output>
+<in>b**2</in>
+<output>array([0, 1, 4, 9])</output>
+<in>10*np.sin(a)</in>
+<output>array([ 9.12945251, -9.88031624,  7.4511316 , -2.62374854])</output>
+<in>a<35</in>
+<output>array([ True, True, False, False], dtype=bool)</output></code-terminal>
+                        
+                    </section>
+                
+                    <section>
+                        <h2>Operações Básicas</h2>
+                        <ul>
+                            <li>O operador <code>*</code> não é exceção e efetua uma multiplicação element-a-elemento</li>
+                        </ul>
+                        <code-terminal><in>A = np.array([[1,1], [0,1]])</in>
+<in>B = np.array([[2,0], [3,4]])</in>
+<in>A*B  # Produto element-a-elemento</in>
+<output>
+array([[2, 0],
+      [0, 4]])</output>
+<in>A.dot(B)  # Produto matricial</in>
+<output>
+array([[5, 4],
+      [3, 4]])
+</output>
+<in>A @ B  # Produto matricial: Python 3.5 ou superior</in>
+<output>
+array([[5, 4],
+       [3, 4]])
+</output></code-terminal>
                     </section>
 
                     <section>
-                        <h2>Datatype</h2>
+                        <h2>Operações Básicas</h2>
+                        <ul>
+                            <li>Algumas operações, como <code>+=</code> e <code>*=</code>, modificam o array atual ao invés de criar um novo array</li>
+                        </ul>
+
+                        <code-terminal><in>a = np.ones((2,3), dtype=int)</in>
+<in>b = np.random.random((2,3))</in>
+<in>a *= 3</in>
+<in>a</in>
+<output>
+array([[3, 3, 3],
+       [3, 3, 3]])</output>
+<in>b += a</in>
+<in>b</in>
+<output>
+array([[ 3.417022  ,  3.72032449,  3.00011437],
+       [ 3.30233257,  3.14675589,  3.09233859]])</output>
+<in>a += b  # b is not automatically converted to integer type</in>
+<span class="red">TypeError:</span> Cannot cast ufunc add output from dtype('float64') to dtype('int64')<br/>with casting rule 'same_kind'</code-terminal>
                     </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Principais Operações em Arrays</h2>
+                        <ul>
+                            <li>As diversas funções matemáticas são implementadas como <code>np.nome_da_função</code> e algumas estão também disponíveis como métodos do array</li>
+                        </ul>
+
+                        <code-terminal><in>a = np.random.random((2,3))</in>
+<in>a</in>
+<output>
+array([[ 0.18626021,  0.34556073,  0.39676747],
+       [ 0.53881673,  0.41919451,  0.6852195 ]])</output>
+<in>a.sum()</in>
+<output>2.5718191614547998</output>
+<in>a.min()</in>
+<output>0.1862602113776709</output>
+<in>a.max()</in>
+<output>0.6852195003967595</output></code-terminal>
+                    </section>
+
+
+                    <section>
+                        <h2>Principais Operações em Arrays</h2>
+                        <ul>
+                            <li>NumPy possui as funções matemáticas usuais: <span class="green">sin</span>, <span class="green">cos</span>, <span class="green">exp</span>, etc.</li>
+                            <li>Elas são chamadas de "universal functions"(ufunc)</li>
+                            <li>Essas funções operam individualmente em cada elemento do array, produzindo um array como saída</li>
+                        </ul>
+
+                        <code-terminal><in>B = np.arange(3)</in>
+<in>B</in>
+<output>array([0, 1, 2])</output>
+<in>np.exp(B)</in>
+<output>array([ 1.        ,  2.71828183,  7.3890561 ])</output>
+<in>np.sqrt(B)</in>
+<output>array([ 0.        ,  1.        ,  1.41421356])</output>
+<in>C = np.array([2., -1., 4.])</in>
+<in>np.add(B, C)  # Mesmo que B + C</in>
+<output>array([ 2.,  0.,  6.])</output></code-terminal>
+                    </section>
+                </section>
+                
+                <section>
+                    <section id="indexando_arrays">
+                        <h2>Indexando Arrays</h2>
+
+                        <ul>
+                            <li>Arrays com uma dimensão podem ser indexados,
+                            fatiados, e iterados de forma semelhante a listas</li>
+                        </ul>
+                        
+                        <code-terminal dontshowcursor><in>a = np.arange(10)**3</in>
+<in>a</in>
+<output>array([  0,   1,   8,  27,  64, 125, 216, 343, 512, 729])</output>
+<span class="fragment" data-fragment-index="1"><in>a[2]</in>
+<output>8</output></span>
+<span class="fragment" data-fragment-index="2"><in>a[2:5]</in>
+<output>array([ 8, 27, 64])</output></span>
+<span class="fragment" data-fragment-index="3"><in>a[:6:2] = -1000  # Seta elementos nas posições 0, 2 e 4 </in>
+<in>a</in>
+<output>array([-1000,     1, -1000,    27, -1000,   125,   216,   343,   512,   729])</output></span>
+<span class="fragment" data-fragment-index="4"><in>a[ : :-1]  # Inverte a ordem dos elementos de a</in>
+<output>array([  729,   512,   343,   216,   125, -1000,    27, -1000,     1, -1000])</output></span></code-terminal>
+                        <svg id="indexando-arrays-placeholder"></svg>
+                    </section>
+
+                    <section id="indexando_arrays2">
+                        <h2>Indexando Arrays</h2>
+                        <ul>
+                            <li>Arrays multidimensionais podem conter um índice por eixo</li>
+                            <li>Esses índices são separados por vírgula</li>
+                            <li class="fragment" data-fragment-index="5">Se num(índices) < num(eixos) <i class="fa fa-hand-o-right green"></i> índices que faltam são slices completos</li>
+                            <li class="fragment" data-fragment-index="6">Também podemos usar índices negativos, como<code>b[-1]</code> para a última linha</li>
+                        </ul>
+                        <div class="container" style="width:1000px;">
+                            <div class="element" style="width:650px;"><code-terminal dontshowcursor><in>def f(x,y): return 10*x+y</in>
+<in>b = np.fromfunction(f,(5,4),dtype=int); print(b)</in>
+<!-- <output>
+     [[ 0,  1,  2,  3],
+     [10, 11, 12, 13],
+     [20, 21, 22, 23],
+     [30, 31, 32, 33],
+     [40, 41, 42, 43]]</output> -->
+<output> # Ver matriz ao lado</output>
+<span class="fragment" data-fragment-index="1"><in>b[2,3]</in>
+<output>23</output></span>
+<span class="fragment" data-fragment-index="2"><in>b[0:5, 1]
+<output>array([ 1, 11, 21, 31, 41])</output></span>
+<span class="fragment" data-fragment-index="3"><in>b[ : ,1]  # Mesmo que exemplo anterior
+<output>array([ 1, 11, 21, 31, 41])</output></span>
+<span class="fragment" data-fragment-index="4"><in>b[1:3, : ]
+<output>
+array([[10, 11, 12, 13],
+       [20, 21, 22, 23]])</output></span>
+<span class="fragment" data-fragment-index="5"><in>print(b[0])  # num(índices) < num(eixos)</in>
+<output>[0, 1, 2, 3]</output></span>
+<span class="fragment" data-fragment-index="6"><in>print(b[-1])</in>
+<output>[40, 41, 42, 43]</output></span></code-terminal></div>
+                        <div class="element" style="transform: scale(0.7,0.7);" ><svg id="indexando-arrays-placeholder2"></svg></div>
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Quando um número menor de índices que o número
+                                    de eixos é fornecido os índices que faltam são
+                                    considerados slices completos </li>
+                                <li>The dots (...) represent as many colons as
+                                needed to produce a complete indexing
+                                    tuple. For example, if x is a rank 5 array (i.e., it has 5 axes), then
+                                    <ul>
+                                        <li>x[1,2,...] is equivalent to x[1,2,:,:,:],</li>
+                                        <li>x[...,3] to x[:,:,:,:,3] and</li>
+                                        <li>x[4,...,5,:] to x[4,:,:,5,:]</li>
+                                    </ul></li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section id="indexando_arrays3">
+                        <h2>Indexando Arrays</h2>
+                        <ul>
+                            <li>Podemos usar também <code>...</code> para representar <span class="green">tantos ":" quanto necessário</span> para produzir uma indexação completa</li>
+                            <li>Ex: Considere por exemplo um array <code>x</code> de rank 5</li>
+                            <li>Temos então que:</li>
+                            <ul>
+                                <li><code>x[1,2,...]</code> equivale a <code>x[1,2,:,:,:]</code>,</li>
+                                <li><code>x[...,3]</code> equivale a <code>x[:,:,:,:,3]</code> and</li>
+                                <li><code>x[4,...,5,:]</code> equivale a <code>x[4,:,:,5,:]</code></li>
+                                <li>Etc.</li>
+                            </ul>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Manipulanto o <em>shape</em></h2>
+                    <ul>
+                        <li>O <em>shape</em> de um array define o número de elementos em cada dimensão</li>
+                        <li>Há várias maneiras de manipular o shape de um array</li>
+                        <li>Ao invés de <span class="green">reshape</span> podemos usar <span class="green">resize</span> <i class="fa fa-hand-o-right"></i> modifica o array</li>
+                    </ul>
+
+                    <code-terminal dontshowcursor><in>a = np.floor(10*np.random.random((3,4)))</in>
+<in>a</in>
+<output>
+array([[ 2.,  8.,  0.,  6.],
+       [ 4.,  5.,  1.,  1.],
+       [ 8.,  9.,  3.,  6.]])</output>
+<in>a.shape</in>
+<output>(3, 4)</output>
+<in>a.ravel()  # "achata" o array (sem modificar)</in>
+<output>array([ 2.,  8.,  0.,  6.,  4.,  5.,  1.,  1.,  8.,  9.,  3.,  6.])</output>
+<in>a.shape = (6, 2)  # Semelhante a "a = a.reshape(6, 2)"</in>
+<in>a.T  # Não modifica o array</in>
+<output>
+array([[ 2.,  0.,  4.,  1.,  8.,  3.],
+       [ 8.,  6.,  5.,  1.,  9.,  6.]])</output></code-terminal>
+                </section>
+                
+                <section>
+                    <h2>Views, astype, Owns Memory, flags, etc</h2>
+
+                    <ul>
+                        <li class="fragment">Fortran vs C Order</li>
+                        <img alt="" src="imagens/numpy_part/numpy_C_order_fortran_order.png" style="background-color:LightBlue;"/>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Operações matemáticas</h2>
+                    <ul>
+                        <li>Soma, Média, variância, etc</li>
+                        <li>Fornecer o eixo</li>
+                        <img alt="" src="imagens/numpy_part/numpy_axis.png">
+                    </ul>
+                </section>
+
+
+                <section>
+                    <h2>Datatypes Estruturados</h2>
+
+                    Structured datatypes
+
+                    https://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html
                 </section>
 			</div>
 		</div>
@@ -260,68 +632,21 @@
 			 ]
 		 });
 		</script>
-        <script type="text/javascript">
-         var width = 65;
-         var height = 50;
-         
-         function create_1d2d_array(id, data) {
-             "use strict";
-             
-         var svg = d3.select(id)
-                     .append("svg")
-                     .attr("width", d3.max(data, function (d) {return (d.x+1)*width;}))
-                     .attr("height", d3.max(data, function (d) {return (d.y+1)*height;}))
-                     .style("background-color",  "white");
 
-         var rects = svg.selectAll("rect")
-                        .data(data)
-                        .enter()
-                        .append("rect");
-         
-         rects.style("fill", "white")
-              .style("stroke", "black")
-              .attr("height", function(d) {return height;})
-              .attr("width", function(d) {return width;})
-              .attr("x", function(d) {return d.x*width;})
-              .attr("y", function(d) {return d.y*height;});
-
-         var labels = svg.selectAll("text")
-                     .data(data)
-                     .enter()
-                     .append("text");
-         labels.attr("x", function(d) {return d.x*width+(width/2);})
-               .attr("y", function(d) {return d.y*height+(height/2);})
-               .attr("text-anchor", "middle")
-               .attr("alignment-baseline", "central")
-               .text(function(d){return d.value});
-         }
-
-         /* labels.text("123").
-          *       .style("color", "red");*/
-         
-         /* sampleSVG.append("rect")
-          *          .style("stroke", "gray")
-          *          .style("fill", "white")
-          *          .attr("width", 100)
-          *          .attr("height", 100)
-          *          .attr("x", 50)
-          *          .attr("y", 50)
-          *          .on("mouseover", function(){d3.select(this).style("fill", "aliceblue");})
-          *          .on("mouseout", function(){d3.select(this).style("fill", "white");});*/
-        </script>
+        <script src="js/my_d3_draws.js"></script>
 
         <script>
          var data2 = [{"x": 0, "y":0, "value":5.2},
                       {"x": 1, "y":0, "value":2},
-                      {"x": 2, "y":0, "value":9},
+                      {"x": 2, "y":0, "value":-9},
                       {"x": 3, "y":0, "value":10},
-                      {"x": 0, "y":1, "value":10},
+                      {"x": 0, "y":1, "value":-10},
                       {"x": 1, "y":1, "value":2},
                       {"x": 2, "y":1, "value":9},
                       {"x": 3, "y":1, "value":10}];
 
          var data1 = [{"x": 0, "y":0, "value":7},
-                      {"x": 1, "y":0, "value":2},
+                      {"x": 1, "y":0, "value":-2},
                       {"x": 2, "y":0, "value":9},
                       {"x": 3, "y":0, "value":10}];
          // Create the chart
@@ -329,156 +654,193 @@
          create_1d2d_array("#numpy-2darray", data2);
          /*          create_1d2d_array("#numpy-3darray", data2);*/
         </script>
-        
 
+        
         <script>
-         function create_3d_array(id, data) {
+         // Veja de onde você tiroi isso em
+         // https://github.com/ptamarit/slides-data-viz-web-d3/blob/master/src/js/reveal-to-d3.js
+         Reveal.addEventListener('slidechanged', function(event) {
+             update_indexa_array();
+             update_indexa_array2();
+         });
+         Reveal.addEventListener('fragmentshown', function(event) {
+             update_indexa_array();
+             update_indexa_array2();
+         });
+         Reveal.addEventListener('fragmenthidden', function(event) {
+             update_indexa_array();
+             update_indexa_array2();
+         });
+        </script>
+     
+        <!-- <script>
+             function create_3d_array(id, data, data3_top) {
              "use strict";
 
              var max_x = d3.max(data, function (d) {return (d.x+1)*width;});
              var min_x = d3.min(data, function (d) {return (d.x)*width;});
              
-             var max_y = d3.max(data, function (d) {return (d.y+1)*height;});
-             var min_y = d3.min(data, function (d) {return (d.y)*height;});
+             var max_y = d3.max([
+             d3.max(data, function (d) {return (d.y+1)*height;}),
+             d3.max(data3_top, function (d) {return (d.y+1)*height;})
+             ]);
+             
+             var min_y = d3.min([
+             d3.min(data, function (d) {return (d.y+1)*height;}),
+             d3.min(data3_top, function (d) {return (d.y+1)*height;})
+             ]);
 
              var svg_width = 300;
              var svg_height = 300;
              
              var xScale = d3.scaleLinear()
-                            .domain([min_x, max_x+2*width])
-                            .range([0, svg_width]);
+             .domain([min_x, max_x+2*width])
+             .range([0, svg_width]);
              var yScale = d3.scaleLinear()
-                            .domain([min_y, max_y+2*height])
-                            .range([svg_height, 0]);
+             .domain([min_y, max_y+2*height])
+             .range([svg_height, 0]);
              
              var svg = d3.select(id)
-                         .append("svg")
-                         .attr("width", svg_width)
-                         .attr("height", svg_height)/* d3.max(data, function (d) {return (d.y+1)*height;}))*/
-                         .style("background-color",  "white");
+             .append("svg")
+             .attr("width", svg_width)
+             .attr("height", svg_height)/* d3.max(data, function (d) {return (d.y+1)*height;}))*/
+             .style("background-color",  "white");
 
              var rects = svg.selectAll("rect")
-                            .data(data)
-                            .enter()
-                            .append("rect");
+             .data(data)
+             .enter()
+             .append("rect");
              /* console.log(yScale(0*height));
-              * console.log(yScale(1*height));
-              * console.log(yScale(2*height));
-              * console.log(yScale(3*height));
-              * console.log(yScale(min_y));
-              * console.log(yScale(max_y));*/
+             * console.log(yScale(1*height));
+             * console.log(yScale(2*height));
+             * console.log(yScale(3*height));
+             * console.log(yScale(min_y));
+             * console.log(yScale(max_y));*/
              
              rects.style("fill", "white")
-                  .style("stroke", "black")
-                  .attr("height", function(d) {return yScale(0)-yScale(height);})
-                  .attr("width", function(d) {return xScale(width);})
-                  .attr("x", function(d) {return xScale(d.x*width);})
-                  .attr("y", function(d) {return yScale((d.y+1)*height);});
+             .style("stroke", "black")
+             .attr("height", function(d) {return yScale(0)-yScale(height);})
+             .attr("width", function(d) {return xScale(width);})
+             .attr("x", function(d) {return xScale(d.x*width);})
+             .attr("y", function(d) {return yScale((d.y+1)*height);});
 
              var labels = svg.selectAll("text")
-                         .data(data)
-                         .enter()
-                         .append("text");
+             .data(data)
+             .enter()
+             .append("text");
              labels.attr("x", function(d) {return xScale(d.x*width+(width/2));})
-                   .attr("y", function(d) {return yScale(d.y*height+(height/2));})
-                   .attr("text-anchor", "middle")
-                   .attr("alignment-baseline", "central")
-                   .text(function(d){return d.value});
+             .attr("y", function(d) {return yScale(d.y*height+(height/2));})
+             .attr("text-anchor", "middle")
+             .attr("alignment-baseline", "central")
+             .text(function(d){return d.value});
 
-
+             var g = svg.append("g");
+             g.selectAll("rect")
+             .data(data3_top)
+             .enter()
+             .append("rect")
+             .style("fill", "white")
+             .style("stroke", "black")
+             .attr("height", function(d) {return yScale(0)-yScale(height);})
+             .attr("width", function(d) {return xScale(width);})
+             .attr("x", function(d) {return xScale(d.x*width);})
+             .attr("y", function(d) {return yScale((d.y+2)*height);});
+             g.attr("transform", "matrix(1,0,-0.5,0.8660254,0,0)");
+             
              function create_losangle_path(x, y, num_x, num_y, width, height) {
-                 "use strict"
-                 var x_skew = 0.5;
-                 var new_height = 0.7*height;
-                 
-                 for (var i=0; i < num_x; i++) {
-                     for(var j=0; j < num_y; j++) {
-                         var x_value = x*width+i*width + j*x_skew*width;
-                         var y_value = y*height+j*new_height;
-                         var s = "M{x1} {y1} L{x2} {y2} L{x3} {y3} L{x4} {y4} Z"
-                             .replace("{x1}", xScale(x_value))
-                             .replace("{y1}", yScale(y_value))
-                             .replace("{x2}", xScale(x_value+x_skew*width))
-                             .replace("{y2}", yScale(y_value+new_height))
-                             .replace("{x3}", xScale(x_value+(1+x_skew)*width))
-                             .replace("{y3}", yScale(y_value+new_height))
-                             .replace("{x4}", xScale(x_value+width))
-                             .replace("{y4}", yScale(y_value));
+             "use strict"
+             var x_skew = 0.5;
+             var new_height = 0.7*height;
+             
+             for (var i=0; i < num_x; i++) {
+             for(var j=0; j < num_y; j++) {
+             var x_value = x*width+i*width + j*x_skew*width;
+             var y_value = y*height+j*new_height;
+             var s = "M{x1} {y1} L{x2} {y2} L{x3} {y3} L{x4} {y4} Z"
+             .replace("{x1}", xScale(x_value))
+             .replace("{y1}", yScale(y_value))
+             .replace("{x2}", xScale(x_value+x_skew*width))
+             .replace("{y2}", yScale(y_value+new_height))
+             .replace("{x3}", xScale(x_value+(1+x_skew)*width))
+             .replace("{y3}", yScale(y_value+new_height))
+             .replace("{x4}", xScale(x_value+width))
+             .replace("{y4}", yScale(y_value));
 
-                         var path = svg.append("path");
-                         path.style("stroke", "black")
-                             .style("fill", "white")
-                             .attr("d", s);
-                     }}
-                 console.log(x_value);
-                 console.log(y_value);
-                 /* 
-                  * var s2 = "M{x1} {y1} L{x2} {y2} L{x3} {y3} L{x4} {y4} Z"
-                  *     .replace("{x1}", xScale(x_value))
-                  *     .replace("{y1}", yScale(y_value))
-                  *     .replace("{x2}", xScale(x_value+x_skew*width))
-                  *     .replace("{y2}", yScale(y_value+new_height))
-                  *     .replace("{x3}", xScale(x_value+(1+x_skew)*width))
-                  *     .replace("{y3}", yScale(y_value+new_height))
-                  *     .replace("{x4}", xScale(x_value+width))
-                  *     .replace("{y4}", yScale(y_value));
+             var path = svg.append("path");
+             path.style("stroke", "black")
+             .style("fill", "white")
+             .attr("d", s);
+             }}
+             
+             /* 
+             * var s2 = "M{x1} {y1} L{x2} {y2} L{x3} {y3} L{x4} {y4} Z"
+             *     .replace("{x1}", xScale(x_value))
+             *     .replace("{y1}", yScale(y_value))
+             *     .replace("{x2}", xScale(x_value+x_skew*width))
+             *     .replace("{y2}", yScale(y_value+new_height))
+             *     .replace("{x3}", xScale(x_value+(1+x_skew)*width))
+             *     .replace("{y3}", yScale(y_value+new_height))
+             *     .replace("{x4}", xScale(x_value+width))
+             *     .replace("{y4}", yScale(y_value));
 
-                  * var path2 = svg.append("path");
-                  * path2.style("stroke", "black")
-                  *      .style("fill", "white")
-                  *      .attr("d", s);*/
+             * var path2 = svg.append("path");
+             * path2.style("stroke", "black")
+             *      .style("fill", "white")
+             *      .attr("d", s);*/
              }
              
+             /*              create_losangle_path(0, 4, 3, 2, width, height);*/
+             }
 
-             create_losangle_path(0, 4, 3, 2, width, height);
-         }
+             var data3 = [{"x": 0, "y":0, "value":9},
+             {"x": 0, "y":1, "value":1},
+             {"x": 0, "y":2, "value":2},
+             {"x": 0, "y":3, "value":1},
+             {"x": 1, "y":0, "value":6},
+             {"x": 1, "y":1, "value":3},
+             {"x": 1, "y":2, "value":9},
+             {"x": 1, "y":3, "value":4},
+             {"x": 2, "y":0, "value":9},
+             {"x": 2, "y":1, "value":0},
+             {"x": 2, "y":2, "value":7},
+             {"x": 2, "y":3, "value":7}]
+             var data3_top = [{"x": 0, "y":3, "value":1},
+             {"x": 1, "y":3, "value":4},
+             {"x": 2, "y":3, "value":7}
+             ]
+             /* {"x": 0, "y":0, "height":height, "skewX":skewX, "value":0},
+             * {"x": 1, "y":0, "height":height, "skewX":skewX, "value":1},
+             * {"x": 2, "y":0, "height":height, "skewX":skewX, "value":2},
 
-         var data3 = [{"x": 0, "y":0, "value":9},
-                      {"x": 0, "y":1, "value":1},
-                      {"x": 0, "y":2, "value":2},
-                      {"x": 0, "y":3, "value":1},
-                      {"x": 1, "y":0, "value":6},
-                      {"x": 1, "y":1, "value":3},
-                      {"x": 1, "y":2, "value":9},
-                      {"x": 1, "y":3, "value":4},
-                      {"x": 2, "y":0, "value":9},
-                      {"x": 2, "y":1, "value":0},
-                      {"x": 2, "y":2, "value":7},
-                      {"x": 2, "y":3, "value":7},
+             * {"x": 0, "y":1, "height":height, "skewX":skewX, "value":0},
+             * {"x": 1, "y":1, "height":height, "skewX":skewX, "value":1},
+             * {"x": 2, "y":1, "height":height, "skewX":skewX, "value":2},*/
+             
+             create_3d_array("#numpy-3darray", data3, data3_top);
+             </script> -->
 
-                      /* {"x": 0, "y":0, "height":height, "skewX":skewX, "value":0},
-                       * {"x": 1, "y":0, "height":height, "skewX":skewX, "value":1},
-                       * {"x": 2, "y":0, "height":height, "skewX":skewX, "value":2},
-
-                       * {"x": 0, "y":1, "height":height, "skewX":skewX, "value":0},
-                       * {"x": 1, "y":1, "height":height, "skewX":skewX, "value":1},
-                       * {"x": 2, "y":1, "height":height, "skewX":skewX, "value":2},*/
-         ]
-         /*          create_3d_array("#numpy-3darray", data3);*/
-        </script>
-
-        <script>
-         var svg = d3.select("#numpy-3darray")
-                     .append("svg")
-                     .attr("width", 300)
-                     .attr("height", 200)/* d3.max(data, function (d) {return (d.y+1)*height;}))*/
-                     .style("background-color",  "white");
-         svg.append("rect")
-            .style("stroke","black")
-            .style("fill","gray")
-            .attr("x", 50)
-            .attr("y", 50)
-            .attr("width", 50)
-            .attr("height", 50);
-         svg.append("rect")
-            .style("stroke","black")
-            .style("fill","none")
-            .attr("x", 50)
-            .attr("y", 50)
-            .attr("width", 50)
-            .attr("height",50)
-            .attr("transform","skewX(40)");
-        </script>
+        <!-- <script>
+             var svg = d3.select("#numpy-3darray")
+             .append("svg")
+             .attr("width", 300)
+             .attr("height", 200)/* d3.max(data, function (d) {return (d.y+1)*height;}))*/
+             .style("background-color",  "white");
+             svg.append("rect")
+             .style("stroke","black")
+             .style("fill","gray")
+             .attr("x", 50)
+             .attr("y", 50)
+             .attr("width", 50)
+             .attr("height", 50);
+             svg.append("rect")
+             .style("stroke","black")
+             .style("fill","none")
+             .attr("x", 50)
+             .attr("y", 50)
+             .attr("width", 50)
+             .attr("height",50)
+             .attr("transform","skewX(40)");
+             </script> -->
 
         <!-- <script type="text/javascript">
 

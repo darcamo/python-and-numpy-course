@@ -79,6 +79,62 @@ body {
     background-color: white;
 }
 
+.reveal .container {
+    /* height: 100%; */
+    /* white-space: nowrap; */
+    /* text-align: center; */
+    /* margin-left: 30px; */
+}
+
+.reveal .container:before {
+    /* content: ""; */
+    /* display: inline-block; */
+    /* vertical-align: middle; */
+    /* width: 0; */
+    /* adjust for white space between pseudo element and next sibling */
+    /* margin-right: -.25em; */
+    /* stretch line height */
+    /* height: 100%;  */
+}
+
+.reveal .element {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    margin-right: 5px;
+    /* white-space: normal; */
+}
+
+.reveal in {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.reveal in:before {
+    counter-increment: ipython-in;
+    content: "In  [" counter(ipython-in) "]: ";
+    color:#17ff2e;
+}
+
+.reveal output {
+    display: inline-block;
+    /* transform: translateY(-10px); */
+}
+
+/* Apenas o primeiro "in" dentro do parent "code-terminal" é afetado */
+in:first-of-type {
+    margin-top: 0px;
+}
+
+.reveal output:before {
+    content: "Out [" counter(ipython-in) "]: ";
+    color:#ff2c2d;
+}
+
+
+/* .reveal svg rect:hover, text:hover { */
+/*     fill:red !important; */
+/* } */
 
 /* Local Variables: */
 /* eval: (rainbow-mode t) */

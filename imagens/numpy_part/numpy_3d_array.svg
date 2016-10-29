@@ -1,0 +1,74 @@
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="249.98" width="245.42" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 245.4216 249.97857">
+ <g id="layer1" transform="translate(153.88 -1075.2)">
+  <g>
+   <g stroke="#000" stroke-width="1.3947" fill="#ffffff">
+    <rect height="50" width="50" y="1125.7" x="-153.18"/>
+    <rect height="50" width="50" y="1175.7" x="-153.18"/>
+    <rect height="50" width="50" y="1225.7" x="-153.18"/>
+    <rect height="50" width="50" y="1275.7" x="-153.18"/>
+    <rect height="50" width="50" y="1125.7" x="-103.18"/>
+    <rect height="50" width="50" y="1175.7" x="-103.18"/>
+    <rect height="50" width="50" y="1225.7" x="-103.18"/>
+    <rect height="50" width="50" y="1275.7" x="-103.18"/>
+    <rect height="50" width="50" y="1125.7" x="-53.178"/>
+    <rect height="50" width="50" y="1175.7" x="-53.178"/>
+    <rect height="50" width="50" y="1225.7" x="-53.178"/>
+    <rect height="50" width="50" y="1275.7" x="-53.178"/>
+   </g>
+   <g font-size="25px" font-family="sans-serif" fill="#000000">
+    <text y="1159.1027" x="-137.04829">1</text>
+    <text y="1209.2675" x="-136.49287">2</text>
+    <text y="1259.1027" x="-137.04829">1</text>
+    <text y="1309.0905" x="-136.73701">9</text>
+    <text y="1159.1027" x="-86.737007">4</text>
+    <text y="1209.0905" x="-86.737007">9</text>
+    <text y="1259.0905" x="-86.779732">3</text>
+    <text y="1309.0905" x="-86.914009">6</text>
+    <text y="1159.1027" x="-36.785843">7</text>
+    <text y="1209.1027" x="-36.785843">7</text>
+    <text y="1259.0905" x="-36.822464">0</text>
+    <text y="1309.0905" x="-36.737015">9</text>
+   </g>
+  </g>
+  <g transform="matrix(.94608 -.49359 0 1.0002 -.18617 -1.9854)">
+   <g stroke="#000" stroke-width="1.3947" fill="#fff">
+    <rect height="50" width="50" y="1125.7" x="-3.1783"/>
+    <rect height="50" width="50" y="1175.7" x="-3.1783"/>
+    <rect height="50" width="50" y="1225.7" x="-3.1783"/>
+    <rect height="50" width="50" y="1275.7" x="-3.1783"/>
+    <rect height="50" width="50" y="1125.7" x="46.822"/>
+    <rect height="50" width="50" y="1175.7" x="46.822"/>
+    <rect height="50" width="50" y="1225.7" x="46.822"/>
+    <rect height="50" width="50" y="1275.7" x="46.822"/>
+   </g>
+   <g font-size="25px" font-family="sans-serif" fill="#000000">
+    <text y="1159.1027" x="13.214157">7</text>
+    <text y="1159.1027" x="63.262985">4</text>
+    <text y="1209.1027" x="13.214157">7</text>
+    <text y="1259.0905" x="13.177536">0</text>
+    <text y="1309.0905" x="13.262985">9</text>
+    <text y="1309.0905" x="63.177536">8</text>
+    <text y="1259.2675" x="63.507126">2</text>
+    <text y="1208.9257" x="63.299606">5</text>
+   </g>
+  </g>
+  <g transform="matrix(1.0026 0 -.95026 .49609 1069.4 566.7)">
+   <g stroke="#000" stroke-width="1.3947" fill="#fff">
+    <rect height="50" width="50" y="1025.7" x="-153.18"/>
+    <rect height="50" width="50" y="1075.7" x="-153.18"/>
+    <rect height="50" width="50" y="1025.7" x="-103.18"/>
+    <rect height="50" width="50" y="1075.7" x="-103.18"/>
+    <rect height="50" width="50" y="1025.7" x="-53.178"/>
+    <rect height="50" width="50" y="1075.7" x="-53.178"/>
+   </g>
+   <g font-size="25px" font-family="sans-serif" fill="#000000">
+    <text y="1109.1027" x="-137.04829">1</text>
+    <text y="1109.1027" x="-86.737007">4</text>
+    <text y="1109.1027" x="-36.785843">7</text>
+    <text y="1059.1027" x="-36.737015">4</text>
+    <text y="1059.2675" x="-136.49287">2</text>
+    <text y="1059.0905" x="-86.779732">3</text>
+   </g>
+  </g>
+ </g>
+</svg>

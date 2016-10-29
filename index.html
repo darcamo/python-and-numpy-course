@@ -4,6 +4,20 @@
         <title></title>
         <meta charset="utf-8" />
         <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
+
+        <!-- <style>
+             #numpy3d-centro {
+             fill: green;
+             }
+             #numpy3d-topo {
+             fill: blue;
+             /*              transform: skewX(-30deg); */
+             }
+
+             #numpy3d-direita {
+             fill: red;
+             }
+             </style> -->
     </head>
     <body>
         <ul>
@@ -12,50 +26,277 @@
             <li><a href="numpy_e_amigos.html">Computação Numérica com Python</a></li>
         </ul>
 
-        <div id="desenho"></div>
+        <svg id="desenho"></svg>
+
+        <br>
+        
+        <svg id="desenho2"></svg>
+       
+        <!-- <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg"
+             height="300" width="250"
+             version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
+             viewBox="0 45 200 260">
+             <g id="layer1">
+             <g id="numpy3d-centro" stroke="#000" stroke-width="1.3947" fill="#fff">
+             <rect height="50" width="50" y="250" x="0"/>
+             <rect height="50" width="50" y="200" x="0"/>
+             <rect height="50" width="50" y="150" x="0"/>
+             <rect height="50" width="50" y="100" x="0"/>
+             <rect height="50" width="50" y="250" x="50"/>
+             <rect height="50" width="50" y="200" x="50"/>
+             <rect height="50" width="50" y="150" x="50"/>
+             <rect height="50" width="50" y="100" x="50"/>
+             <rect height="50" width="50" y="250" x="100"/>
+             <rect height="50" width="50" y="200" x="100"/>
+             <rect height="50" width="50" y="150" x="100"/>
+             <rect height="50" width="50" y="100" x="100"/>
+             </g>
+             <g font-size="25px" font-family="sans-serif" fill="#000000" transform="translate(25, 25)" text-anchor="middle">
+             <text y="250" x="0" alignment-baseline="central">1</text>
+             <text y="200" x="0" alignment-baseline="central">2</text>
+             <text y="150" x="0" alignment-baseline="central">1</text>
+             <text y="100" x="0" alignment-baseline="central">9</text>
+             <text y="250" x="50" alignment-baseline="central">4</text>
+             <text y="200" x="50" alignment-baseline="central">9</text>
+             <text y="150" x="50" alignment-baseline="central">3</text>
+             <text y="100" x="50" alignment-baseline="central">6</text>
+             <text y="250" x="100" alignment-baseline="central">7</text>
+             <text y="200" x="100" alignment-baseline="central">7</text>
+             <text y="150" x="100" alignment-baseline="central">0</text>
+             <text y="100" x="100" alignment-baseline="central">9</text>
+             </g>
+             <g transform="translate(0,-100) skewX(-45) scale(1,0.5) translate(200,300)">
+             <g id="numpy3d-topo" stroke="#000" stroke-width="1.3947" fill="#fff">
+             <rect height="50" width="50" y="0" x="0"/>
+             <rect height="50" width="50" y="0" x="50"/>
+             <rect height="50" width="50" y="0" x="100"/>
+             <rect height="50" width="50" y="50" x="0"/>
+             <rect height="50" width="50" y="50" x="50"/>
+             <rect height="50" width="50" y="50" x="100"/>
+             </g>
+             <g font-size="25px" font-family="sans-serif" fill="#000000" transform="translate(25,25)" text-anchor="middle">
+             <text y="0" x="0" alignment-baseline="central" >1</text>
+             <text y="0" x="50" alignment-baseline="central">4</text>
+             <text y="0" x="100" alignment-baseline="central">7</text>
+             <text y="50" x="0" alignment-baseline="central">4</text>
+             <text y="50" x="50" alignment-baseline="central">2</text>
+             <text y="50" x="100" alignment-baseline="central">3</text>
+             </g>
+             </g>
+             <g transform="translate(-150, -300) skewY(-45) scale(0.5,1) translate(450,600)">
+             <g id="numpy3d-direita" stroke="#000" stroke-width="1.3947" fill="#fff">
+             <rect height="50" width="50" y="250" x="150"/>
+             <rect height="50" width="50" y="200" x="150"/>
+             <rect height="50" width="50" y="150" x="150"/>
+             <rect height="50" width="50" y="100" x="150"/>
+             <rect height="50" width="50" y="250" x="200"/>
+             <rect height="50" width="50" y="200" x="200"/>
+             <rect height="50" width="50" y="150" x="200"/>
+             <rect height="50" width="50" y="100" x="200"/>
+             </g>
+             <g font-size="25px" font-family="sans-serif" fill="#000000" transform="translate(25,25)" text-anchor="middle">
+             <text y="250" x="150" alignment-baseline="central">7</text>
+             <text y="200" x="150" alignment-baseline="central">4</text>
+             <text y="150" x="150" alignment-baseline="central">7</text>
+             <text y="100" x="150" alignment-baseline="central">0</text>
+             <text y="250" x="200" alignment-baseline="central">9</text>
+             <text y="200" x="200" alignment-baseline="central">8</text>
+             <text y="150" x="200" alignment-baseline="central">2</text>
+             <text y="100" x="200" alignment-baseline="central">5</text>
+             </g>
+             </g>
+             </g>
+             </svg> -->
 
         <script>
-         var svg = d3.select("#desenho")
-                     .append("svg")
-                     .attr("width", 600)
-                     .attr("height", 600)/* d3.max(data, function (d) {return (d.y+1)*height;}))*/
-                     .style("background-color",  "white");
-         var w = 50;
-         var h = 50;
-         var x = 0;
-         var y = 0;
+         function cria_array_indexes(id, data) {
+             "use strict";
+             var w = 80;
+             var h = 50;
+             var svg = d3.select(id)
+                         .attr("width", data.length * w)
+                         .attr("height", h);
+             svg.attr("font-size", "20pt");
+             var groupsSel = svg.selectAll("g")
+                                .data(data);
+             var groups = groupsSel.enter()
+                                   .append("g")
+                                   .each(function(d, i) {
+                                       var rect = d3.select(this).append("rect");
+                                       rect.attr("width", w).attr("height", h)
+                                           .attr("fill", function(d) { return d.fill; })
+                                           .attr("stroke", "black");
+                                       var text = d3.select(this).append("text");
+                                       text.attr("stroke", "black")
+                                           .text(d.value)
+                                           .attr("x", w/2).attr("y", h/2)
+                                           .attr("alignment-baseline", "central")
+                                           .attr("text-anchor","middle");
+                                       d3.select(this).attr("transform", "translate({a},0)".replace("{a}",i*w));
+                                   });
 
-         var svg_width = 200;
-         var svg_height = 200;
-         
-         var xScale = d3.scaleLinear()
-                        .domain([0, 100])
-                        .range([0, svg_width]);
-         var yScale = d3.scaleLinear()
-                        .domain([0, 100])
-                        .range([svg_height, 0]);
+             // Atualiza cor de fundo dos retângulos
+             var rectsSel = svg.selectAll("rect").data(data);
+             rectsSel.transition().duration(1000).attr("fill", function(d){return d.fill;});
 
-         var x2 = xScale(x);
-         var y2 = yScale(y);
-         var w2 = xScale(w);
-         var h2 = yScale(0)-yScale(h);
+             var textSel = svg.selectAll("text").data(data);
+             textSel.text(function(d) {return d.value;});
+         }
+
+         function cria_array_indexes2(id, data) {
+             "use strict";
+             var w = 80;
+             var h = 50;
+             var svg = d3.select(id)
+                         .attr("width", data[0].length * w)
+                         .attr("height", data.length * h)
+                         .attr("stroke", "#000");
+             svg.attr("font-size", "20pt");
+
+             var groupsSel = svg.selectAll("g")
+                                .data(data);
+             /*              groupsSel.exit().remove();*/
+             groupsSel = groupsSel.enter()
+                                  .append("g")
+                                  .attr("class", "row")
+                                  .attr("transform", function(d, i){
+                                      return "translate(0,{y})".replace("{y}", i * h); })
+                                  .merge(groupsSel);
+
+             groupsSel.attr("transform", function(d, i){
+                 return "translate(0,{y})".replace("{y}", i * h); })
+
+             // Now for the columns in each line
+             var innerGroupsSel = groupsSel.selectAll('g')
+                                           .data(function(d, i) { return d; });
+             /*              innerGroupsSel.exit().remove();*/
+             innerGroupsSel
+                 .enter()
+                 .append("g")
+                 .attr("class", "column")
+                 .attr("transform", function(d, i) {
+                     return "translate({x},0)".replace("{x}", i*w)})
+                 .merge(innerGroupsSel);
+
+             innerGroupsSel.attr("transform", function(d, i) {
+                 return "translate({x},0)".replace("{x}", i*w)});
+             
+             var rects = svg.selectAll(".row")
+                            .data(data)
+                            .selectAll(".column")
+                            .data(function(d,i) {return d})
+                            .selectAll("rect")
+                            .data(function(d,i) {return [d]});
+             // Enter rects
+             rects = rects.enter().append("rect")
+                          .attr("width", w)
+                          .attr("height", h)
+                          .merge(rects);
+
+             // Update rects
+             rects.transition()
+                  .duration(2000)
+                  .attr("fill", function(d){return d.fill});
+
+             
+             var texts = svg.selectAll(".row")
+                            .data(data)
+                            .selectAll(".column")
+                            .data(function(d,i) {return d})
+                            .selectAll("text")
+                            .data(function(d,i) {return [d]});
+             // Enter texts
+             texts = texts.enter()
+                          .append("text")
+                          .attr("x", w/2 )
+                          .attr("y", h/2 )
+                          .attr("text-anchor", "middle")
+                          .attr("alignment-baseline", "central")
+                          .merge(texts);
+
+             // Update texts
+             texts.text(function(d) {return d.value;});
+         }
+
+         var index_data = [
+             {value: 0, fill: "white"},
+             {value: 1, fill: "white"},
+             {value: 8, fill: "white"},
+             {value: 27, fill: "white"},
+             {value: 64, fill: "white"},
+             {value: 125, fill: "white"},
+             {value: 216, fill: "white"},
+             {value: 343, fill: "white"},
+             {value: 512, fill: "white"},
+             {value: 729, fill: "white"},
+         ];
          
-         svg.append("rect")
-            .style("stroke","black")
-            .style("fill","gray")
-            .attr("x", x)
-            .attr("y", y)
-            .attr("width", w)
-            .attr("height", h);
-         svg.append("rect")
-            .style("stroke","red")
-            .style("fill","none")
-            .attr("x", x)
-            .attr("y", y)
-            .attr("width", w)
-            .attr("height",h)
-            .attr("transform", "matrix(1,0,1,1,-25,0)");
+         cria_array_indexes("#desenho", index_data);
+
+
+         /* array([[ 0,  1,  2,  3],
+          *        [10, 11, 12, 13],
+          *        [20, 21, 22, 23],
+          *        [30, 31, 32, 33],
+          *        [40, 41, 42, 43]])*/
          
+         var index_data2 = [
+             [{value: 0, fill: "white"},
+              {value: 1, fill: "white"},
+              {value: 2, fill: "white"},
+              {value: 3, fill: "white"}],
+             [{value: 10, fill: "white"},
+              {value: 11, fill: "white"},
+              {value: 12, fill: "white"},
+              {value: 13, fill: "white"}],
+             [{value: 20, fill: "white"},
+              {value: 21, fill: "white"},
+              {value: 22, fill: "white"},
+              {value: 23, fill: "white"}],
+             [{value: 30, fill: "white"},
+              {value: 31, fill: "white"},
+              {value: 32, fill: "white"},
+              {value: 33, fill: "white"}],
+             [{value: 40, fill: "white"},
+              {value: 41, fill: "white"},
+              {value: 42, fill: "white"},
+              {value: 43, fill: "white"}]
+         ];
+
+         var index_data3 = [
+             [{value: 0, fill: "white"},
+             {value: 10, fill: "white"},
+             {value: 20, fill: "white"},
+             {value: 30, fill: "white"},
+             {value: 40, fill: "white"}],
+             [{value: 1, fill: "white"},
+             {value: 11, fill: "white"},
+             {value: 21, fill: "white"},
+             {value: 31, fill: "white"},
+             {value: 41, fill: "white"}],
+             [{value: 2, fill: "white"},
+             {value: 12, fill: "white"},
+             {value: 22, fill: "white"},
+             {value: 32, fill: "white"},
+             {value: 42, fill: "white"}],
+             [{value: 3, fill: "white"},
+             {value: 13, fill: "white"},
+             {value: 23, fill: "white"},
+             {value: 33, fill: "white"},
+             {value: 43, fill: "white"}]
+         ];
+         /* var index_data2 = [[{value: 0, fill: "white"}],
+          *                    [{value: 1, fill: "white"}],
+          *                    [{value: 2, fill: "white"}],
+          *                    [{value: 3, fill: "white"}]]*/
+
+         /* cria_array_indexes2("#desenho2", index_data2);*/
+         index_data2[1][2].fill = "red";
+         index_data2[4][0].fill = "blue";
+         cria_array_indexes2("#desenho2", index_data2);
+         /*          cria_array_indexes2("#desenho2", index_data3);*/
+
+         var svg = d3.select("#desenho2");
         </script>
     </body>
 </html>

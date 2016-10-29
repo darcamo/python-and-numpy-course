@@ -1,0 +1,43 @@
+<link rel="import"  href="../bower_components/polymer/polymer.html">
+
+<dom-module id="cursor-tag">
+    <style>
+     /* Sobrescreve o que a biclioteca highlight.js seta caso eu coloque a
+        classe 'terminal' */
+     /* code {
+        background-color: #272822 !important;
+        } */
+     .cursor {
+         animation: blink 1s infinite;
+         font-size: 25px !important;
+     }
+
+     @keyframes blink{
+         /* to{opacity: .0;} */
+         0%{opacity: 1;}
+         49%{opacity: 1;}
+         50%{opacity: 0;}
+         100%{opacity: 0;}
+     }
+    </style>
+
+    <template><span class="cursor">▮</span></template>
+
+    <script>
+     Polymer({
+         is: "cursor-tag",
+         /* properties: {
+          *     // declare the hostname property
+          *     hostname: {
+          *         type: String,
+          *         value: "darlan@darlan-G75VX"
+          *     },
+          *     codeclass: {
+          *         type: String,
+          *         value: "python"
+          *     },
+          * }*/
+     });
+    </script>
+
+</dom-module>

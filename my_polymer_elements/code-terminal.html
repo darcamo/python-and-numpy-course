@@ -11,7 +11,7 @@
     </style>
 
     <template>
-        <terminal-tag hostname="{{hostname}}"><code class$="{{codeclass}}" data-noescape><content></content></code></terminal-tag>
+        <terminal-tag hostname="{{hostname}}"><code id="code" class$="{{codeclass}}" data-noescape><content></content></code></terminal-tag>
     </template>
 
     <script>
@@ -27,6 +27,15 @@
                  type: String,
                  value: "python"
              },
+             dontshowcursor: Boolean,
+         },
+         ready: function() {
+             if (this.attributes.getNamedItem("dontshowcursor") === null) {
+                 var final_in = document.createElement("in");
+                 final_in.innerHTML = "<cursor-tag></cursor-tag>";
+                 final_in.style = "display: block;"
+                 this.$.code.appendChild(final_in);
+             }
          }
      });
     </script>

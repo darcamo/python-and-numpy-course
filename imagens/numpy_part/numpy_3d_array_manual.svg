@@ -1,0 +1,75 @@
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg"
+     height="300" width="250"
+     version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
+     viewBox="0 45 200 260">
+    <g id="layer1" stroke-width="1" font-size="25px" font-family="sans-serif" >
+    <g id="numpy3d-centro" stroke="#000" fill="#fff">
+      <rect height="50" width="50" y="250" x="0"/>
+      <rect height="50" width="50" y="200" x="0"/>
+      <rect height="50" width="50" y="150" x="0"/>
+      <rect height="50" width="50" y="100" x="0"/>
+      <rect height="50" width="50" y="250" x="50"/>
+      <rect height="50" width="50" y="200" x="50"/>
+      <rect height="50" width="50" y="150" x="50"/>
+      <rect height="50" width="50" y="100" x="50"/>
+      <rect height="50" width="50" y="250" x="100"/>
+      <rect height="50" width="50" y="200" x="100"/>
+      <rect height="50" width="50" y="150" x="100"/>
+      <rect height="50" width="50" y="100" x="100"/>
+    </g>
+    <g transform="translate(25, 25)" text-anchor="middle">
+      <text y="250" x="0" alignment-baseline="central">9</text>
+      <text y="200" x="0" alignment-baseline="central">1</text>
+      <text y="150" x="0" alignment-baseline="central">2</text>
+      <text y="100" x="0" alignment-baseline="central">1</text>
+      <text y="250" x="50" alignment-baseline="central">6</text>
+      <text y="200" x="50" alignment-baseline="central">3</text>
+      <text y="150" x="50" alignment-baseline="central">9</text>
+      <text y="100" x="50" alignment-baseline="central">4</text>
+      <text y="250" x="100" alignment-baseline="central">9</text>
+      <text y="200" x="100" alignment-baseline="central">0</text>
+      <text y="150" x="100" alignment-baseline="central">7</text>
+      <text y="100" x="100" alignment-baseline="central">7</text>
+    </g>
+    <g transform="translate(0,-100) skewX(-45) scale(1,0.5) translate(200,300)">
+      <g id="numpy3d-topo" stroke="#000" fill="#fff">
+        <rect height="50" width="50" y="0" x="0"/>
+        <rect height="50" width="50" y="0" x="50"/>
+        <rect height="50" width="50" y="0" x="100"/>
+        <rect height="50" width="50" y="50" x="0"/>
+        <rect height="50" width="50" y="50" x="50"/>
+        <rect height="50" width="50" y="50" x="100"/>
+      </g>
+      <g fill="#000000" transform="translate(25,25)" text-anchor="middle">
+        <text y="0" x="0" alignment-baseline="central" >2</text>
+        <text y="0" x="50" alignment-baseline="central">3</text>
+        <text y="0" x="100" alignment-baseline="central">4</text>
+        <text y="50" x="0" alignment-baseline="central">1</text>
+        <text y="50" x="50" alignment-baseline="central">4</text>
+        <text y="50" x="100" alignment-baseline="central">7</text>
+      </g>
+    </g>
+    <g transform="translate(-150, -300) skewY(-45) scale(0.5,1) translate(450,600)">
+      <g id="numpy3d-direita" stroke="#000" fill="#fff">
+        <rect height="50" width="50" y="250" x="150"/>
+        <rect height="50" width="50" y="200" x="150"/>
+        <rect height="50" width="50" y="150" x="150"/>
+        <rect height="50" width="50" y="100" x="150"/>
+        <rect height="50" width="50" y="250" x="200"/>
+        <rect height="50" width="50" y="200" x="200"/>
+        <rect height="50" width="50" y="150" x="200"/>
+        <rect height="50" width="50" y="100" x="200"/>
+      </g>
+      <g transform="translate(25,25)" text-anchor="middle">
+        <text y="250" x="150" alignment-baseline="central">9</text>
+        <text y="200" x="150" alignment-baseline="central">0</text>
+        <text y="150" x="150" alignment-baseline="central">7</text>
+        <text y="100" x="150" alignment-baseline="central">7</text>
+        <text y="250" x="200" alignment-baseline="central">8</text>
+        <text y="200" x="200" alignment-baseline="central">2</text>
+        <text y="150" x="200" alignment-baseline="central">5</text>
+        <text y="100" x="200" alignment-baseline="central">4</text>
+      </g>
+    </g>
+  </g>
+</svg>

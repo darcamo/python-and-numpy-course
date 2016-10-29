@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/night.css">
         <link rel="stylesheet" href="css/mystyles.css">
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"/>
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -25,6 +26,13 @@
 		 document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 
+        <style>
+         /* Remove o In [?]: do terminal*/
+         .reveal in:before {
+             content: "";
+         }
+        </style>
+        
         <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
         <!-- My custom polymer element with a terminal and inside python code -->
         <link rel="import" href="/my_polymer_elements/terminal-tag.html">
@@ -482,6 +490,7 @@ ace</spam></code-terminal>
 >>> a.extend(b)  # Adiciona os elementos da lista 'b' na lista 'a'
 >>> print(a)
 [1, 5, 10, 15, 100, 200]</code-terminal>
+                        
                     </section>
 
                     <section>
