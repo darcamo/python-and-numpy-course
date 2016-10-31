@@ -31,82 +31,6 @@
         <br>
         
         <svg id="desenho2"></svg>
-       
-        <!-- <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg"
-             height="300" width="250"
-             version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
-             viewBox="0 45 200 260">
-             <g id="layer1">
-             <g id="numpy3d-centro" stroke="#000" stroke-width="1.3947" fill="#fff">
-             <rect height="50" width="50" y="250" x="0"/>
-             <rect height="50" width="50" y="200" x="0"/>
-             <rect height="50" width="50" y="150" x="0"/>
-             <rect height="50" width="50" y="100" x="0"/>
-             <rect height="50" width="50" y="250" x="50"/>
-             <rect height="50" width="50" y="200" x="50"/>
-             <rect height="50" width="50" y="150" x="50"/>
-             <rect height="50" width="50" y="100" x="50"/>
-             <rect height="50" width="50" y="250" x="100"/>
-             <rect height="50" width="50" y="200" x="100"/>
-             <rect height="50" width="50" y="150" x="100"/>
-             <rect height="50" width="50" y="100" x="100"/>
-             </g>
-             <g font-size="25px" font-family="sans-serif" fill="#000000" transform="translate(25, 25)" text-anchor="middle">
-             <text y="250" x="0" alignment-baseline="central">1</text>
-             <text y="200" x="0" alignment-baseline="central">2</text>
-             <text y="150" x="0" alignment-baseline="central">1</text>
-             <text y="100" x="0" alignment-baseline="central">9</text>
-             <text y="250" x="50" alignment-baseline="central">4</text>
-             <text y="200" x="50" alignment-baseline="central">9</text>
-             <text y="150" x="50" alignment-baseline="central">3</text>
-             <text y="100" x="50" alignment-baseline="central">6</text>
-             <text y="250" x="100" alignment-baseline="central">7</text>
-             <text y="200" x="100" alignment-baseline="central">7</text>
-             <text y="150" x="100" alignment-baseline="central">0</text>
-             <text y="100" x="100" alignment-baseline="central">9</text>
-             </g>
-             <g transform="translate(0,-100) skewX(-45) scale(1,0.5) translate(200,300)">
-             <g id="numpy3d-topo" stroke="#000" stroke-width="1.3947" fill="#fff">
-             <rect height="50" width="50" y="0" x="0"/>
-             <rect height="50" width="50" y="0" x="50"/>
-             <rect height="50" width="50" y="0" x="100"/>
-             <rect height="50" width="50" y="50" x="0"/>
-             <rect height="50" width="50" y="50" x="50"/>
-             <rect height="50" width="50" y="50" x="100"/>
-             </g>
-             <g font-size="25px" font-family="sans-serif" fill="#000000" transform="translate(25,25)" text-anchor="middle">
-             <text y="0" x="0" alignment-baseline="central" >1</text>
-             <text y="0" x="50" alignment-baseline="central">4</text>
-             <text y="0" x="100" alignment-baseline="central">7</text>
-             <text y="50" x="0" alignment-baseline="central">4</text>
-             <text y="50" x="50" alignment-baseline="central">2</text>
-             <text y="50" x="100" alignment-baseline="central">3</text>
-             </g>
-             </g>
-             <g transform="translate(-150, -300) skewY(-45) scale(0.5,1) translate(450,600)">
-             <g id="numpy3d-direita" stroke="#000" stroke-width="1.3947" fill="#fff">
-             <rect height="50" width="50" y="250" x="150"/>
-             <rect height="50" width="50" y="200" x="150"/>
-             <rect height="50" width="50" y="150" x="150"/>
-             <rect height="50" width="50" y="100" x="150"/>
-             <rect height="50" width="50" y="250" x="200"/>
-             <rect height="50" width="50" y="200" x="200"/>
-             <rect height="50" width="50" y="150" x="200"/>
-             <rect height="50" width="50" y="100" x="200"/>
-             </g>
-             <g font-size="25px" font-family="sans-serif" fill="#000000" transform="translate(25,25)" text-anchor="middle">
-             <text y="250" x="150" alignment-baseline="central">7</text>
-             <text y="200" x="150" alignment-baseline="central">4</text>
-             <text y="150" x="150" alignment-baseline="central">7</text>
-             <text y="100" x="150" alignment-baseline="central">0</text>
-             <text y="250" x="200" alignment-baseline="central">9</text>
-             <text y="200" x="200" alignment-baseline="central">8</text>
-             <text y="150" x="200" alignment-baseline="central">2</text>
-             <text y="100" x="200" alignment-baseline="central">5</text>
-             </g>
-             </g>
-             </g>
-             </svg> -->
 
         <script>
          function cria_array_indexes(id, data) {
@@ -218,6 +142,41 @@
              texts.text(function(d) {return d.value;});
          }
 
+
+         function cria_array_indexes3(id, data) {
+             "use strict";
+             var w = 80;
+             var h = 50;
+
+             var svg_w = d3.max(data, function (d) {return (d.j+1)*w;})
+             var svg_h = d3.max(data, function (d) {return (d.i+1)*h;})
+             var svg = d3.select(id)
+                         .attr("width", svg_w)
+                         .attr("height", svg_h)
+                         .attr("stroke", "#000");
+             svg.attr("font-size", "20pt");
+
+             var groups = svg.selectAll("g").data(data);
+             groups = groups
+                 .enter()
+                 .append("g")
+                 .each(function() {
+                     d3.select(this).append("rect").attr("width", w).attr("height", h);
+                     d3.select(this).append("text").attr("x", w/2 ).attr("y", h/2 ).attr("text-anchor", "middle").attr("alignment-baseline", "central");
+                 })
+                 //.append("rect")
+                 .merge(groups);
+
+             // Atualiza a localização dos elementos (retângulos e textos)
+             groups.transition().duration(1000).attr("transform", function(d) {return "translate({x},{y})".replace("{x}", d.j * w).replace("{y}", d.i * h);});
+
+             // select não cria um novo grupo e nós mantemos os dados do parent (os "g"s no SVG)
+             var rects = groups.select("rect");
+             rects.transition().duration(1000).attr("fill", function(d) {return d.fill;});
+             var texts = groups.select("text");
+             texts.text(function(d) {return d.value;});
+         }
+         
          var index_data = [
              {value: 0, fill: "white"},
              {value: 1, fill: "white"},
@@ -262,41 +221,143 @@
               {value: 42, fill: "white"},
               {value: 43, fill: "white"}]
          ];
-
+         
          var index_data3 = [
-             [{value: 0, fill: "white"},
-             {value: 10, fill: "white"},
-             {value: 20, fill: "white"},
-             {value: 30, fill: "white"},
-             {value: 40, fill: "white"}],
-             [{value: 1, fill: "white"},
-             {value: 11, fill: "white"},
-             {value: 21, fill: "white"},
-             {value: 31, fill: "white"},
-             {value: 41, fill: "white"}],
-             [{value: 2, fill: "white"},
-             {value: 12, fill: "white"},
-             {value: 22, fill: "white"},
-             {value: 32, fill: "white"},
-             {value: 42, fill: "white"}],
-             [{value: 3, fill: "white"},
-             {value: 13, fill: "white"},
-             {value: 23, fill: "white"},
-             {value: 33, fill: "white"},
-             {value: 43, fill: "white"}]
+             {i:0, j: 0, value: 0, fill: "white"},
+             {i:0, j: 1, value: 1, fill: "white"},
+             {i:0, j: 2, value: 2, fill: "white"},
+             {i:0, j: 3, value: 3, fill: "white"},
+             {i:1, j: 0, value: 10, fill: "white"},
+             {i:1, j: 1, value: 11, fill: "white"},
+             {i:1, j: 2, value: 12, fill: "white"},
+             {i:1, j: 3, value: 13, fill: "white"},
+             {i:2, j: 0, value: 20, fill: "white"},
+             {i:2, j: 1, value: 21, fill: "white"},
+             {i:2, j: 2, value: 22, fill: "white"},
+             {i:2, j: 3, value: 23, fill: "white"},
+             {i:3, j: 0, value: 30, fill: "white"},
+             {i:3, j: 1, value: 31, fill: "white"},
+             {i:3, j: 2, value: 32, fill: "white"},
+             {i:3, j: 3, value: 33, fill: "white"},
+             {i:4, j: 0, value: 40, fill: "white"},
+             {i:4, j: 1, value: 41, fill: "white"},
+             {i:4, j: 2, value: 42, fill: "white"},
+             {i:4, j: 3, value: 43, fill: "white"}
          ];
-         /* var index_data2 = [[{value: 0, fill: "white"}],
-          *                    [{value: 1, fill: "white"}],
-          *                    [{value: 2, fill: "white"}],
-          *                    [{value: 3, fill: "white"}]]*/
 
          /* cria_array_indexes2("#desenho2", index_data2);*/
          index_data2[1][2].fill = "red";
          index_data2[4][0].fill = "blue";
-         cria_array_indexes2("#desenho2", index_data2);
+         /*          cria_array_indexes2("#desenho2", index_data2);*/
+         cria_array_indexes3("#desenho2", index_data3);
+         index_data3[5].fill="red"
+         index_data4 = [
+             {j:0, i: 0, value: 0, fill: "white"},
+             {j:0, i: 1, value: 1, fill: "white"},
+             {j:0, i: 2, value: 2, fill: "white"},
+             {j:0, i: 3, value: 3, fill: "white"},
+             {j:1, i: 0, value: 10, fill: "white"},
+             {j:1, i: 1, value: 11, fill: "white"},
+             {j:1, i: 2, value: 12, fill: "white"},
+             {j:1, i: 3, value: 13, fill: "white"},
+             {j:2, i: 0, value: 999, fill: "white"},
+             {j:2, i: 1, value: 21, fill: "white"},
+             {j:2, i: 2, value: 22, fill: "white"},
+             {j:2, i: 3, value: 23, fill: "white"},
+             {j:3, i: 0, value: 30, fill: "white"},
+             {j:3, i: 1, value: 31, fill: "white"},
+             {j:3, i: 2, value: 32, fill: "white"},
+             {j:3, i: 3, value: 33, fill: "white"},
+             {j:4, i: 0, value: 40, fill: "white"},
+             {j:4, i: 1, value: 41, fill: "white"},
+             {j:4, i: 2, value: 42, fill: "white"},
+             {j:4, i: 3, value: 43, fill: "white"}
+         ];
+
+         /* cria_array_indexes3("#desenho2", index_data3);*/
+
          /*          cria_array_indexes2("#desenho2", index_data3);*/
 
          var svg = d3.select("#desenho2");
         </script>
+
+
+        <!-- <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg"
+             height="300" width="250"
+             version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
+             viewBox="0 45 200 260">
+             <g id="layer1">
+             <g id="numpy3d-centro" stroke="#000" stroke-width="1.3947" fill="#fff">
+             <rect height="50" width="50" y="250" x="0"/>
+             <rect height="50" width="50" y="200" x="0"/>
+             <rect height="50" width="50" y="150" x="0"/>
+             <rect height="50" width="50" y="100" x="0"/>
+             <rect height="50" width="50" y="250" x="50"/>
+             <rect height="50" width="50" y="200" x="50"/>
+             <rect height="50" width="50" y="150" x="50"/>
+             <rect height="50" width="50" y="100" x="50"/>
+             <rect height="50" width="50" y="250" x="100"/>
+             <rect height="50" width="50" y="200" x="100"/>
+             <rect height="50" width="50" y="150" x="100"/>
+             <rect height="50" width="50" y="100" x="100"/>
+             </g>
+             <g font-size="25px" font-family="sans-serif" fill="#000000" transform="translate(25, 25)" text-anchor="middle">
+             <text y="250" x="0" alignment-baseline="central">1</text>
+             <text y="200" x="0" alignment-baseline="central">2</text>
+             <text y="150" x="0" alignment-baseline="central">1</text>
+             <text y="100" x="0" alignment-baseline="central">9</text>
+             <text y="250" x="50" alignment-baseline="central">4</text>
+             <text y="200" x="50" alignment-baseline="central">9</text>
+             <text y="150" x="50" alignment-baseline="central">3</text>
+             <text y="100" x="50" alignment-baseline="central">6</text>
+             <text y="250" x="100" alignment-baseline="central">7</text>
+             <text y="200" x="100" alignment-baseline="central">7</text>
+             <text y="150" x="100" alignment-baseline="central">0</text>
+             <text y="100" x="100" alignment-baseline="central">9</text>
+             </g>
+             <g transform="translate(0,-100) skewX(-45) scale(1,0.5) translate(200,300)">
+             <g id="numpy3d-topo" stroke="#000" stroke-width="1.3947" fill="#fff">
+             <rect height="50" width="50" y="0" x="0"/>
+             <rect height="50" width="50" y="0" x="50"/>
+             <rect height="50" width="50" y="0" x="100"/>
+             <rect height="50" width="50" y="50" x="0"/>
+             <rect height="50" width="50" y="50" x="50"/>
+             <rect height="50" width="50" y="50" x="100"/>
+             </g>
+             <g font-size="25px" font-family="sans-serif" fill="#000000" transform="translate(25,25)" text-anchor="middle">
+             <text y="0" x="0" alignment-baseline="central" >1</text>
+             <text y="0" x="50" alignment-baseline="central">4</text>
+             <text y="0" x="100" alignment-baseline="central">7</text>
+             <text y="50" x="0" alignment-baseline="central">4</text>
+             <text y="50" x="50" alignment-baseline="central">2</text>
+             <text y="50" x="100" alignment-baseline="central">3</text>
+             </g>
+             </g>
+             <g transform="translate(-150, -300) skewY(-45) scale(0.5,1) translate(450,600)">
+             <g id="numpy3d-direita" stroke="#000" stroke-width="1.3947" fill="#fff">
+             <rect height="50" width="50" y="250" x="150"/>
+             <rect height="50" width="50" y="200" x="150"/>
+             <rect height="50" width="50" y="150" x="150"/>
+             <rect height="50" width="50" y="100" x="150"/>
+             <rect height="50" width="50" y="250" x="200"/>
+             <rect height="50" width="50" y="200" x="200"/>
+             <rect height="50" width="50" y="150" x="200"/>
+             <rect height="50" width="50" y="100" x="200"/>
+             </g>
+             <g font-size="25px" font-family="sans-serif" fill="#000000" transform="translate(25,25)" text-anchor="middle">
+             <text y="250" x="150" alignment-baseline="central">7</text>
+             <text y="200" x="150" alignment-baseline="central">4</text>
+             <text y="150" x="150" alignment-baseline="central">7</text>
+             <text y="100" x="150" alignment-baseline="central">0</text>
+             <text y="250" x="200" alignment-baseline="central">9</text>
+             <text y="200" x="200" alignment-baseline="central">8</text>
+             <text y="150" x="200" alignment-baseline="central">2</text>
+             <text y="100" x="200" alignment-baseline="central">5</text>
+             </g>
+             </g>
+             </g>
+             </svg> -->
+
+        
     </body>
 </html>

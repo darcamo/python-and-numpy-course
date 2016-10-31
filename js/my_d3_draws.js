@@ -35,60 +35,59 @@ function create_1d2d_array(id, data) {
 }
 
 
-
 function cria_array_indexes(id, data) {
     "use strict";
     var w = 80;
     var h = 50;
+
+    var svg_w = d3.max(data, function (d) {return (d.j+1)*w;})
+    var svg_h = d3.max(data, function (d) {return (d.i+1)*h;})
     var svg = d3.select(id)
-        .attr("width", data.length * w)
-        .attr("height", h);
+        .attr("width", svg_w)
+        .attr("height", svg_h)
+        .attr("stroke", "#000");
     svg.attr("font-size", "20pt");
-    var groupsSel = svg.selectAll("g")
-        .data(data);
-    var groups = groupsSel.enter()
+
+    var groups = svg.selectAll("g").data(data);
+    groups = groups
+        .enter()
         .append("g")
-        .each(function(d, i) {
-            var rect = d3.select(this).append("rect");
-            rect.attr("width", w).attr("height", h)
-                .attr("fill", function(d) { return d.fill; })
-                .attr("stroke", "black");
-            var text = d3.select(this).append("text");
-            text.attr("stroke", "black")
-                .text(d.value)
-                .attr("x", w/2).attr("y", h/2)
-                .attr("alignment-baseline", "central")
-                .attr("text-anchor","middle");
-            d3.select(this).attr("transform", "translate({a},0)".replace("{a}",i*w));
-        });
+        .each(function() {
+            d3.select(this).append("rect").attr("width", w).attr("height", h);
+            d3.select(this).append("text").attr("x", w/2 ).attr("y", h/2 ).attr("text-anchor", "middle").attr("alignment-baseline", "central");
+        })
+    //.append("rect")
+        .merge(groups);
 
-    // Atualiza cor de fundo dos retângulos
-    var rectsSel = svg.selectAll("rect").data(data);
-    rectsSel.transition().duration(1000).attr("fill", function(d){return d.fill;});
+    // Atualiza a localização dos elementos (retângulos e textos)
+    groups.transition().duration(1000).attr("transform", function(d) {return "translate({x},{y})".replace("{x}", d.j * w).replace("{y}", d.i * h);});
 
-    var textSel = svg.selectAll("text").data(data);
-    textSel.text(function(d) {return d.value;});
+    // select não cria um novo grupo e nós mantemos os dados do parent (os "g"s no SVG)
+    var rects = groups.select("rect");
+    rects.transition().duration(1000).attr("fill", function(d) {return d.fill;});
+    var texts = groups.select("text");
+    texts.text(function(d) {return d.value;});
 }
 
 
-
 function update_indexa_array() {
+    "use strict"
     var currentSlideId = Reveal.getCurrentSlide().id;
     if (currentSlideId === "indexando_arrays") {
 
         var currentFragment = Reveal.getIndices().f;
 
         var index_data = [
-            {value: 0, fill: "white"},
-            {value: 1, fill: "white"},
-            {value: 8, fill: "white"},
-            {value: 27, fill: "white"},
-            {value: 64, fill: "white"},
-            {value: 125, fill: "white"},
-            {value: 216, fill: "white"},
-            {value: 343, fill: "white"},
-            {value: 512, fill: "white"},
-            {value: 729, fill: "white"},
+            {i:0, j:0, value: 0, fill: "white"},
+            {i:0, j:1, value: 1, fill: "white"},
+            {i:0, j:2, value: 8, fill: "white"},
+            {i:0, j:3, value: 27, fill: "white"},
+            {i:0, j:4, value: 64, fill: "white"},
+            {i:0, j:5, value: 125, fill: "white"},
+            {i:0, j:6, value: 216, fill: "white"},
+            {i:0, j:7, value: 343, fill: "white"},
+            {i:0, j:8, value: 512, fill: "white"},
+            {i:0, j:9, value: 729, fill: "white"},
         ];
 
         switch (currentFragment) {
@@ -121,142 +120,79 @@ function update_indexa_array() {
 }
 
 
-function cria_array_indexes2(id, data) {
-    "use strict";
-    var w = 80;
-    var h = 50;
-    var svg = d3.select(id)
-        .attr("width", data[0].length * w)
-        .attr("height", data.length * h)
-        .attr("stroke", "#000");
-    svg.attr("font-size", "20pt");
-
-    var groupsSel = svg.selectAll("g")
-        .data(data);
-    groupsSel = groupsSel.enter()
-        .append("g")
-        .attr("class", "row")
-        .attr("transform", function(d, i){
-            return "translate(0,{y})".replace("{y}", i * h); })
-        .merge(groupsSel);
-
-    // Now for the columns in each line
-    var innerGroupsSel = groupsSel.selectAll('g')
-        .data(function(d, i) { return d; });
-    
-    innerGroupsSel
-        .enter()
-        .append("g")
-        .attr("class", "column")
-        .attr("transform", function(d, i) {
-            return "translate({x},0)".replace("{x}", i*w);})
-        .merge(innerGroupsSel);
-
-    
-    var rects = svg.selectAll(".row")
-        .data(data)
-        .selectAll(".column")
-        .data(function(d,i) {return d;})
-        .selectAll("rect")
-        .data(function(d,i) {return [d];});
-    // Enter rects
-    rects = rects.enter().append("rect")
-        .attr("width", w)
-        .attr("height", h)
-        .merge(rects);
-
-    // Update rects
-    rects.transition()
-        .duration(1000)
-        .attr("fill", function(d){return d.fill;});
-
-    
-    var texts = svg.selectAll(".row")
-        .data(data)
-        .selectAll(".column")
-        .data(function(d,i) {return d;})
-        .selectAll("text")
-        .data(function(d,i) {return [d];});
-    // Enter texts
-    texts = texts.enter()
-        .append("text")
-        .attr("x", w/2 )
-        .attr("y", h/2 )
-        .attr("text-anchor", "middle")
-        .attr("alignment-baseline", "central")
-        .merge(texts);
-
-    // Update texts
-    texts.text(function(d) {return d.value;});
-}
-
-
 function update_indexa_array2() {
+    "use strict"
     var currentSlideId = Reveal.getCurrentSlide().id;
     if (currentSlideId === "indexando_arrays2") {
 
         var currentFragment = Reveal.getIndices().f;
 
         var index_data = [
-             [{value: 0, fill: "white"},
-              {value: 1, fill: "white"},
-              {value: 2, fill: "white"},
-              {value: 3, fill: "white"}],
-             [{value: 10, fill: "white"},
-              {value: 11, fill: "white"},
-              {value: 12, fill: "white"},
-              {value: 13, fill: "white"}],
-             [{value: 20, fill: "white"},
-              {value: 21, fill: "white"},
-              {value: 22, fill: "white"},
-              {value: 23, fill: "white"}],
-             [{value: 30, fill: "white"},
-              {value: 31, fill: "white"},
-              {value: 32, fill: "white"},
-              {value: 33, fill: "white"}],
-             [{value: 40, fill: "white"},
-              {value: 41, fill: "white"},
-              {value: 42, fill: "white"},
-              {value: 43, fill: "white"}]
-         ];
+            {i:0, j:0, value: 0, fill: "white"},
+            {i:0, j:1, value: 1, fill: "white"},
+            {i:0, j:2, value: 2, fill: "white"},
+            {i:0, j:3, value: 3, fill: "white"},
+            {i:1, j:0, value: 10, fill: "white"},
+            {i:1, j:1, value: 11, fill: "white"},
+            {i:1, j:2, value: 12, fill: "white"},
+            {i:1, j:3, value: 13, fill: "white"},
+            {i:2, j:0, value: 20, fill: "white"},
+            {i:2, j:1, value: 21, fill: "white"},
+            {i:2, j:2, value: 22, fill: "white"},
+            {i:2, j:3, value: 23, fill: "white"},
+            {i:3, j:0, value: 30, fill: "white"},
+            {i:3, j:1, value: 31, fill: "white"},
+            {i:3, j:2, value: 32, fill: "white"},
+            {i:3, j:3, value: 33, fill: "white"},
+            {i:4, j:0, value: 40, fill: "white"},
+            {i:4, j:1, value: 41, fill: "white"},
+            {i:4, j:2, value: 42, fill: "white"},
+            {i:4, j:3, value: 43, fill: "white"}
+        ];
 
+        function get_linear_idx(i, j) {
+            return i*4 + j;
+        }
+        
         switch (currentFragment) {
         case 0:
-            index_data[2][3].fill = "red";
+            index_data[get_linear_idx(2, 3)].fill = "red";
             break;
         case 1:
             // Case 1 é igual ao case 2
         case 2:
-            index_data[0][1].fill = "red";
-            index_data[1][1].fill = "red";
-            index_data[2][1].fill = "red";
-            index_data[3][1].fill = "red";
-            index_data[4][1].fill = "red";
+            index_data[get_linear_idx(0,1)].fill = "red";
+            index_data[get_linear_idx(1,1)].fill = "red";
+            index_data[get_linear_idx(2,1)].fill = "red";
+            index_data[get_linear_idx(3,1)].fill = "red";
+            index_data[get_linear_idx(4,1)].fill = "red";
             break;
         case 3:
-            index_data[1][0].fill = "red";
-            index_data[1][1].fill = "red";
-            index_data[1][2].fill = "red";
-            index_data[1][3].fill = "red";
-            index_data[2][0].fill = "red";
-            index_data[2][1].fill = "red";
-            index_data[2][2].fill = "red";
-            index_data[2][3].fill = "red";
+            index_data[get_linear_idx(1,0)].fill = "red";
+            index_data[get_linear_idx(1,1)].fill = "red";
+            index_data[get_linear_idx(1,2)].fill = "red";
+            index_data[get_linear_idx(1,3)].fill = "red";
+            index_data[get_linear_idx(2,0)].fill = "red";
+            index_data[get_linear_idx(2,1)].fill = "red";
+            index_data[get_linear_idx(2,2)].fill = "red";
+            index_data[get_linear_idx(2,3)].fill = "red";
             break;
         case 4:
-            index_data[0][0].fill = "red";
-            index_data[0][1].fill = "red";
-            index_data[0][2].fill = "red";
-            index_data[0][3].fill = "red";
+            index_data[get_linear_idx(0,0)].fill = "red";
+            index_data[get_linear_idx(0,1)].fill = "red";
+            index_data[get_linear_idx(0,2)].fill = "red";
+            index_data[get_linear_idx(0,3)].fill = "red";
             break;
         case 5:
-            index_data[4][0].fill = "red";
-            index_data[4][1].fill = "red";
-            index_data[4][2].fill = "red";
-            index_data[4][3].fill = "red";
+            index_data[get_linear_idx(4,0)].fill = "red";
+            index_data[get_linear_idx(4,1)].fill = "red";
+            index_data[get_linear_idx(4,2)].fill = "red";
+            index_data[get_linear_idx(4,3)].fill = "red";
             break;
         }
         
-        cria_array_indexes2("#indexando-arrays-placeholder2", index_data);
+        cria_array_indexes("#indexando-arrays-placeholder2", index_data);
     }
 }
+
+
