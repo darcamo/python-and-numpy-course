@@ -66,6 +66,7 @@ body {
     }
 }
 
+.reveal .container,
 .reveal .displayed {
     display: block;
     margin-left: auto;
@@ -79,12 +80,6 @@ body {
     background-color: white;
 }
 
-.reveal .container {
-    /* height: 100%; */
-    /* white-space: nowrap; */
-    /* text-align: center; */
-    /* margin-left: 30px; */
-}
 
 .reveal .container:before {
     /* content: ""; */

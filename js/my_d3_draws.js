@@ -35,18 +35,27 @@ function create_1d2d_array(id, data) {
 }
 
 
-function cria_array_indexes(id, data) {
+function cria_array_indexes(id, data, svg_widget, svg_height) {
     "use strict";
+
+    // svg_widget e svg_height são opcionais e se não forem fornecidos eles
+    // serão calculados automaticamente
+    
     var w = 80;
     var h = 50;
 
-    var svg_w = d3.max(data, function (d) {return (d.j+1)*w;})
-    var svg_h = d3.max(data, function (d) {return (d.i+1)*h;})
     var svg = d3.select(id)
-        .attr("width", svg_w)
-        .attr("height", svg_h)
-        .attr("stroke", "#000");
-    svg.attr("font-size", "20pt");
+        .attr("stroke", "#000")
+        .attr("font-size", "20pt");
+
+    if (svg_widget === undefined || svg_height === undefined) {
+        var svg_w = d3.max(data, function (d) {return (d.j+1)*w;})
+        var svg_h = d3.max(data, function (d) {return (d.i+1)*h;})
+        svg.attr("width", svg_w).attr("height", svg_h);
+    }
+    else {
+        svg.attr("width", svg_widget).attr("height", svg_height);
+    }
 
     var groups = svg.selectAll("g").data(data);
     groups = groups
@@ -189,6 +198,11 @@ function update_indexa_array2() {
             index_data[get_linear_idx(4,2)].fill = "red";
             index_data[get_linear_idx(4,3)].fill = "red";
             break;
+        case 6:
+            index_data[get_linear_idx(2,0)].fill = "red";
+            index_data[get_linear_idx(3,0)].fill = "red";
+            index_data[get_linear_idx(2,2)].fill = "red";
+            index_data[get_linear_idx(3,2)].fill = "red";
         }
         
         cria_array_indexes("#indexando-arrays-placeholder2", index_data);
@@ -196,3 +210,103 @@ function update_indexa_array2() {
 }
 
 
+function update_manipulando_o_shape() {
+    "use strict"
+    var currentSlideId = Reveal.getCurrentSlide().id;
+    if (currentSlideId === "manipulando_o_shape") {
+
+        var currentFragment = Reveal.getIndices().f;
+
+        function get_linear_idx(i, j) {
+            return i*3 + j;
+        }
+
+       //  a = array([[ 2.,  8.,  0.,  6.],
+       // [ 4.,  5.,  1.,  1.],
+       // [ 8.,  9.,  3.,  6.]])
+        
+        var index_data = [
+            {i:0, j:0, value: "2.", fill:"white"},
+            {i:0, j:1, value: "8.", fill:"white"},
+            {i:0, j:2, value: "0.", fill:"white"},
+            {i:0, j:3, value: "6.", fill:"white"},
+            {i:1, j:0, value: "4.", fill:"white"},
+            {i:1, j:1, value: "5.", fill:"white"},
+            {i:1, j:2, value: "1.", fill:"white"},
+            {i:1, j:3, value: "1.", fill:"white"},
+            {i:2, j:0, value: "8.", fill:"white"},
+            {i:2, j:1, value: "9.", fill:"white"},
+            {i:2, j:2, value: "3.", fill:"white"},
+            {i:2, j:3, value: "6.", fill:"white"}];
+
+        switch (currentFragment) {
+        case 2:
+        case 3:
+            index_data = [
+                {i:0, j:0, value: "2.", fill:"white"},
+                {i:0, j:1, value: "8.", fill:"white"},
+                {i:1, j:0, value: "0.", fill:"white"},
+                {i:1, j:1, value: "6.", fill:"white"},
+                {i:2, j:0, value: "4.", fill:"white"},
+                {i:2, j:1, value: "5.", fill:"white"},
+                {i:3, j:0, value: "1.", fill:"white"},
+                {i:3, j:1, value: "1.", fill:"white"},
+                {i:4, j:0, value: "8.", fill:"white"},
+                {i:4, j:1, value: "9.", fill:"white"},
+                {i:5, j:0, value: "3.", fill:"white"},
+                {i:5, j:1, value: "6.", fill:"white"}];
+            break;
+        case 4:
+            index_data = [
+                {i:0, j:0, value: "2.", fill:"white"},
+                {i:0, j:1, value: "8.", fill:"white"},
+                {i:0, j:2, value: "0.", fill:"white"},
+                {i:0, j:3, value: "6.", fill:"white"},
+                {i:0, j:4, value: "4.", fill:"white"},
+                {i:0, j:5, value: "5.", fill:"white"},
+                {i:1, j:0, value: "1.", fill:"white"},
+                {i:1, j:1, value: "1.", fill:"white"},
+                {i:1, j:2, value: "8.", fill:"white"},
+                {i:1, j:3, value: "9.", fill:"white"},
+                {i:1, j:4, value: "3.", fill:"white"},
+                {i:1, j:5, value: "6.", fill:"white"}];
+        }
+        // 270.72x166.38
+        // 135.36x293.28
+        //320x150
+        //160x300
+        //480x100
+        cria_array_indexes("#manipulando_o_shape_placeholder", index_data, 480, 300);
+    }
+}
+
+
+function update_C_and_fortran_order() {
+    "use strict"
+
+var currentSlideId = Reveal.getCurrentSlide().id;
+    if (currentSlideId === "memory_order") {
+    
+    console.log("lala");
+    var data_c_order = [
+        {i:0, j:0, value: "", fill: "DimGray"},
+        {i:0, j:1, value: "", fill: "DimGray"},
+        {i:0, j:2, value: "", fill: "DimGray"},
+        {i:1, j:0, value: "", fill: "gainsboro"},
+        {i:1, j:1, value: "", fill: "gainsboro"},
+        {i:1, j:2, value: "", fill: "gainsboro"},
+    ];
+
+        var data_fortran_order = [
+        {i:0, j:0, value: "", fill: "DimGray"},
+        {i:0, j:1, value: "", fill: "LightGray"},
+        {i:0, j:2, value: "", fill: "WhiteSmoke"},
+        {i:1, j:0, value: "", fill: "DimGray"},
+        {i:1, j:1, value: "", fill: "LightGray"},
+        {i:1, j:2, value: "", fill: "WhiteSmoke"},
+    ];
+    
+        cria_array_indexes("#c_order", data_c_order);
+        cria_array_indexes("#fortran_order", data_fortran_order);
+    }
+}
