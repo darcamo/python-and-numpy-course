@@ -1,4 +1,7 @@
 
+var indexed_data_color = "#ff7256";
+var changed_data_color = "SkyBlue";
+
 function create_1d2d_array(id, data) {
     "use strict";
 
@@ -49,8 +52,8 @@ function cria_array_indexes(id, data, svg_widget, svg_height) {
         .attr("font-size", "20pt");
 
     if (svg_widget === undefined || svg_height === undefined) {
-        var svg_w = d3.max(data, function (d) {return (d.j+1)*w;})
-        var svg_h = d3.max(data, function (d) {return (d.i+1)*h;})
+        var svg_w = d3.max(data, function (d) {return (d.j+1)*w;});
+        var svg_h = d3.max(data, function (d) {return (d.i+1)*h;});
         svg.attr("width", svg_w).attr("height", svg_h);
     }
     else {
@@ -80,7 +83,7 @@ function cria_array_indexes(id, data, svg_widget, svg_height) {
 
 
 function update_indexa_array() {
-    "use strict"
+    "use strict";
     var currentSlideId = Reveal.getCurrentSlide().id;
     if (currentSlideId === "indexando_arrays") {
 
@@ -101,26 +104,34 @@ function update_indexa_array() {
 
         switch (currentFragment) {
         case 0:
-            index_data[2].fill = "#ff7256";
+            index_data[2].fill = indexed_data_color;
             break;
         case 1:
-            index_data[2].fill = "#ff7256";
-            index_data[3].fill = "#ff7256";
-            index_data[4].fill = "#ff7256";
+            index_data[2].fill = indexed_data_color;
+            index_data[3].fill = indexed_data_color;
+            index_data[4].fill = indexed_data_color;
             break;
         case 2:
             index_data[0].value = -1000;
-            index_data[0].fill = "SkyBlue";
+            index_data[0].fill = changed_data_color;
             index_data[2].value = -1000;
-            index_data[2].fill = "SkyBlue";
+            index_data[2].fill = changed_data_color;
             index_data[4].value = -1000;
-            index_data[4].fill = "SkyBlue";
+            index_data[4].fill = changed_data_color;
             break;
         case 3:
-            index_data[0].value = -1000;
-            index_data[2].value = -1000;
-            index_data[4].value = -1000;
-            index_data = index_data.reverse();
+            index_data = [
+                {i:0, j:9, value: -1000, fill: indexed_data_color},
+                {i:0, j:8, value: 1, fill: indexed_data_color},
+                {i:0, j:7, value: -1000, fill: indexed_data_color},
+                {i:0, j:6, value: 27, fill: indexed_data_color},
+                {i:0, j:5, value: -1000, fill: indexed_data_color},
+                {i:0, j:4, value: 125, fill: indexed_data_color},
+                {i:0, j:3, value: 216, fill: indexed_data_color},
+                {i:0, j:2, value: 343, fill: indexed_data_color},
+                {i:0, j:1, value: 512, fill: indexed_data_color},
+                {i:0, j:0, value: 729, fill: indexed_data_color},
+            ];
             break;
         }
         
@@ -130,7 +141,7 @@ function update_indexa_array() {
 
 
 function update_indexa_array2() {
-    "use strict"
+    "use strict";
     var currentSlideId = Reveal.getCurrentSlide().id;
     if (currentSlideId === "indexando_arrays2") {
 
@@ -165,44 +176,44 @@ function update_indexa_array2() {
         
         switch (currentFragment) {
         case 0:
-            index_data[get_linear_idx(2, 3)].fill = "red";
+            index_data[get_linear_idx(2, 3)].fill = indexed_data_color;
             break;
         case 1:
             // Case 1 é igual ao case 2
         case 2:
-            index_data[get_linear_idx(0,1)].fill = "red";
-            index_data[get_linear_idx(1,1)].fill = "red";
-            index_data[get_linear_idx(2,1)].fill = "red";
-            index_data[get_linear_idx(3,1)].fill = "red";
-            index_data[get_linear_idx(4,1)].fill = "red";
+            index_data[get_linear_idx(0,1)].fill = indexed_data_color;
+            index_data[get_linear_idx(1,1)].fill = indexed_data_color;
+            index_data[get_linear_idx(2,1)].fill = indexed_data_color;
+            index_data[get_linear_idx(3,1)].fill = indexed_data_color;
+            index_data[get_linear_idx(4,1)].fill = indexed_data_color;
             break;
         case 3:
-            index_data[get_linear_idx(1,0)].fill = "red";
-            index_data[get_linear_idx(1,1)].fill = "red";
-            index_data[get_linear_idx(1,2)].fill = "red";
-            index_data[get_linear_idx(1,3)].fill = "red";
-            index_data[get_linear_idx(2,0)].fill = "red";
-            index_data[get_linear_idx(2,1)].fill = "red";
-            index_data[get_linear_idx(2,2)].fill = "red";
-            index_data[get_linear_idx(2,3)].fill = "red";
+            index_data[get_linear_idx(1,0)].fill = indexed_data_color;
+            index_data[get_linear_idx(1,1)].fill = indexed_data_color;
+            index_data[get_linear_idx(1,2)].fill = indexed_data_color;
+            index_data[get_linear_idx(1,3)].fill = indexed_data_color;
+            index_data[get_linear_idx(2,0)].fill = indexed_data_color;
+            index_data[get_linear_idx(2,1)].fill = indexed_data_color;
+            index_data[get_linear_idx(2,2)].fill = indexed_data_color;
+            index_data[get_linear_idx(2,3)].fill = indexed_data_color;
             break;
         case 4:
-            index_data[get_linear_idx(0,0)].fill = "red";
-            index_data[get_linear_idx(0,1)].fill = "red";
-            index_data[get_linear_idx(0,2)].fill = "red";
-            index_data[get_linear_idx(0,3)].fill = "red";
+            index_data[get_linear_idx(0,0)].fill = indexed_data_color;
+            index_data[get_linear_idx(0,1)].fill = indexed_data_color;
+            index_data[get_linear_idx(0,2)].fill = indexed_data_color;
+            index_data[get_linear_idx(0,3)].fill = indexed_data_color;
             break;
         case 5:
-            index_data[get_linear_idx(4,0)].fill = "red";
-            index_data[get_linear_idx(4,1)].fill = "red";
-            index_data[get_linear_idx(4,2)].fill = "red";
-            index_data[get_linear_idx(4,3)].fill = "red";
+            index_data[get_linear_idx(4,0)].fill = indexed_data_color;
+            index_data[get_linear_idx(4,1)].fill = indexed_data_color;
+            index_data[get_linear_idx(4,2)].fill = indexed_data_color;
+            index_data[get_linear_idx(4,3)].fill = indexed_data_color;
             break;
         case 6:
-            index_data[get_linear_idx(2,0)].fill = "red";
-            index_data[get_linear_idx(3,0)].fill = "red";
-            index_data[get_linear_idx(2,2)].fill = "red";
-            index_data[get_linear_idx(3,2)].fill = "red";
+            index_data[get_linear_idx(2,0)].fill = indexed_data_color;
+            index_data[get_linear_idx(3,0)].fill = indexed_data_color;
+            index_data[get_linear_idx(2,2)].fill = indexed_data_color;
+            index_data[get_linear_idx(3,2)].fill = indexed_data_color;
         }
         
         cria_array_indexes("#indexando-arrays-placeholder2", index_data);
@@ -211,7 +222,7 @@ function update_indexa_array2() {
 
 
 function update_manipulando_o_shape() {
-    "use strict"
+    "use strict";
     var currentSlideId = Reveal.getCurrentSlide().id;
     if (currentSlideId === "manipulando_o_shape") {
 
@@ -221,55 +232,64 @@ function update_manipulando_o_shape() {
             return i*3 + j;
         }
 
-       //  a = array([[ 2.,  8.,  0.,  6.],
-       // [ 4.,  5.,  1.,  1.],
-       // [ 8.,  9.,  3.,  6.]])
+        var shape_changed_color1 = "#ffffff";
+        var shape_changed_color2 = "#eeeeee";
+        var shape_changed_color3 = "#dddddd";
+        var shape_changed_color4 = "#cccccc";
+        var shape_changed_color5 = "#bbbbbb";
+        var shape_changed_color6 = "#aaaaaa";
+        var shape_changed_color7 = "#999999";
+        var shape_changed_color8 = "#888888";
+        var shape_changed_color9 = "#777777";
+        var shape_changed_color10 = "#666666";
+        var shape_changed_color11 = "#555555";
+        var shape_changed_color12 = "#444444";
         
         var index_data = [
-            {i:0, j:0, value: "2.", fill:"white"},
-            {i:0, j:1, value: "8.", fill:"white"},
-            {i:0, j:2, value: "0.", fill:"white"},
-            {i:0, j:3, value: "6.", fill:"white"},
-            {i:1, j:0, value: "4.", fill:"white"},
-            {i:1, j:1, value: "5.", fill:"white"},
-            {i:1, j:2, value: "1.", fill:"white"},
-            {i:1, j:3, value: "1.", fill:"white"},
-            {i:2, j:0, value: "8.", fill:"white"},
-            {i:2, j:1, value: "9.", fill:"white"},
-            {i:2, j:2, value: "3.", fill:"white"},
-            {i:2, j:3, value: "6.", fill:"white"}];
+            {i:0, j:0, value: "2.", fill:shape_changed_color1},
+            {i:0, j:1, value: "8.", fill:shape_changed_color2},
+            {i:0, j:2, value: "0.", fill:shape_changed_color3},
+            {i:0, j:3, value: "6.", fill:shape_changed_color4},
+            {i:1, j:0, value: "4.", fill:shape_changed_color5},
+            {i:1, j:1, value: "5.", fill:shape_changed_color6},
+            {i:1, j:2, value: "1.", fill:shape_changed_color7},
+            {i:1, j:3, value: "1.", fill:shape_changed_color8},
+            {i:2, j:0, value: "8.", fill:shape_changed_color9},
+            {i:2, j:1, value: "9.", fill:shape_changed_color10},
+            {i:2, j:2, value: "3.", fill:shape_changed_color11},
+            {i:2, j:3, value: "6.", fill:shape_changed_color12}];
 
         switch (currentFragment) {
         case 2:
         case 3:
             index_data = [
-                {i:0, j:0, value: "2.", fill:"white"},
-                {i:0, j:1, value: "8.", fill:"white"},
-                {i:1, j:0, value: "0.", fill:"white"},
-                {i:1, j:1, value: "6.", fill:"white"},
-                {i:2, j:0, value: "4.", fill:"white"},
-                {i:2, j:1, value: "5.", fill:"white"},
-                {i:3, j:0, value: "1.", fill:"white"},
-                {i:3, j:1, value: "1.", fill:"white"},
-                {i:4, j:0, value: "8.", fill:"white"},
-                {i:4, j:1, value: "9.", fill:"white"},
-                {i:5, j:0, value: "3.", fill:"white"},
-                {i:5, j:1, value: "6.", fill:"white"}];
+                {i:0, j:0, value: "2.", fill:shape_changed_color1},
+                {i:0, j:1, value: "8.", fill:shape_changed_color2},
+                {i:1, j:0, value: "0.", fill:shape_changed_color3},
+                {i:1, j:1, value: "6.", fill:shape_changed_color4},
+                {i:2, j:0, value: "4.", fill:shape_changed_color5},
+                {i:2, j:1, value: "5.", fill:shape_changed_color6},
+                {i:3, j:0, value: "1.", fill:shape_changed_color7},
+                {i:3, j:1, value: "1.", fill:shape_changed_color8},
+                {i:4, j:0, value: "8.", fill:shape_changed_color9},
+                {i:4, j:1, value: "9.", fill:shape_changed_color10},
+                {i:5, j:0, value: "3.", fill:shape_changed_color11},
+                {i:5, j:1, value: "6.", fill:shape_changed_color12}];
             break;
         case 4:
             index_data = [
-                {i:0, j:0, value: "2.", fill:"white"},
-                {i:0, j:1, value: "8.", fill:"white"},
-                {i:0, j:2, value: "0.", fill:"white"},
-                {i:0, j:3, value: "6.", fill:"white"},
-                {i:0, j:4, value: "4.", fill:"white"},
-                {i:0, j:5, value: "5.", fill:"white"},
-                {i:1, j:0, value: "1.", fill:"white"},
-                {i:1, j:1, value: "1.", fill:"white"},
-                {i:1, j:2, value: "8.", fill:"white"},
-                {i:1, j:3, value: "9.", fill:"white"},
-                {i:1, j:4, value: "3.", fill:"white"},
-                {i:1, j:5, value: "6.", fill:"white"}];
+                {i:0, j:0, value: "2.", fill:shape_changed_color1},
+                {i:0, j:1, value: "8.", fill:shape_changed_color2},
+                {i:0, j:2, value: "0.", fill:shape_changed_color3},
+                {i:0, j:3, value: "6.", fill:shape_changed_color4},
+                {i:0, j:4, value: "4.", fill:shape_changed_color5},
+                {i:0, j:5, value: "5.", fill:shape_changed_color6},
+                {i:1, j:0, value: "1.", fill:shape_changed_color7},
+                {i:1, j:1, value: "1.", fill:shape_changed_color8},
+                {i:1, j:2, value: "8.", fill:shape_changed_color9},
+                {i:1, j:3, value: "9.", fill:shape_changed_color10},
+                {i:1, j:4, value: "3.", fill:shape_changed_color11},
+                {i:1, j:5, value: "6.", fill:shape_changed_color12}];
         }
         // 270.72x166.38
         // 135.36x293.28
@@ -281,32 +301,98 @@ function update_manipulando_o_shape() {
 }
 
 
-function update_C_and_fortran_order() {
-    "use strict"
+function update_C_order() {
+    "use strict";
 
-var currentSlideId = Reveal.getCurrentSlide().id;
+    var currentSlideId = Reveal.getCurrentSlide().id;
     if (currentSlideId === "memory_order") {
-    
-    console.log("lala");
-    var data_c_order = [
-        {i:0, j:0, value: "", fill: "DimGray"},
-        {i:0, j:1, value: "", fill: "DimGray"},
-        {i:0, j:2, value: "", fill: "DimGray"},
-        {i:1, j:0, value: "", fill: "gainsboro"},
-        {i:1, j:1, value: "", fill: "gainsboro"},
-        {i:1, j:2, value: "", fill: "gainsboro"},
-    ];
 
+        var currentFragment = Reveal.getIndices().f;
+
+        var data_c_order = [
+                {i:0, j:0, value: "", fill: "DimGray"},
+                {i:0, j:1, value: "", fill: "DimGray"},
+                {i:0, j:2, value: "", fill: "DimGray"},
+                {i:1, j:0, value: "", fill: "gainsboro"},
+                {i:1, j:1, value: "", fill: "gainsboro"},
+                {i:1, j:2, value: "", fill: "gainsboro"},
+                // Metade que vai shiftar para a memória
+                {i:0, j:0, value: "", fill: "DimGray"},
+                {i:0, j:1, value: "", fill: "DimGray"},
+                {i:0, j:2, value: "", fill: "DimGray"},
+                {i:1, j:0, value: "", fill: "gainsboro"},
+                {i:1, j:1, value: "", fill: "gainsboro"},
+                {i:1, j:2, value: "", fill: "gainsboro"},
+            ];
+
+        switch (currentFragment) {
+        case 2:
+        case 3:
+            data_c_order = [
+                {i:0, j:0, value: "", fill: "DimGray"},
+                {i:0, j:1, value: "", fill: "DimGray"},
+                {i:0, j:2, value: "", fill: "DimGray"},
+                {i:1, j:0, value: "", fill: "gainsboro"},
+                {i:1, j:1, value: "", fill: "gainsboro"},
+                {i:1, j:2, value: "", fill: "gainsboro"},
+                // Metade que vai shiftar para a memória
+                {i:0.5, j:5, value: "", fill: "DimGray"},
+                {i:0.5, j:6, value: "", fill: "DimGray"},
+                {i:0.5, j:7, value: "", fill: "DimGray"},
+                {i:0.5, j:8, value: "", fill: "gainsboro"},
+                {i:0.5, j:9, value: "", fill: "gainsboro"},
+                {i:0.5, j:10, value: "", fill: "gainsboro"},
+            ];
+            break;
+        }
+        cria_array_indexes("#c_order", data_c_order, 880, 100);
+    }
+}
+
+
+
+function update_fortran_order() {
+    "use strict";
+
+    var currentSlideId = Reveal.getCurrentSlide().id;
+    if (currentSlideId === "memory_order") {
+
+        var currentFragment = Reveal.getIndices().f;
         var data_fortran_order = [
-        {i:0, j:0, value: "", fill: "DimGray"},
-        {i:0, j:1, value: "", fill: "LightGray"},
-        {i:0, j:2, value: "", fill: "WhiteSmoke"},
-        {i:1, j:0, value: "", fill: "DimGray"},
-        {i:1, j:1, value: "", fill: "LightGray"},
-        {i:1, j:2, value: "", fill: "WhiteSmoke"},
-    ];
-    
-        cria_array_indexes("#c_order", data_c_order);
-        cria_array_indexes("#fortran_order", data_fortran_order);
+                {i:0, j:0, value: "", fill: "DimGray"},
+                {i:0, j:1, value: "", fill: "LightGray"},
+                {i:0, j:2, value: "", fill: "WhiteSmoke"},
+                {i:1, j:0, value: "", fill: "DimGray"},
+                {i:1, j:1, value: "", fill: "LightGray"},
+                {i:1, j:2, value: "", fill: "WhiteSmoke"},
+                // Metade que vai shiftar para memória
+                {i:0, j:0, value: "", fill: "DimGray"},
+                {i:0, j:1, value: "", fill: "LightGray"},
+                {i:0, j:2, value: "", fill: "WhiteSmoke"},
+                {i:1, j:0, value: "", fill: "DimGray"},
+                {i:1, j:1, value: "", fill: "LightGray"},
+                {i:1, j:2, value: "", fill: "WhiteSmoke"},
+            ];
+        
+        switch (currentFragment) {
+        case 3:
+            data_fortran_order = [
+                {i:0, j:0, value: "", fill: "DimGray"},
+                {i:0, j:1, value: "", fill: "LightGray"},
+                {i:0, j:2, value: "", fill: "WhiteSmoke"},
+                {i:1, j:0, value: "", fill: "DimGray"},
+                {i:1, j:1, value: "", fill: "LightGray"},
+                {i:1, j:2, value: "", fill: "WhiteSmoke"},
+                // Metade que vai shiftar para memória
+                {i:0.5, j:5, value: "", fill: "DimGray"},
+                {i:0.5, j:7, value: "", fill: "LightGray"},
+                {i:0.5, j:9, value: "", fill: "WhiteSmoke"},
+                {i:0.5, j:6, value: "", fill: "DimGray"},
+                {i:0.5, j:8, value: "", fill: "LightGray"},
+                {i:0.5, j:10, value: "", fill: "WhiteSmoke"},
+            ];
+            break;
+        }
+        cria_array_indexes("#fortran_order", data_fortran_order, 880, 100);
     }
 }

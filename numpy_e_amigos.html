@@ -510,25 +510,72 @@ array([[ 2.,  0.,  4.,  1.,  8.,  3.],
                         </div>
                     </div>
                 </section>
+
+                <section>
+                    <h2>Empilhando Arrays</h2>
+                    <!-- https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#stacking-together-different-arrays -->
+                    <ul>
+                        <li>Vários arrays podem ser empilhados ao longo de um determinado eixo</li>
+                        <li>Algumas das funções para isso são <code>hstack</code>, <code>vstack</code>, <code>concatenate</code> e <code>stack</code>, np.concatenate</li>
+                    </ul>
+                    <code-terminal><in>a = np.floor(10*np.random.random((2,2)));  a</in>
+<output>
+array([[ 8.,  8.],
+       [ 0.,  0.]])</output>
+<in>b = np.floor(10*np.random.random((2,2)));  b</in>
+<output>
+array([[ 1.,  8.],
+       [ 0.,  4.]])
+</output>
+<in>np.vstack((a,b))  # Necessário ter o mesmo shape (exceto na primeira dimensão)</in>
+<output>
+array([[ 8.,  8.],
+       [ 0.,  0.],
+       [ 1.,  8.],
+       [ 0.,  4.]])</output>
+<in>np.hstack((a,b))  # Necessário ter o mesmo shape (exceto na segunda dimensão)</in>
+<output>
+array([[ 8.,  8.,  1.,  8.],
+       [ 0.,  0.,  0.,  4.]])</output></code-terminal>
+                </section>
                 
                 <section id="memory_order">
-                    <h2>Views, astype, Memória, flags, etc</h2>
+                    <h2>Representação de um Array na Memória</h2>
 
                     <ul>
-                        <li>Um array é armazenado em uma região contínua de memória independentemente de sua dimensão</li>
-                        <li>Se mudarmos o shape de um array normalmente não é feita uma cópia</li>
-                        <li>A ordem em que os elementos são armazenados na memória pode tanto ser como "em C" (padrão) ou como "em Fortran"</li>
+                        <li>Um array é armazenado em uma região contínua de memória <span class="green">independentemente de sua dimensão</span></li>
+                        <li class="fragment" data-fragment-index="1">Se mudarmos o shape de um array normalmente não é feita uma cópia</li>
+                        <li class="fragment" data-fragment-index="2">A ordem em que os elementos são armazenados na memória pode tanto ser como "<span class="green">em C</span>" (padrão) ou como "<span class="green">em Fortran</span>"</li>
 
-                        <img alt="" src="imagens/numpy_part/numpy_C_order_fortran_order.png" style="background-color:LightBlue;"/>
+                        <!-- <img  class="displayed" alt="" src="imagens/numpy_part/numpy_C_order_fortran_order.png" style="background-color:LightBlue;"/> -->
 
-                        <div class="container">
-                            <svg id="c_order"></svg>
-                            <svg id="fortran_order"></svg>
-                        </div>
+
+                        <li class="fragment" data-fragment-index="3"><span class="green">Ordem do C</span>: A última dimensão varia mais rapidamente
+                        <div style="position: relative;">
+                            <div style="position: absolute; left: 120px; top: -40px; transform: translate(-25%, 0);">Representação no Numpy</div>
+                            <div style="position: absolute; right: 160px; top: -40px;">Representação na Memória</div>
+                            <svg id="c_order" class="displayed" style="margin-top: 50px;"></svg></div></li>
                         
+                        <li class="fragment" data-fragment-index="4"><span class="green">Ordem do Fortran</span>: A primeira dimensão varia mais rapidamente
+
+                        <div style="position: relative;">
+                            <div style="position: absolute; left: 120px; top: -40px; transform: translate(-25%, 0);">Representação no Numpy</div>
+                            <div style="position: absolute; right: 160px; top: -40px;">Representação na Memória</div>
+                            <svg id="fortran_order" class="displayed" style="margin-top: 50px;"></svg>
+                        </div></li>
+
                     </ul>
                 </section>
 
+                <section>
+                    <h2>Cópias e Views</h2>
+                    <!-- https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#copies-and-views -->
+                    <ul>
+                        <li>flags</li>
+                        <li></li>
+                    </ul>
+                </section>
+                
                 <section>
                     <h2>Operações matemáticas</h2>
                     <ul>
@@ -538,6 +585,33 @@ array([[ 2.,  0.,  4.,  1.,  8.,  3.],
                     </ul>
                 </section>
 
+
+                <section>
+                    <h2>Functions and Methods Overview</h2>
+                    <!-- https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#functions-and-methods-overview -->
+                    <ul>
+                        <li>Here is a list of some useful NumPy functions and methods names ordered in categories. See Routines for the full list.</li>
+                        <ul>
+                            <li>Array Creation: arange, array, copy, empty, empty_like, eye, fromfile, fromfunction, identity, linspace, logspace, mgrid, ogrid, ones, ones_like, r, zeros, zeros_like</li>
+                            <li>Conversions: ndarray.astype, atleast_1d, atleast_2d, atleast_3d, mat</li>
+                            <li>Manipulations: array_split, column_stack, concatenate, diagonal, dsplit, dstack, hsplit, hstack, ndarray.item, newaxis, ravel, repeat, reshape, resize, squeeze, swapaxes, take, transpose, vsplit, vstack</li>
+                            <li>Questions: all, any, nonzero, where</li>
+                            <li>Ordering: argmax, argmin, argsort, max, min, ptp, searchsorted, sort</li>
+                            <li>Operations: choose, compress, cumprod, cumsum, inner, ndarray.fill, imag, prod, put, putmask, real, sum</li>
+                            <li>Basic Statistics: cov, mean, std, var</li>
+                            <li>Basic Linear Algebra: cross, dot, outer, linalg.svd, vdot </li>
+                        </ul>
+                    </ul>
+                    
+                </section>
+
+                
+                <section>
+                    <h2>Broadcast</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </section>
 
                 <section>
                     <h2>Datatypes Estruturados</h2>
@@ -693,17 +767,22 @@ array([[ 2.,  0.,  4.,  1.,  8.,  3.],
              update_indexa_array();
              update_indexa_array2();
              update_manipulando_o_shape();
-             update_C_and_fortran_order();
+             update_C_order();
+             update_fortran_order()
          });
          Reveal.addEventListener('fragmentshown', function(event) {
              update_indexa_array();
              update_indexa_array2();
              update_manipulando_o_shape();
+             update_C_order();
+             update_fortran_order()
          });
          Reveal.addEventListener('fragmenthidden', function(event) {
              update_indexa_array();
              update_indexa_array2();
              update_manipulando_o_shape();
+             update_C_order();
+             update_fortran_order()
          });
         </script>
      
