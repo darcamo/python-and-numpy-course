@@ -466,10 +466,29 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                                 <li><code>x[4,...,5,:]</code> equivale a <code>x[4,:,:,5,:]</code></li>
                                 <li>Etc.</li>
                             </ul>
+                            <li><span class="red">Nota:</span> Ao indexar uma dada dimensão o array resultante não possui aquela dimensão, mas para slices a dimensão continua existingo</li>
                         </ul>
                     </section>
-                </section>
 
+                    <section>
+                        <h2>Indexando Arrays</h2>
+                        <h3>Exemplos</h3>
+                        <div class="displayed"><img alt="" data-src="imagens/numpy_part/indexing.png" height="600px"/></div>
+                    </section>
+
+                    <section>
+                        <h2>Indexando Arrays</h2>
+                        <h3>Vetores Booleanos</h3>
+
+                        <ul>
+                            <li>Arrays booleanos podem ser usados para indexar outros arrays</li>
+                            <li></li>
+                        </ul>
+                        
+                    </section>
+                    
+                </section>
+                
                 <section id="manipulando_o_shape">
                     <h2>Manipulanto o <em>shape</em></h2>
                     <ul>
@@ -479,8 +498,8 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                     </ul>
 
                     <div class="container" style="width:1000px;">
-                        <div class="element" style="width:650px;">
-                            <code-terminal style="font-size:23px;" dontshowcursor><in>a = np.floor(10*np.random.random((3,4)))</in>
+                        <div class="element" style="width:700px;">
+                            <code-terminal style="font-size:84%;" dontshowcursor><in>a = np.floor(10*np.random.random((3,4)))</in>
 <in>a</in>
 <output># Ver matriz ao lado
     <!-- array([[ 2.,  8.,  0.,  6.],
@@ -506,7 +525,7 @@ array([[ 2.,  0.,  4.,  1.,  8.,  3.],
 
                         <div class="element" style="width:271px; height:294px;position:relative;">
                             <!-- <div>Shape de <span class="green">a</span></div> -->
-                            <svg id="manipulando_o_shape_placeholder" style="position:absolute; left: 0px; top:0px;"></svg>
+                            <div style="transform: scale(0.8,0.8) translateX(-20%);"><svg id="manipulando_o_shape_placeholder" style="position:absolute; left: 0px; top:0px;"></svg></div>
                         </div>
                     </div>
                 </section>
@@ -568,20 +587,94 @@ array([[ 8.,  8.,  1.,  8.],
                 </section>
 
                 <section>
+                <section>
                     <h2>Cópias e Views</h2>
                     <!-- https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#copies-and-views -->
                     <ul>
-                        <li>flags</li>
-                        <li></li>
+                        <li>When operating and manipulating arrays, their data is sometimes copied into a new array and sometimes not</li>
+                        <li>Casos sem cópia:</li>
+                        <ul>
+                            <li>Assinalamento</li>
+                            <li>Mudança de shape</li>
+                            <li>Argumentos de funções</li>
+                        </ul>
+                        <code-terminal dontshowcursor><in>a = np.arange(12)</in>
+<in>b = a            # Nenhum objecto novo é criado com um assinalamento</in>
+<in>b is a           # "a" e "b" são dois nomes para o mesmo array</in>
+<output>True</output>
+<in>b.shape = 3,4    # Muda apenas o shape do array sem mudar os dados na memória</in>
+<in>a.shape</in>
+<output>(3, 4)</output>
+<in>def f(x):
+...           print(id(x))</in>
+<in>id(a)                           # id é um identificador único de um objeto</in>
+<output>148293216</output>
+<in>f(a)</in>
+<output>148293216</output></code-terminal>
                     </ul>
                 </section>
-                
+
+                <section>
+                    <h2>Cópias e Views</h2>
+                    <ul>
+                        <li>Diferentes objetos arrays podem compartilhar os mesmos dados na memória</li>
+                        <li>O método <code>view</code> de um array cria um novo objeto array que utiliza os mesmos dados</li>
+                        <li>Mudanças feitas nos dados de um são refletidas no outro array, mas os dois não são o mesmo objeto como ocorre em python com um assinalamento</li>
+                        <li>Os dois objetos podem ter formas diferentes</li>
+                    </ul>
+                    <code-terminal dontshowcursor><in>c = a.view()</in>
+<in>c is a</in>
+<output>False</output>
+<in>c.base is a                        # c is a view of the data owned by a</in>
+<output>True</output>
+<in>c.flags.owndata</in>
+<output>False</output>
+<in>c.shape = 2,6                      # a's shape doesn't change</in>
+<in>a.shape</in>
+<output>(3, 4)</output>
+<in>c[0,4] = 1234                      # a's data changes</in>
+<in>a</in>
+<output>
+array([[   0,    1,    2,    3],
+       [1234,    5,    6,    7],
+       [   8,    9,   10,   11]])</output></code-terminal>
+                </section>
+
+
+                <section>
+                    <h2>Cópias e Views</h2>
+                    <ul>
+                        <li>Fatiar um array retorna um view do array</li>
+                        <li>Para criar um cópia independente de um array use o método <code>copy</code></li>
+                    </ul>
+                    <code-terminal style="font-size:95%;" dontshowcursor><in>s = a[ : , 1:3]</in>
+<in>s[:] = 10  # s[:] é um view de s. Note a diferença entre s=10 e s[:]=10</in>
+<in>a</in>
+<output>
+array([[   0,   10,   10,    3],
+       [1234,   10,   10,    7],
+       [   8,   10,   10,   11]])</output>
+<in>d = a.copy()  # um novo objeto array com dados novoes é criado</in>
+<in>d is a</in>
+<output>False</output>
+<in>d.base is a  # "d" não compartilha nada com "a"</in>
+<output>False</output>
+<in>d[0,0] = 9999</in>
+<in>a</in>
+<output>
+array([[   0,   10,   10,    3],
+       [1234,   10,   10,    7],
+       [   8,   10,   10,   11]])</output></code-terminal>
+                </section>
+
+                </section>
                 <section>
                     <h2>Operações matemáticas</h2>
                     <ul>
                         <li>Soma, Média, variância, etc</li>
                         <li>Fornecer o eixo</li>
-                        <img alt="" src="imagens/numpy_part/numpy_axis.png">
+                        <div><img alt="" src="imagens/numpy_part/numpy_axis.png"></div>
+                        <div><img alt="" src="imagens/numpy_part/numpy_axis2.jpg"></div>
                     </ul>
                 </section>
 
@@ -605,12 +698,43 @@ array([[ 8.,  8.,  1.,  8.],
                     
                 </section>
 
-                
                 <section>
-                    <h2>Broadcast</h2>
-                    <ul>
-                        <li></li>
-                    </ul>
+                    <section>
+                        <h2>Broadcast</h2>
+                        <ul>
+                            <li>Operações no NumPy geralmente são feitas em
+                                pares de arrays elemento-a-elemento </li>
+                            <li class="fragment" data-fragment-index="1">Broadcast corresponde a maneira como o numpy trata arrays com <span class="green">formas diferentes</span> durante operações aritméticas</li>
+                            <!-- <li>É um recurso poderoso que permite as <span class="green">ufuncs</span> (universal functions) lidar com entradas de tamanhos distintos</li> -->
+                            <li class="fragment" data-fragment-index="2">Broadcast fornece um meio de vetorizar operações com arrays tal que os <span class="green">loops ocorram em C</span>, ao inves de Python</li>
+                            <li class="fragment" data-fragment-index="3">Ele faz isso <span class="green">sem a necessidade de cópias desnecessárias</span> dos dados e normalmente leva implementações eficientes de algorithmos</li>
+                            <li class="fragment" data-fragment-index="4">O exemplo mais simples de broadcast ocorre quando um array e um escalar são combinados, onde o escalar é <em class="green">esticado</em> durante a operação aritmética para ter a <span class="green">mesma forma que o array</span></li>
+                            <li>O código é até mais eficiente já que menos memória precisa ser acessada durante a multiplicação</li>
+                        </ul>
+                        <code-terminal dontshowcursor><in>a = np.array([1.0, 2.0, 3.0])</in>
+<in>b = np.array([2.0, 2.0, 2.0])</in>
+<in>a * b</in>
+<output>array([ 2.,  4.,  6.])</output>
+<span class="fragment" data-fragment-index="4"><in>a = np.array([1.0, 2.0, 3.0])</in>
+<in>b = 2.0</in>
+<in>a * b</in>
+<output>array([ 2.,  4.,  6.])</output></span></code-terminal>
+                    </section>
+
+                    <section>
+                        <h2>Broadcast</h2>
+
+                        <ul>
+                            <li>Para generalizar a ideia do caso anterior o broadcast define duas regras:</li>
+                            <ul>
+                                <li><span class="green">Regra 1:</span> Se os arrays de entrada possuem número de dimensões diferentes um "1" será repetidamente adicionado no início do menor array até que todos os arrays tenham o mesmo número de dimenões</li>
+                                <li><span class="green">Regra 2:</span> Arrays de tamanho 1 em um dada dimensão ajem
+                                    como se eles tivessem o mesmo tamanho que o array
+                                    de maior tamanho nessa dimensão</li>
+                            </ul>
+                            <li>Após a aplicação das duas regras anteriores as dimensões dos dois arrays devem bater</li>
+                        </ul>
+                    </section>
                 </section>
 
                 <section>

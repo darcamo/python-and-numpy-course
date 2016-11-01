@@ -39,6 +39,10 @@ body {
     color:#ff2c2d;
 }
 
+code-terminal {
+    counter-reset: ipython-in;
+}
+
 @media print {
     li>code {
         color: #b8860b;
