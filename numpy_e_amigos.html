@@ -43,6 +43,16 @@
                     <h2>Um Curso Relâmpago</h2>
                     <h3>Prof: Darlan Cavalcante Moreira</h3>
                 </section>
+
+                <section>
+                    <h2>Organização Desswa Apresentação</h2>
+                    <ul>
+                        <li>Conteúdo</li>
+                        <li>Exemplo</li>
+                        <li>Exercício</li>
+                    </ul>
+                </section>
+                
 				<section>
                     <h2>Objetivos</h2>
                     <ul>
@@ -699,6 +709,7 @@ array([[   0,   10,   10,    3],
                 </section>
 
                 <section>
+
                     <section>
                         <h2>Broadcast</h2>
                         <ul>
@@ -706,19 +717,33 @@ array([[   0,   10,   10,    3],
                                 pares de arrays elemento-a-elemento </li>
                             <li class="fragment" data-fragment-index="1">Broadcast corresponde a maneira como o numpy trata arrays com <span class="green">formas diferentes</span> durante operações aritméticas</li>
                             <!-- <li>É um recurso poderoso que permite as <span class="green">ufuncs</span> (universal functions) lidar com entradas de tamanhos distintos</li> -->
-                            <li class="fragment" data-fragment-index="2">Broadcast fornece um meio de vetorizar operações com arrays tal que os <span class="green">loops ocorram em C</span>, ao inves de Python</li>
-                            <li class="fragment" data-fragment-index="3">Ele faz isso <span class="green">sem a necessidade de cópias desnecessárias</span> dos dados e normalmente leva implementações eficientes de algorithmos</li>
-                            <li class="fragment" data-fragment-index="4">O exemplo mais simples de broadcast ocorre quando um array e um escalar são combinados, onde o escalar é <em class="green">esticado</em> durante a operação aritmética para ter a <span class="green">mesma forma que o array</span></li>
-                            <li>O código é até mais eficiente já que menos memória precisa ser acessada durante a multiplicação</li>
+                            <li class="fragment" data-fragment-index="3">O exemplo mais simples de broadcast ocorre quando um array e um escalar são combinados</span></li>
+                            <li class="fragment" data-fragment-index="4">o escalar é <em class="green">esticado</em> durante a operação aritmética para ter a <span class="green">mesma forma que o array</li>
                         </ul>
                         <code-terminal dontshowcursor><in>a = np.array([1.0, 2.0, 3.0])</in>
 <in>b = np.array([2.0, 2.0, 2.0])</in>
-<in>a * b</in>
+<in>a * b  # 'a' e 'b' possuem mesmo shape</in>
 <output>array([ 2.,  4.,  6.])</output>
-<span class="fragment" data-fragment-index="4"><in>a = np.array([1.0, 2.0, 3.0])</in>
+<span class="fragment" data-fragment-index="3"><in>a = np.array([1.0, 2.0, 3.0])</in>
 <in>b = 2.0</in>
-<in>a * b</in>
-<output>array([ 2.,  4.,  6.])</output></span></code-terminal>
+<in>a * b</in></span>
+<span class="fragment" data-fragment-index="4"><output>array([ 2.,  4.,  6.])</output></span></code-terminal>
+                    </section>
+                    
+                    <section id="broadcast">
+                        <h2>Broadcast</h2>
+                        <ul>
+                            <li>Além da praticidade o broadcast fornece outras vantagens:</li>
+                            <ul>
+                                <li class="fragment" data-fragment-index="2">É um meio de vetorizar operações com arrays tal que os <span class="green">loops ocorram em C</span>, ao inves de Python</li>
+                                <li class="fragment" data-fragment-index="3"><span class="green">Sem cópias desnecessárias dos dados</span> <i class="fa fa-hand-o-right"></i> implementações eficientes de algorithmos</li>
+                            </ul>
+                            <li class="fragment" data-fragment-index="4">Multiplicar por um escalar é intuitivo. E somar uma matrix com um vetor?
+                                <ul class="fragment" data-fragment-index="5">
+                                    <li>Adicionamos uma dimensão extra no vetor e replicamos o mesmo nessa dimensão</li>
+                                </ul></li>
+                        </ul>
+                        <svg id="broadcast-placeholder" class="displayed fragment" data-fragment-index="4" style="margin-top:20px"></svg>
                     </section>
 
                     <section>
@@ -727,12 +752,13 @@ array([[   0,   10,   10,    3],
                         <ul>
                             <li>Para generalizar a ideia do caso anterior o broadcast define duas regras:</li>
                             <ul>
-                                <li><span class="green">Regra 1:</span> Se os arrays de entrada possuem número de dimensões diferentes um "1" será repetidamente adicionado no início do menor array até que todos os arrays tenham o mesmo número de dimenões</li>
+                                <li><span class="green">Regra 1:</span> Se os arrays de entrada possuem número de dimensões diferentes então um "1" será repetidamente adicionado no início do menor array até que todos os arrays tenham o mesmo número de dimenões</li>
                                 <li><span class="green">Regra 2:</span> Arrays de tamanho 1 em um dada dimensão ajem
                                     como se eles tivessem o mesmo tamanho que o array
                                     de maior tamanho nessa dimensão</li>
                             </ul>
                             <li>Após a aplicação das duas regras anteriores as dimensões dos dois arrays devem bater</li>
+                            <li>As vezes você precisa criar um eixo novo (não modifica os dados) para ajudar o broadcast</li>
                         </ul>
                     </section>
                 </section>
@@ -892,14 +918,16 @@ array([[   0,   10,   10,    3],
              update_indexa_array2();
              update_manipulando_o_shape();
              update_C_order();
-             update_fortran_order()
+             update_fortran_order();
+             update_broadcast();
          });
          Reveal.addEventListener('fragmentshown', function(event) {
              update_indexa_array();
              update_indexa_array2();
              update_manipulando_o_shape();
              update_C_order();
-             update_fortran_order()
+             update_fortran_order();
+             update_broadcast();
          });
          Reveal.addEventListener('fragmenthidden', function(event) {
              update_indexa_array();
@@ -907,6 +935,7 @@ array([[   0,   10,   10,    3],
              update_manipulando_o_shape();
              update_C_order();
              update_fortran_order()
+             update_broadcast();
          });
         </script>
      

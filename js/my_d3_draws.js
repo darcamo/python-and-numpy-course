@@ -396,3 +396,105 @@ function update_fortran_order() {
         cria_array_indexes("#fortran_order", data_fortran_order, 880, 100);
     }
 }
+
+
+function update_broadcast() {
+    "use strict";
+
+    var currentSlideId = Reveal.getCurrentSlide().id;
+    if (currentSlideId === "broadcast") {
+
+        var currentFragment = Reveal.getIndices().f;
+        var data_matrix = [
+            {i:0, j:0, value: "0", fill: "white"},
+            {i:0, j:1, value: "0", fill: "white"},
+            {i:0, j:2, value: "0", fill: "white"},
+            {i:1, j:0, value: "10", fill: "white"},
+            {i:1, j:1, value: "10", fill: "white"},
+            {i:1, j:2, value: "10", fill: "white"},
+            {i:2, j:0, value: "20", fill: "white"},
+            {i:2, j:1, value: "20", fill: "white"},
+            {i:2, j:2, value: "20", fill: "white"},
+            {i:3, j:0, value: "30", fill: "white"},
+            {i:3, j:1, value: "30", fill: "white"},
+            {i:3, j:2, value: "30", fill: "white"},
+            //
+            {i:0, j:5, value: "0", fill: "white"},
+            {i:0, j:6, value: "1", fill: "white"},
+            {i:0, j:7, value: "2", fill: "white"},
+            {i:0, j:5, value: "0", fill: "white"},
+            {i:0, j:6, value: "1", fill: "white"},
+            {i:0, j:7, value: "2", fill: "white"},
+            {i:0, j:5, value: "0", fill: "white"},
+            {i:0, j:6, value: "1", fill: "white"},
+            {i:0, j:7, value: "2", fill: "white"},
+            {i:0, j:5, value: "0", fill: "white"},
+            {i:0, j:6, value: "1", fill: "white"},
+            {i:0, j:7, value: "2", fill: "white"}
+        ];
+
+        switch (currentFragment) {
+        case 3:
+            data_matrix = [
+            {i:0, j:0, value: "0", fill: "white"},
+            {i:0, j:1, value: "0", fill: "white"},
+            {i:0, j:2, value: "0", fill: "white"},
+            {i:1, j:0, value: "10", fill: "white"},
+            {i:1, j:1, value: "10", fill: "white"},
+            {i:1, j:2, value: "10", fill: "white"},
+            {i:2, j:0, value: "20", fill: "white"},
+            {i:2, j:1, value: "20", fill: "white"},
+            {i:2, j:2, value: "20", fill: "white"},
+            {i:3, j:0, value: "30", fill: "white"},
+            {i:3, j:1, value: "30", fill: "white"},
+            {i:3, j:2, value: "30", fill: "white"},
+            //
+            {i:0, j:5, value: "0", fill: "white"},
+            {i:0, j:6, value: "1", fill: "white"},
+            {i:0, j:7, value: "2", fill: "white"},
+            {i:1, j:5, value: "0", fill: "white"},
+            {i:1, j:6, value: "1", fill: "white"},
+            {i:1, j:7, value: "2", fill: "white"},
+            {i:2, j:5, value: "0", fill: "white"},
+            {i:2, j:6, value: "1", fill: "white"},
+            {i:2, j:7, value: "2", fill: "white"},
+            {i:3, j:5, value: "0", fill: "white"},
+            {i:3, j:6, value: "1", fill: "white"},
+            {i:3, j:7, value: "2", fill: "white"},
+            //
+            {i:0, j:9, value: "0", fill: "white"},
+            {i:0, j:10, value: "1", fill: "white"},
+            {i:0, j:11, value: "2", fill: "white"},
+            {i:1, j:9, value: "0", fill: "white"},
+            {i:1, j:10, value: "1", fill: "white"},
+            {i:1, j:11, value: "2", fill: "white"},
+            {i:2, j:9, value: "0", fill: "white"},
+            {i:2, j:10, value: "1", fill: "white"},
+            {i:2, j:11, value: "2", fill: "white"},
+            {i:3, j:9, value: "0", fill: "white"},
+            {i:3, j:10, value: "1", fill: "white"},
+            {i:3, j:11, value: "2", fill: "white"}
+        ];
+            break;
+        }
+        cria_array_indexes("#broadcast-placeholder", data_matrix, 880, 200);
+
+        // Adiciona o operador de soma
+        var svg = d3.select("#broadcast-placeholder");
+        text = svg.select("text .operator");
+        if (text.empty() === true) {
+            var w = 80;
+            var h = 50;
+            var text = svg.append("text");
+            text.text("+")
+                .attr("x", 4*w)
+                .attr("y", 2*h)
+                .attr("stroke", "white")
+                .attr("fill", "white")
+                .attr("font-size", 50)
+                .attr("text-anchor", "middle")
+                .attr("alignment-baseline", "central");
+        }
+        
+    }
+}
