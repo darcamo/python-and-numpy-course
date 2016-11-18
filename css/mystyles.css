@@ -120,8 +120,8 @@ code-terminal {
     /* transform: translateY(-10px); */
 }
 
-/* Apenas o primeiro "in" dentro do parent "code-terminal" é afetado */
-in:first-of-type {
+/* Apenas o primeiro "in" dentro do code é afetado */
+code>in:first-of-type {
     margin-top: 0px;
 }
 

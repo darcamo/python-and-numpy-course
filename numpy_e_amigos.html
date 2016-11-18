@@ -154,6 +154,8 @@
                          </div> -->
                 </section>
 
+                <section>    
+                    
                 <section>
                     <h2>Criando Arrays</h2>
                     <ul>
@@ -171,8 +173,8 @@
 <in>b = np.array([[5.2, 2, -9, 10], [-10, 2, 9, 10]])</in>
 <in>b</in>
 <output>
-    array([[  5.2,   2. ,  -9. ,  10. ],
-    [-10. ,   2. ,   9. ,  10. ]])</output>
+array([[  5.2,   2. ,  -9. ,  10. ],
+       [-10. ,   2. ,   9. ,  10. ]])</output>
 <in>b.shape</in>
 <output>(2,4)</output></code-terminal>
                 </section>
@@ -219,7 +221,7 @@
 <output>(2, 3, 2)</output></code-terminal>
                 </section>
                 
-                <section>    
+                
                     <section>
                         <h2>Criando Arrays</h2>
 
@@ -302,17 +304,18 @@ array([[  8.6556823 ,  11.76621921,  13.06145845,  10.29941938],
                         <h2>Operações Básicas</h2>
                         <ul>
                             <li>O operador <code>*</code> não é exceção e efetua uma multiplicação element-a-elemento</li>
+                            <li>Para produto matricial use <code>@</code> ou o método <code>dot</code></li>
                         </ul>
                         <code-terminal><in>A = np.array([[1,1], [0,1]])</in>
 <in>B = np.array([[2,0], [3,4]])</in>
 <in>A*B  # Produto element-a-elemento</in>
 <output>
 array([[2, 0],
-      [0, 4]])</output>
+       [0, 4]])</output>
 <in>A.dot(B)  # Produto matricial</in>
 <output>
 array([[5, 4],
-      [3, 4]])
+       [3, 4]])
 </output>
 <in>A @ B  # Produto matricial: Python 3.5 ou superior</in>
 <output>
@@ -324,22 +327,22 @@ array([[5, 4],
                     <section>
                         <h2>Operações Básicas</h2>
                         <ul>
-                            <li>Algumas operações, como <code>+=</code> e <code>*=</code>, modificam o array atual ao invés de criar um novo array</li>
+                            <li>Algumas operações, como <code>+=</code> e <code>*=</code>, modificam o array atual ao invés de criar um novo array <i class="fa fa-hand-o-right"></i> Note que o datatype não pode mudar</li>
                         </ul>
 
-                        <code-terminal><in>a = np.ones((2,3), dtype=int)</in>
-<in>b = np.random.random((2,3))</in>
+                        <code-terminal><in>a = np.ones((2,3), dtype=int)  # 'a' é uma matriz de inteiros iguais a 1</in>
+<in>b = np.random.random((2,3))  # 'b' é uma matriz de números de ponto flutuante</in>
 <in>a *= 3</in>
 <in>a</in>
 <output>
 array([[3, 3, 3],
        [3, 3, 3]])</output>
-<in>b += a</in>
+<in>b += a  # Sobrescreve 'b' com o valor de a+b</in>
 <in>b</in>
 <output>
 array([[ 3.417022  ,  3.72032449,  3.00011437],
        [ 3.30233257,  3.14675589,  3.09233859]])</output>
-<in>a += b  # b is not automatically converted to integer type</in>
+<in>a += b  # 'b' NÃO é automaticamente convertido para um ipo inteiro</in>
 <span class="red">TypeError:</span> Cannot cast ufunc add output from dtype('float64') to dtype('int64')<br/>with casting rule 'same_kind'</code-terminal>
                     </section>
                 </section>
@@ -349,6 +352,7 @@ array([[ 3.417022  ,  3.72032449,  3.00011437],
                         <h2>Principais Operações em Arrays</h2>
                         <ul>
                             <li>As diversas funções matemáticas são implementadas como <code>np.nome_da_função</code> e algumas estão também disponíveis como métodos do array</li>
+                            <li class="fragment">Experimente digitar "a." no IPython e apertar TAB para ver as sugestões e use "?" para ver o help</li>
                         </ul>
 
                         <code-terminal><in>a = np.random.random((2,3))</in>
@@ -369,8 +373,8 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                         <h2>Principais Operações em Arrays</h2>
                         <ul>
                             <li>NumPy possui as funções matemáticas usuais: <span class="green">sin</span>, <span class="green">cos</span>, <span class="green">exp</span>, etc.</li>
-                            <li>Elas são chamadas de "universal functions"(ufunc)</li>
-                            <li>Essas funções operam individualmente em cada elemento do array, produzindo um array como saída</li>
+                            <li>Elas são chamadas de "universal functions" (ufuncs)</li>
+                            <li>Essas funções <span class="green">operam individualmente em cada elemento do array</span>, produzindo um array como saída</li>
                         </ul>
 
                         <code-terminal><in>B = np.arange(3)</in>
@@ -419,15 +423,8 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                             <li class="fragment" data-fragment-index="6">Também podemos usar índices negativos</li>
                         </ul>
                         <div class="container" style="width:1000px;">
-                            <div class="element" style="width:650px;"><code-terminal dontshowcursor><in>def f(x,y): return 10*x+y</in>
-<in>b = np.fromfunction(f,(5,4),dtype=int); print(b)</in>
-<!-- <output>
-     [[ 0,  1,  2,  3],
-     [10, 11, 12, 13],
-     [20, 21, 22, 23],
-     [30, 31, 32, 33],
-     [40, 41, 42, 43]]</output> -->
-<output># Ver matriz ao lado</output>
+                            <div class="element" style="width:650px;"><code-terminal dontshowcursor style="font-size:90%;"><in>def f(x,y): return 10*x+y</in>
+<in>b = np.fromfunction(f, (5,4), dtype=int)</in>
 <span class="fragment" data-fragment-index="1"><in>b[2,3]</in>
 <output>23</output></span>
 <span class="fragment" data-fragment-index="2"><in>b[0:5, 1]
@@ -476,14 +473,17 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                                 <li><code>x[4,...,5,:]</code> equivale a <code>x[4,:,:,5,:]</code></li>
                                 <li>Etc.</li>
                             </ul>
-                            <li><span class="red">Nota:</span> Ao indexar uma dada dimensão o array resultante não possui aquela dimensão, mas para slices a dimensão continua existingo</li>
                         </ul>
                     </section>
 
                     <section>
                         <h2>Indexando Arrays</h2>
-                        <h3>Exemplos</h3>
-                        <div class="displayed"><img alt="" data-src="imagens/numpy_part/indexing.png" height="600px"/></div>
+                        <ul>
+                            <li>Ao indexar uma dada dimensão o array resultante não possui aquela dimensão, mas para slices a dimensão continua existingo</li>
+                            <li>Compare os exemplos abaixo</li>
+                        </ul>
+                        <!-- <div class="displayed"><img alt="" data-src="imagens/numpy_part/indexing.png" height="500px"/></div> -->
+                        <div class="displayed"><object type="image/svg+xml" data="imagens/numpy_part/indexing.svg"></object></div>
                     </section>
 
                     <section>
@@ -492,8 +492,26 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
 
                         <ul>
                             <li>Arrays booleanos podem ser usados para indexar outros arrays</li>
-                            <li></li>
+                            <li>Isso é especialmente útil para pegar elementos obedecendo certas condições</li>
+                            <li>Exemplo: <span class="red">CONTINUAR</span></li>
                         </ul>
+                        <code-terminal><in>b = np.random.randint(0,100, size=(4,5)); print(b)</in>
+<output>
+array([[39, 87, 96, 97, 72],
+       [20,  5, 68, 48, 23],
+       [83, 70, 12, 73, 31],
+       [ 0, 46, 94, 30, 87]])</output>
+<in>menor_que_30 = b < 30</in>
+<in>menor_que_30</in>
+<output>
+array([[False, False, False, False, False],
+       [ True,  True, False, False,  True],
+       [False, False,  True, False, False],
+       [ True, False, False, False, False]], dtype=bool)</output>
+<in>b[menor_que_30]</in>
+<output>array([20,  5, 23, 12,  0])</output>
+<in>np.logical_not(menor_que_30).all(axis=0)</in>
+<output>array([False, False, False,  True, False], dtype=bool)</output></code-terminal>
                         
                     </section>
                     
@@ -512,10 +530,9 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                             <code-terminal style="font-size:84%;" dontshowcursor><in>a = np.floor(10*np.random.random((3,4)))</in>
 <in>a</in>
 <output># Ver matriz ao lado
-    <!-- array([[ 2.,  8.,  0.,  6.],
-         [ 4.,  5.,  1.,  1.],
-         [ 8.,  9.,  3.,  6.]]) -->
-</output>
+<!-- array([[ 2.,  8.,  0.,  6.],
+[ 4.,  5.,  1.,  1.],
+[ 8.,  9.,  3.,  6.]]) --></output>
 <span class="fragment"><in>a.shape  # Apenas retorna o shape atual do array</in>
 <output>(3, 4)</output></span>
 <span class="fragment"><in>a.ravel()  # "achata" o array (sem modificar)</in>
@@ -722,7 +739,7 @@ array([[   0,   10,   10,    3],
                         </ul>
                         <code-terminal dontshowcursor><in>a = np.array([1.0, 2.0, 3.0])</in>
 <in>b = np.array([2.0, 2.0, 2.0])</in>
-<in>a * b  # 'a' e 'b' possuem mesmo shape</in>
+<in>a * b  # 'a' e 'b' possuem mesmo shape e podemos somar elemento-a-elemento</in>
 <output>array([ 2.,  4.,  6.])</output>
 <span class="fragment" data-fragment-index="3"><in>a = np.array([1.0, 2.0, 3.0])</in>
 <in>b = 2.0</in>
@@ -738,9 +755,11 @@ array([[   0,   10,   10,    3],
                                 <li class="fragment" data-fragment-index="2">É um meio de vetorizar operações com arrays tal que os <span class="green">loops ocorram em C</span>, ao inves de Python</li>
                                 <li class="fragment" data-fragment-index="3"><span class="green">Sem cópias desnecessárias dos dados</span> <i class="fa fa-hand-o-right"></i> implementações eficientes de algorithmos</li>
                             </ul>
-                            <li class="fragment" data-fragment-index="4">Multiplicar por um escalar é intuitivo. E somar uma matrix com um vetor?
+                            <aside class="notes">Multiplicar por um escalar é intuitivo. Podemos estender para umm caso com mais dimensões</aside>
+                            <li class="fragment" data-fragment-index="4"> Exemplo: somar uma matrix (3,3) com um vetor (3,)?
                                 <ul class="fragment" data-fragment-index="5">
-                                    <li>Adicionamos uma dimensão extra no vetor e replicamos o mesmo nessa dimensão</li>
+                                    <li>Adicionamos uma dimensão extra no vetor <i class="fa fa-hand-o-right"></i> novo shape de (1, 3)</li>
+                                    <li>Replicamos o "vetor" para ter o mesmo shape que a matrix <i class="fa fa-hand-o-right"></i> (3,3)</li>
                                 </ul></li>
                         </ul>
                         <svg id="broadcast-placeholder" class="displayed fragment" data-fragment-index="4" style="margin-top:20px"></svg>
@@ -750,28 +769,59 @@ array([[   0,   10,   10,    3],
                         <h2>Broadcast</h2>
 
                         <ul>
-                            <li>Para o broadcast dar certo duas regras precisam ser atendidas:</li>
+                            <li>Para o broadcast ser possível duas regras precisam ser atendidas:</li>
                             <ul>
-                                <li><span class="green">Regra 1:</span> Se os arrays de entrada possuem número de dimensões diferentes então um "1" será repetidamente adicionado no início do menor array até que todos os arrays tenham o mesmo número de dimenões</li>
-                                <li><span class="green">Regra 2:</span> Arrays de tamanho 1 em um dada dimensão ajem
+                                <li><span class="green">Regra 1:</span> Se os arrays de entrada possuem ranks diferentes adicione uma dimensão no início do array menor repetidamente até que os dois tenham o mesmo rank</li>
+                                <li><span class="green">Regra 2:</span> Arrays de tamanho 1 em um dada dimensão atuam
                                     como se eles tivessem o mesmo tamanho que o array
                                     de maior tamanho nessa dimensão</li>
                             </ul>
                             <li>Após a aplicação das duas regras anteriores as dimensões dos dois arrays devem bater</li>
-                            <li>As vezes você precisa criar um eixo novo (não modifica os dados) para ajudar o broadcast</li>
                         </ul>
                     </section>
-                </section>
 
-                <section>
-                    <h2>Exercício</h2>
+                    <section>
+                        <h2>Broadcast</h2>
+                        <h3>Exemplos</h3>
+                        <ul>
+                            <li>Muito mais que operações entre um array e um simples escalar</li>
+                            <li class="fragment" data-fragment-index="2">Nem sempre as dimensões coincidem após aplicar as duas regras</li>
+                            <li class="fragment" data-fragment-index="3">Se for o caso você pode manualmente adicionar um eixo novo para não depender da regra 1</li>
+                        </ul>
+                        <code-terminal dontshowcursor><in>a = np.random.randn(2,3,4)</in>
+                            <in>b = np.random.randn(3,4)</in>
+                            <in>(a * b).shape  # OK: adiciona eixo 1 em b e replica para 2</in>
+                            <output>(2, 3, 4)  # Gera um array de números aleatórios</output>
+                            <span class="fragment" data-fragment-index="2"><in>c = np.random.randn(2, 4)</in>
+                                <in>a + c  # Erro</in>
+                                <span class="red">ValueError:</span> operands could not be broadcast together with shapes (2,3,4) (2,4)</span>
+                                <span class="fragment" data-fragment-index="3"><in>(a+c[:, <span class="green">np.newaxis</span>, :]).shape  # Adicionamos um eixo extra -> novo shape: (2, 1, 4)</in>
+                                    <output>(2, 3, 4)</output></span>
+                                <span class="fragment" data-fragment-index="4"><in>d = np.random.randn(2,3)</in>
+                                    <in>(a - d[...,<span class="green">np.newaxis</span>]).shape  # Novamente adicionamos um eixo extra -> novo shape: (2,3,1)</in>
+                                    <output>(2,3,4)</output></span></code-terminal>
+                    </section>
 
-                    <ul>
-                        <li>Somar os arrays abaixo</li>
-                        <li></li>
-                    </ul>
-                </section>
-                
+                    <section>
+                        <h2>Broadcast</h2>
+                        <h3>Exercício</h3>
+
+                        <ul>
+                            <li>Dado o vetor de números complexos abaixo representando posições de pontos em um grid 2D, calcule as distâncias de cada ponto para cada outro ponto no grid.</li>
+                            <pre><code>pontos = np.array([-2+1j, 3+2.5j, 2-2j, 0, 1.5+2.7j])</code></pre>
+                            <li class="fragment" data-fragment-index="1">Solução:</li>
+                        </ul>
+                        <code-terminal class="fragment" data-fragment-index="1"><in>np.abs(pontos - pontos[:, np.newaxis])  # Só linha e sem loops!</in>
+                            <output>
+                                array([[ 0.        ,  5.22015325,  5.        ,  2.23606798,  3.89101529],
+                                [ 5.22015325,  0.        ,  4.60977223,  3.90512484,  1.5132746 ],
+                                [ 5.        ,  4.60977223,  0.        ,  2.82842712,  4.72652092],
+                                [ 2.23606798,  3.90512484,  2.82842712,  0.        ,  3.08868904],
+                                [ 3.89101529,  1.5132746 ,  4.72652092,  3.08868904,  0.        ]])</output></code-terminal>
+                    </section>
+                    
+                </section>  <!-- End of broadcast -->
+
                 <section>
                     <h2>Datatypes Estruturados</h2>
 
