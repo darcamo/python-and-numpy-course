@@ -60,10 +60,11 @@ function cria_array_indexes(id, data, svg_widget, svg_height) {
         svg.attr("width", svg_widget).attr("height", svg_height);
     }
 
-    var groups = svg.selectAll("g").data(data);
+    var groups = svg.selectAll("g.elemento").data(data);
     groups = groups
         .enter()
         .append("g")
+        .attr("class", "elemento")  // Seto essa classe para facilitar o selectAll (não pegar 'g's sem a classe
         .each(function() {
             d3.select(this).append("rect").attr("width", w).attr("height", h);
             d3.select(this).append("text").attr("x", w/2 ).attr("y", h/2 ).attr("text-anchor", "middle").attr("alignment-baseline", "central");
@@ -76,7 +77,9 @@ function cria_array_indexes(id, data, svg_widget, svg_height) {
 
     // select não cria um novo grupo e nós mantemos os dados do parent (os "g"s no SVG)
     var rects = groups.select("rect");
-    rects.transition().duration(1000).attr("fill", function(d) {return d.fill;});
+    rects.transition().duration(1000)
+        .attr("fill", function(d) {return d.fill;})
+        .attr("opacity", function(d) {return d.opacity;});
     var texts = groups.select("text");
     texts.text(function(d) {return d.value;});
 }
@@ -419,80 +422,99 @@ function update_broadcast() {
             {i:3, j:1, value: "30", fill: "white"},
             {i:3, j:2, value: "30", fill: "white"},
             //
-            {i:0, j:5, value: "0", fill: "white"},
-            {i:0, j:6, value: "1", fill: "white"},
-            {i:0, j:7, value: "2", fill: "white"},
-            {i:0, j:5, value: "0", fill: "white"},
-            {i:0, j:6, value: "1", fill: "white"},
-            {i:0, j:7, value: "2", fill: "white"},
-            {i:0, j:5, value: "0", fill: "white"},
-            {i:0, j:6, value: "1", fill: "white"},
-            {i:0, j:7, value: "2", fill: "white"},
-            {i:0, j:5, value: "0", fill: "white"},
-            {i:0, j:6, value: "1", fill: "white"},
-            {i:0, j:7, value: "2", fill: "white"}
+            {i:0, j:4.5, value: "0", fill: "white"},
+            {i:0, j:5.5, value: "1", fill: "white"},
+            {i:0, j:6.5, value: "2", fill: "white"},
+            {i:0, j:4.5, value: "0", fill: "white"},
+            {i:0, j:5.5, value: "1", fill: "white"},
+            {i:0, j:6.5, value: "2", fill: "white"},
+            {i:0, j:4.5, value: "0", fill: "white"},
+            {i:0, j:5.5, value: "1", fill: "white"},
+            {i:0, j:6.5, value: "2", fill: "white"},
+            {i:0, j:4.5, value: "0", fill: "white"},
+            {i:0, j:5.5, value: "1", fill: "white"},
+            {i:0, j:6.5, value: "2", fill: "white"},
+
+            {i:0, j:9, value: "0", fill: "white", opacity: 0},
+            {i:0, j:10, value: "1", fill: "white", opacity: 0},
+            {i:0, j:11, value: "2", fill: "white", opacity: 0},
+            {i:1, j:9, value: "10", fill: "white", opacity: 0},
+            {i:1, j:10, value: "11", fill: "white", opacity: 0},
+            {i:1, j:11, value: "12", fill: "white", opacity: 0},
+            {i:2, j:9, value: "20", fill: "white", opacity: 0},
+            {i:2, j:10, value: "21", fill: "white", opacity: 0},
+            {i:2, j:11, value: "22", fill: "white", opacity: 0},
+            {i:3, j:9, value: "30", fill: "white", opacity: 0},
+            {i:3, j:10, value: "31", fill: "white", opacity: 0},
+            {i:3, j:11, value: "32", fill: "white", opacity: 0}
         ];
 
         switch (currentFragment) {
         case 3:
             data_matrix = [
-            {i:0, j:0, value: "0", fill: "white"},
-            {i:0, j:1, value: "0", fill: "white"},
-            {i:0, j:2, value: "0", fill: "white"},
-            {i:1, j:0, value: "10", fill: "white"},
-            {i:1, j:1, value: "10", fill: "white"},
-            {i:1, j:2, value: "10", fill: "white"},
-            {i:2, j:0, value: "20", fill: "white"},
-            {i:2, j:1, value: "20", fill: "white"},
-            {i:2, j:2, value: "20", fill: "white"},
-            {i:3, j:0, value: "30", fill: "white"},
-            {i:3, j:1, value: "30", fill: "white"},
-            {i:3, j:2, value: "30", fill: "white"},
-            //
-            {i:0, j:5, value: "0", fill: "white"},
-            {i:0, j:6, value: "1", fill: "white"},
-            {i:0, j:7, value: "2", fill: "white"},
-            {i:1, j:5, value: "0", fill: "white"},
-            {i:1, j:6, value: "1", fill: "white"},
-            {i:1, j:7, value: "2", fill: "white"},
-            {i:2, j:5, value: "0", fill: "white"},
-            {i:2, j:6, value: "1", fill: "white"},
-            {i:2, j:7, value: "2", fill: "white"},
-            {i:3, j:5, value: "0", fill: "white"},
-            {i:3, j:6, value: "1", fill: "white"},
-            {i:3, j:7, value: "2", fill: "white"},
-            //
-            {i:0, j:9, value: "0", fill: "white"},
-            {i:0, j:10, value: "1", fill: "white"},
-            {i:0, j:11, value: "2", fill: "white"},
-            {i:1, j:9, value: "0", fill: "white"},
-            {i:1, j:10, value: "1", fill: "white"},
-            {i:1, j:11, value: "2", fill: "white"},
-            {i:2, j:9, value: "0", fill: "white"},
-            {i:2, j:10, value: "1", fill: "white"},
-            {i:2, j:11, value: "2", fill: "white"},
-            {i:3, j:9, value: "0", fill: "white"},
-            {i:3, j:10, value: "1", fill: "white"},
-            {i:3, j:11, value: "2", fill: "white"}
-        ];
+                {i:0, j:0, value: "0", fill: "white"},
+                {i:0, j:1, value: "0", fill: "white"},
+                {i:0, j:2, value: "0", fill: "white"},
+                {i:1, j:0, value: "10", fill: "white"},
+                {i:1, j:1, value: "10", fill: "white"},
+                {i:1, j:2, value: "10", fill: "white"},
+                {i:2, j:0, value: "20", fill: "white"},
+                {i:2, j:1, value: "20", fill: "white"},
+                {i:2, j:2, value: "20", fill: "white"},
+                {i:3, j:0, value: "30", fill: "white"},
+                {i:3, j:1, value: "30", fill: "white"},
+                {i:3, j:2, value: "30", fill: "white"},
+                //
+                {i:0, j:4.5, value: "0", fill: "white"},
+                {i:0, j:5.5, value: "1", fill: "white"},
+                {i:0, j:6.5, value: "2", fill: "white"},
+                {i:1, j:4.5, value: "0", fill: "white"},
+                {i:1, j:5.5, value: "1", fill: "white"},
+                {i:1, j:6.5, value: "2", fill: "white"},
+                {i:2, j:4.5, value: "0", fill: "white"},
+                {i:2, j:5.5, value: "1", fill: "white"},
+                {i:2, j:6.5, value: "2", fill: "white"},
+                {i:3, j:4.5, value: "0", fill: "white"},
+                {i:3, j:5.5, value: "1", fill: "white"},
+                {i:3, j:6.5, value: "2", fill: "white"},
+                //
+                {i:0, j:9, value: "0", fill: "white", opacity: 1},
+                {i:0, j:10, value: "1", fill: "white", opacity: 1},
+                {i:0, j:11, value: "2", fill: "white", opacity: 1},
+                {i:1, j:9, value: "10", fill: "white", opacity: 1},
+                {i:1, j:10, value: "11", fill: "white", opacity: 1},
+                {i:1, j:11, value: "12", fill: "white", opacity: 1},
+                {i:2, j:9, value: "20", fill: "white", opacity: 1},
+                {i:2, j:10, value: "21", fill: "white", opacity: 1},
+                {i:2, j:11, value: "22", fill: "white", opacity: 1},
+                {i:3, j:9, value: "30", fill: "white", opacity: 1},
+                {i:3, j:10, value: "31", fill: "white", opacity: 1},
+                {i:3, j:11, value: "32", fill: "white", opacity: 1}
+            ];
             break;
         }
-        cria_array_indexes("#broadcast-placeholder", data_matrix, 880, 200);
+        cria_array_indexes("#broadcast-placeholder", data_matrix, 960, 200);
 
         // Adiciona o operador de soma
         var svg = d3.select("#broadcast-placeholder");
-        text = svg.select("text .operator");
-        if (text.empty() === true) {
+        var operators_g = svg.select("g.operators");
+        if (operators_g.empty() === true) {
             var w = 80;
             var h = 50;
-            var text = svg.append("text");
-            text.text("+")
-                .attr("x", 4*w)
-                .attr("y", 2*h)
+            operators_g = svg.append("g").attr("class", ".operators");
+            operators_g
                 .attr("stroke", "white")
                 .attr("fill", "white")
                 .attr("font-size", 50)
                 .attr("text-anchor", "middle")
+                .attr("alignment-baseline", "central")
+                .attr("transform", `translate(${3.75*w}, ${2*h})`);
+            operators_g.append("text")
+                .text("+")
+                .attr("alignment-baseline", "central");
+            operators_g.append("text")
+                .text("=")
+                .attr("x", 4.5*w)
                 .attr("alignment-baseline", "central");
         }
         
