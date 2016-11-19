@@ -63,20 +63,167 @@
                     </ul>
                 </section>
 
-                <section>
+                <section id="baterias">
                     <h2>Qual "bateria" devo usar?</h2>
 
                     <ul>
                         <li>Python é uma linguagem de programação de uso geral</li>
-                        <li>Mas possui várias bibliotecas voltadas para computação científica</li>
+                        <!-- <li>Mas possui várias bibliotecas voltadas para computação científica</li> -->
+                        <li>O ecosistema para pesquisa científica em python pode ser visto como camadas que incluem: A linguagem Python, <span class="fragment highlight-green"> Numpy</span>, <span class="fragment highlight-green">bibliotecas baseadas no Numpy</span>, <span class="fragment highlight-green">bibliotecas para plot</span>, <span class="fragment highlight-green">terminais mais avançados</span>, <span class="fragment highlight-green">IDEs e similares</span></li>
                         <li>Nesse curso vamos ver parte dessas ferramentas</li>
                     </ul>
                     <!-- https://indranilsinharoy.com/2013/01/06/python-for-scientific-computing-a-collection-of-resources/ -->
-                    <img data-src="/imagens/numpy_part/scientific_stack.png" class="displayed"/>
-                    <ul><li><span class="red">Nota:</span> A biblioteca <a href="http://www.numpy.org/">Numpy</a> é o núcleo da computação científica em Python e é a mais importante de se aprender bem</li></ul>
+                    <!-- <img data-src="/imagens/numpy_part/scientific_stack.png" class="displayed"/> -->
+                    <object width="80%" id="scientific_stack" type="image/svg+xml" data="imagens/numpy_part/scientific_stack.svg"></object>
+                    <!-- svg = d3.select(document.getElementById("scientific_stack").contentDocument).select("svg") -->
+                    
+                    <!-- <ul><li><span class="red">Nota:</span> A biblioteca <a href="http://www.numpy.org/">Numpy</a> é o núcleo da computação científica em Python e é a mais importante de se aprender bem</li></ul> -->
+                    <aside class="notes">A biblioteca <a href="http://www.numpy.org/">Numpy</a> é o núcleo da computação científica em Python e é a mais importante de se aprender bem</aside>
+                </section>
+
+                <section>
+                    <h2>Instalando Python</h2>
+
+                    <ul>
+                        <li>Python possui duas versões: Python2 e <span class="green">Python3</span></li>
+                        <!-- <li>Aqui usaremos a versão 3</li> -->
+                        <li>Podem baixar a partir do site oficial em https://www.python.org/downloads/</li>
+                        <li>Ou podemos usar umas das <em>distribuições</em> disponíveis
+                            <ul>
+                                <li><a href="https://www.continuum.io/downloads/">Anaconda</a></li>
+                                <li><a href="https://www.enthought.com/products/canopy/">Canopy</a></li>
+                                <li><a href="https://winpython.github.io/">WinPython</a> (possui versão portable)</li>
+                            </ul></li>
+                    </ul>
+                </section>
+
+                <section>
+                
+                <section>
+                    <h2>IPython</h2>
+                    <ul>
+                        <li><a href="http://ipython.org/ipython-doc/stable/interactive/tutorial.html">IPython</a> é poderoso shell interativo para a linguagem python, muito superior ao shell padrão</li>
+                        <li>As entradas e saídas são numeradas e você pode recuperar seus valores</li>
+                        <li>É possível acessar os valores das entradas com variáveis <code>_i1</code>, <code>_i2</code>, etc</li>
+                        <li>Os valores das saídas podem ser acessadas por <code>_1</code>, <code>_2</code>, onde <code>_</code>, <code>__</code> e <code>___</code> acessam a última, penúltima e anti-penúltima saída</li>
+                    </ul>
+                    <code-terminal><in>a = 10</in>
+<in>a + 4  # Esqueci de salvar em uma variável</in>
+<output>14</output>
+<in>b = 16</in>
+<in>c = b + _  # '_' possui o valor 14 referente a última saída</in>
+<in>c * 2  # c possui valor de 16 + 14</in>
+<output>60</output></code-terminal>
+                </section>
+
+                <section>
+                    <h2>IPython</h2>
+
+                    <ul>
+                        <li>Um dos recursos mais úteis do IPython é <a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#tab-completion">completar um comando</a></li>
+                        <li>Após digitar parte do comando aperte <tt class="green">TAB</tt> para completar</li>
+                        <li>Caso haja mais de uma opção uma lista de opções será mostrada</li>
+                        <img alt="TAB completion do IPython" src="imagens/numpy_part/ipython_tab_complete2.png"/ class="displayed">
+                        <li>Também acessar o shell do sistema usando <code>!commando</code> (muito útil para alternar entre pastas, remover arquivos, etc)</li>
+                    </ul>
+                    <code-terminal><in>!pwd  # Em que pasta estou agora (apenas pwd também funcionaria)</in>
+<output>/home/darlan/Desktop</output>
+<in>arquivos = !ls  # Lista com nome dos arquivos em Desktop</in></code-terminal>
+                </section>
+
+                <section>
+                    <h2>IPython</h2>
+
+                    <ul>
+                        <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#exploring-your-objects">Obtendo Ajuda com "?"</a>
+
+                            <ul>
+                                <li>Digitar <code>algum_obj?</code> mostra diversas informações sobre qualquer objeto, incluindo docstring, definições de funções, informações do construtor, etc</li>
+                                <li>Digitar <code>algum_obj??</code> mostrará o código fonte se possível</li>
+                                <code-terminal><span class="ipython-in">abs?</span>
+<span class="red">Docstring</span>: Return the absolute value of the argument.
+<span class="red">Type:</span>      builtin_function_or_method</code-terminal>
+                            </ul>
+                        </li>
+                        
+                        
+                        <li>Através da introspecção com <code>?</code> e apertando <tt>TAB</tt> para completar comandos é possível realmente explorar bem funções, classes, etc.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>IPython</h2>
+
+                    <ul>
+                        <li>Outro recurso extremamente útil do IPython são os <a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#magic-functions">comandos mágicos</a></li>
+                        <li>Alguns dos comandos mágicos mais úteis são:
+                            <ul>
+                                <li><tt class="green">%whos</tt>: Lista variáveis e funções atuais (não mostra variáveis criadas pelo IPython como <code>_3</code>, <code>_i14</code>, etc)</li>
+                                <code-terminal dontshowcursor style="font-size:90%"><in>a = [1,2,3]</in>
+<in>b = "Olá Mundo"</in>
+<in>whos
+Variable   Type    Data/Info
+----------------------------
+a          list    n=3
+b          str     Hello
+</in>
+<in>whos list
+Variable   Type    Data/Info
+----------------------------
+a          list    n=3</in></code-terminal>
+                                <li><tt class="green">%edit testando.py</tt>: Abre 'testando.py' e executa o código após sair</li>
+                                <li><tt class="green">%run testando.py</tt>: Executa testando.py como um script</li>
+                                <li><tt class="green">%paste</tt>: Cola e executa um bloco de código da área de transferência</li>
+                                <li><tt class="green">%timeit</tt>: Executa uma expressão e mostra tempo decorrido
+                                    <code-terminal dontshowcursor style="font-size:90%"><in>%timeit 4 * 5
+100000000 loops, best of 3: 12.3 ns per loop</in></code-terminal></li>
+                                <li><tt class="green">%macro</tt>: Define um macro para futura execução</li>
+                                    <li><tt class="green">%quickref</tt>: Cartão de referência do IPython <i class="green fa fa-hand-o-right"></i> Veja também <code>%comando?</code></li>
+                                    <li><tt class="green">%autocall</tt>: Dispensa os parêntesis em uma chamada de função</li>
+                            </ul>
+                        </li>
+                    </ul>
                     
                 </section>
 
+                </section>
+                
+                <section>
+                    <h2>IPython</h2>
+                    <ul>
+                        <li><a href="http://ipython.org/ipython-doc/stable/interactive/tutorial.html">IPython</a> é poderoso shell interativo para a linguagem python
+                            <ul>
+                                <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#tab-completion">Completar um comando</a> (após digitar parte dele) com <tt class="green">TAB</tt></li>
+                                <!-- <li>Sintaxe adicional para o shell</li> -->
+                                <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#history">Histórico de comandos</a></li>
+                                <li>Acesso ao shell do sistema: <code>!commando</code></li>
+                            </ul>
+                        </li>
+                        <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#exploring-your-objects">Obtendo Ajuda com "?"</a> <span style="font-size: 50%; float:right;">(se necessário aperte "q" para sair do help)</span>
+                            <code-terminal><span class="ipython-in">abs?</span>
+<span class="red">Docstring</span>: Return the absolute value of the argument.
+<span class="red">Type:</span>      builtin_function_or_method</code-terminal>
+                        </li>
+                        <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#magic-functions">Funções mágicas</a> <i class="fa fa-hand-o-right"></i> <span class="green">Muito úteis</span>
+                            <ul>
+                                <li><tt class="green">%whos</tt>: Veja variáveis e funções atuais</li>
+                                <li><tt class="green">%run</tt>: Executa um arquivo como um script</li>
+                                <li><tt class="green">%paste</tt>: Cola e executa um bloco de código</li>
+                                <li><tt class="green">%timeit</tt>: Executa uma expressão e mostra tempo decorrido</li>
+                                
+                                <!-- <li><tt class="green">%macro</tt>: Define um macro para futura execução</li> -->
+                                <li><tt class="green">%quickref</tt>: Cartão de referência do IPython</li>
+                                <!-- <li class="fragment"><tt class="green">%autocall</tt>: Dispensa os parêntesis em uma chamada de função</li> -->
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Jupyter Notebooks</h2>
+
+                </section>
+                
                 <section>
                     <h2>Numpy Arrays</h2>
 
@@ -461,7 +608,7 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                         </aside>
                     </section>
 
-                    <section id="indexando_arrays3">
+                    <section>
                         <h2>Indexando Arrays</h2>
                         <ul>
                             <li>Podemos usar também <code>...</code> para representar <span class="green">tantos ":" quanto necessário</span> para produzir uma indexação completa</li>
@@ -480,39 +627,41 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                         <h2>Indexando Arrays</h2>
                         <ul>
                             <li>Ao indexar uma dada dimensão o array resultante não possui aquela dimensão, mas para slices a dimensão continua existingo</li>
-                            <li>Compare os exemplos abaixo</li>
+                            <li>Compare os exemplos abaixo (especialmente o shape do resultado)</li>
                         </ul>
                         <!-- <div class="displayed"><img alt="" data-src="imagens/numpy_part/indexing.png" height="500px"/></div> -->
                         <div class="displayed"><object type="image/svg+xml" data="imagens/numpy_part/indexing.svg"></object></div>
                     </section>
 
-                    <section>
+                    <section id="indexando_arrays3">
                         <h2>Indexando Arrays</h2>
                         <h3>Vetores Booleanos</h3>
 
                         <ul>
                             <li>Arrays booleanos podem ser usados para indexar outros arrays</li>
                             <li>Isso é especialmente útil para pegar elementos obedecendo certas condições</li>
-                            <li>Exemplo: <span class="red">CONTINUAR</span></li>
+                            <li>Exemplo:</li>
                         </ul>
-                        <code-terminal><in>b = np.random.randint(0,100, size=(4,5)); print(b)</in>
+                        <div class="container" style="width:1000px;">
+                            <div class="element" style="width:570px;"><code-terminal dontshowcursor style="font-size:95%;"><in>b = np.random.randint(0,100, size=(4,5))</in>
+<in>linhas = np.array([False, True, True, False])</in>
+<span class="fragment" data-fragment-index="1"><in>b[linhas]</in>
 <output>
-array([[39, 87, 96, 97, 72],
-       [20,  5, 68, 48, 23],
-       [83, 70, 12, 73, 31],
-       [ 0, 46, 94, 30, 87]])</output>
-<in>menor_que_30 = b < 30</in>
-<in>menor_que_30</in>
+array([[20,  5, 68, 48, 23],
+       [83, 70, 12, 73, 31]])</output></span>
+<span class="fragment" data-fragment-index="2"><in>b[b < 30]  # Pega elementos que 30</in>
+<output>array([20,  5, 23, 12,  0])</output></span>
+<span class="fragment" data-fragment-index="3"><in>idx = (b >= 30); b[idx]  # Elementos >= 30</in>
+    <output>array([39, 87, 96, ... ... , 94, 30, 87])</output></span>
+<span class="fragment" data-fragment-index="4"><in># Colunas com todos oselementos são >= 30</in>
+<in>b[:, idx.all(axis=0)]  # Indexa colunas</in>
 <output>
-array([[False, False, False, False, False],
-       [ True,  True, False, False,  True],
-       [False, False,  True, False, False],
-       [ True, False, False, False, False]], dtype=bool)</output>
-<in>b[menor_que_30]</in>
-<output>array([20,  5, 23, 12,  0])</output>
-<in>np.logical_not(menor_que_30).all(axis=0)</in>
-<output>array([False, False, False,  True, False], dtype=bool)</output></code-terminal>
-                        
+array([[97],
+       [48],
+       [73],
+       [30]])</output></span></code-terminal></div>
+                            <div class="element" style="transform: scale(0.8) translate(-50px,0);"><svg id="indexando-arrays-placeholder3"></svg></div>
+                        </div>
                     </section>
                     
                 </section>
@@ -523,6 +672,7 @@ array([[False, False, False, False, False],
                         <li><em>shape</em> define o número de elementos em cada dimensão</li>
                         <li>Há várias maneiras de manipular o shape de um array</li>
                         <li>Ao invés de <span class="green">reshape</span> podemos usar <span class="green">resize</span> <i class="fa fa-hand-o-right"></i> modifica o array</li>
+                        <li><i class="fa fa-lightbulb-o"></i> Dica: Use "-1" em uma dimensão e o numpy vai detectar o valor correto</li>
                     </ul>
 
                     <div class="container" style="width:1000px;">
@@ -618,10 +768,10 @@ array([[ 8.,  8.,  1.,  8.],
                     <h2>Cópias e Views</h2>
                     <!-- https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#copies-and-views -->
                     <ul>
-                        <li>When operating and manipulating arrays, their data is sometimes copied into a new array and sometimes not</li>
+                        <li>Quando operando e manuipulando arrays, as vezes os dados são copiados em um novo array e as vezes não</li>
                         <li>Casos sem cópia:</li>
                         <ul>
-                            <li>Assinalamento</li>
+                            <li>Assinalamento (Python também funciona assim para tipos mutáveis)</li>
                             <li>Mudança de shape</li>
                             <li>Argumentos de funções</li>
                         </ul>
@@ -644,7 +794,7 @@ array([[ 8.,  8.,  1.,  8.],
                 <section>
                     <h2>Cópias e Views</h2>
                     <ul>
-                        <li>Diferentes objetos arrays podem compartilhar os mesmos dados na memória</li>
+                        <li>Diferentes arrays podem compartilhar os mesmos dados na memória</li>
                         <li>O método <code>view</code> de um array cria um novo objeto array que utiliza os mesmos dados</li>
                         <li>Mudanças feitas nos dados de um são refletidas no outro array, mas os dois não são o mesmo objeto como ocorre em python com um assinalamento</li>
                         <li>Os dois objetos podem ter formas diferentes</li>
@@ -695,21 +845,43 @@ array([[   0,   10,   10,    3],
                 </section>
 
                 </section>
-                <section>
+                
+                <section id="axis-params">
                     <h2>Operações matemáticas</h2>
                     <ul>
-                        <li>Soma, Média, variância, etc</li>
-                        <li>Fornecer o eixo</li>
-                        <div><img alt="" src="imagens/numpy_part/numpy_axis.png"></div>
-                        <div><img alt="" src="imagens/numpy_part/numpy_axis2.jpg"></div>
+                        <li>Já vimos alguns métodos que operam elemento-a-elemento, onde o resultado possui o mesmo rank que a entrada</li>
+                        <li>Alguns métodos resuzem a dimensão obtendo um
+                        resultado de rank menor</li>
+                        <li>Exemplo: <code>mean</code>, <code>var</code>, <code>sum</code>, etc.</li>
+                        <!-- <li>Obtemos um escalar</li> -->
+                        <li class="fragment" data-fragment-index="2">É possível indicar sobre qual dimensão efetuar a operação</li>
                     </ul>
+                    <div class="container" style="min-width:1000px;">
+                        <div class="element" style="width: 65%;">
+                    <code-terminal dontshowcursor><in>a = np.random.randint(3, 4)</in>
+<in>a</in>
+<output>Ver matrix ao lado
+array([[31, 11, 15, 69],
+       [ 8, 75, 68, 54],
+       [31, 47, 86, 23]])</output>
+<in>a.sum()</in>
+<output class="fragment" data-fragment-index="1">518</output>
+<in class="fragment" data-fragment-index="2">a.sum(axis=0)</in>
+<output class="fragment" data-fragment-index="3">array([ 70, 133, 169, 146])</output>
+<in class="fragment" data-fragment-index="4">a.sum(axis=1)</in>
+<output class="fragment" data-fragment-index="5">array([126, 205, 187])</output></code-terminal>
+                        </div>
+                        <div class="element"><svg id="axis-param-placeholder" class="displayed" ></svg></div>
+                    </div>
                 </section>
 
-
+                
                 <section>
                     <h2>Functions and Methods Overview</h2>
                     <!-- https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#functions-and-methods-overview -->
                     <ul>
+                        <li>Chequem a <a href="http://docs.scipy.org/doc/numpy/reference/">referência no numpy</a> para muito mais informações sobre o numpy</li>
+                        <li>o <a href="https://docs.scipy.org/doc/scipy/reference/">Scipy</a> fornece mais funções para matemática, ciência e engenharia</li>
                         <li>Here is a list of some useful NumPy functions and methods names ordered in categories. See Routines for the full list.</li>
                         <ul>
                             <li>Array Creation: arange, array, copy, empty, empty_like, eye, fromfile, fromfunction, identity, linspace, logspace, mgrid, ogrid, ones, ones_like, r, zeros, zeros_like</li>
@@ -789,17 +961,17 @@ array([[   0,   10,   10,    3],
                             <li class="fragment" data-fragment-index="3">Se for o caso você pode manualmente adicionar um eixo novo para não depender da regra 1</li>
                         </ul>
                         <code-terminal dontshowcursor><in>a = np.random.randn(2,3,4)</in>
-                            <in>b = np.random.randn(3,4)</in>
-                            <in>(a * b).shape  # OK: adiciona eixo 1 em b e replica para 2</in>
-                            <output>(2, 3, 4)  # Gera um array de números aleatórios</output>
-                            <span class="fragment" data-fragment-index="2"><in>c = np.random.randn(2, 4)</in>
-                                <in>a + c  # Erro</in>
-                                <span class="red">ValueError:</span> operands could not be broadcast together with shapes (2,3,4) (2,4)</span>
-                                <span class="fragment" data-fragment-index="3"><in>(a+c[:, <span class="green">np.newaxis</span>, :]).shape  # Adicionamos um eixo extra -> novo shape: (2, 1, 4)</in>
-                                    <output>(2, 3, 4)</output></span>
-                                <span class="fragment" data-fragment-index="4"><in>d = np.random.randn(2,3)</in>
-                                    <in>(a - d[...,<span class="green">np.newaxis</span>]).shape  # Novamente adicionamos um eixo extra -> novo shape: (2,3,1)</in>
-                                    <output>(2,3,4)</output></span></code-terminal>
+<in>b = np.random.randn(3,4)</in>
+<in>(a * b).shape  # OK: adiciona eixo 1 em b e replica para 2</in>
+<output>(2, 3, 4)  # Gera um array de números aleatórios</output>
+<span class="fragment" data-fragment-index="2"><in>c = np.random.randn(2, 4)</in>
+<in>a + c  # Erro</in>
+<span class="red">ValueError:</span> operands could not be broadcast together with shapes (2,3,4) (2,4)</span>
+<span class="fragment" data-fragment-index="3"><in>(a+c[:, <span class="green">np.newaxis</span>, :]).shape  # Adicionamos um eixo extra -> novo shape: (2, 1, 4)</in>
+<output>(2, 3, 4)</output></span>
+<span class="fragment" data-fragment-index="4"><in>d = np.random.randn(2,3)</in>
+<in>(a - d[...,<span class="green">np.newaxis</span>]).shape  # Novamente adicionamos um eixo extra -> novo shape: (2,3,1)</in>
+<output>(2,3,4)</output></span></code-terminal>
                     </section>
 
                     <section>
@@ -812,16 +984,36 @@ array([[   0,   10,   10,    3],
                             <li class="fragment" data-fragment-index="1">Solução:</li>
                         </ul>
                         <code-terminal class="fragment" data-fragment-index="1"><in>np.abs(pontos - pontos[:, np.newaxis])  # Só linha e sem loops!</in>
-                            <output>
-                                array([[ 0.        ,  5.22015325,  5.        ,  2.23606798,  3.89101529],
-                                [ 5.22015325,  0.        ,  4.60977223,  3.90512484,  1.5132746 ],
-                                [ 5.        ,  4.60977223,  0.        ,  2.82842712,  4.72652092],
-                                [ 2.23606798,  3.90512484,  2.82842712,  0.        ,  3.08868904],
-                                [ 3.89101529,  1.5132746 ,  4.72652092,  3.08868904,  0.        ]])</output></code-terminal>
+<output>
+array([[ 0.        ,  5.22015325,  5.        ,  2.23606798,  3.89101529],
+       [ 5.22015325,  0.        ,  4.60977223,  3.90512484,  1.5132746 ],
+       [ 5.        ,  4.60977223,  0.        ,  2.82842712,  4.72652092],
+       [ 2.23606798,  3.90512484,  2.82842712,  0.        ,  3.08868904],
+       [ 3.89101529,  1.5132746 ,  4.72652092,  3.08868904,  0.        ]])</output></code-terminal>
                     </section>
                     
                 </section>  <!-- End of broadcast -->
 
+                <section>
+                    <h2>Algebra Linear</h2>
+
+                    <ul>
+                        <li>Numpy fornece diversos métodos para manipulação de matrizes de maneira efficiente</li>
+                        <li>Por baixo dos panos bibliotecas eficientes como BLAS e LAPACK são utilizadas, tornando operações de algebra linear eficiente</li>
+                        <li>Algumas das operações mais comuns são:</li>
+                        <code-terminal><in>A @ B  # Multiplica duas matrizes A e B</in>
+<in>A.T  # Transposta de A</in>
+<output></output>
+<in>np.linalg.inv(A)  # Inversa de A</in>
+<output></output>
+<in>U, V = np.linalg.eig(A) # Calcula autovalores e autovetores de A</in>
+<output></output>
+<in>np.linalg.multi_dot([A, B, C, D])  # Calcula "A @ B @ C @ D" (mais eficiente)</in>
+<output></output></code-terminal>
+
+                    </ul>
+                </section>
+                
                 <section>
                     <h2>Datatypes Estruturados</h2>
 
@@ -829,6 +1021,115 @@ array([[   0,   10,   10,    3],
 
                     https://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html
                 </section>
+
+                <section>
+                    
+                    <section>
+                        <h2>Plotando com Matplotlib</h2>
+
+                        <ul>
+                            <aside class="notes">Existem várias bibliotecas para plot em python</aside>
+                            <li>A biblioteca mais conhecida para plot no python é a <a href="http://matplotlib.org/">Matplotlib</a></li>
+                            <li class="fragment" data-fragment-index="1">A função mais importante é a função <code>plt.plot</code></li>
+                            <li class="fragment" data-fragment-index="2">Chame a função <code>plt.show</code> no final para mostrar o plot</li>
+                            <li class="fragment" data-fragment-index="3">Com um pouco esforço a mais podemos facilmente plotar multiplas linhas de uma só vez, adicionar um título, legenda e labels para os eixos</li>
+                            <li class="fragment" data-fragment-index="4"><i class="fa fa-lightbulb-o"></i> Dica: coloque <code>%matplotlib inline</code> ou <code>%matplotlib notebook</code> na primeira célula do Jupyter notebook</li>
+                        </ul>
+                        <div class="container">
+                            <pre class="element" style="width:58%;"><code class="python" data-noescape>import numpy as np
+import matplotlib.pyplot as plt
+
+# Computa as coordenadas 'x' e 'y' para ambas as curvas
+x = np.arange(0, 3 * np.pi, 0.1)
+y_sin = np.sin(x)
+<span class="fragment" data-fragment-index=2">y_cos = np.cos(x)</span>
+
+# Plota os pontos usando matplotlib
+<span class="fragment highlight-green" data-fragment-index="1">plt.plot(x, y_sin)</span>
+<span class="fragment" data-fragment-index=3">plt.plot(x, y_cos)
+plt.xlabel('x axis label')
+plt.ylabel('y axis label')
+plt.title('Sine and Cosine')
+plt.legend(['Sine', 'Cosine'])</span>
+<span class="fragment highlight-green" data-fragment-index="2">plt.show()</span>  # Necessário para mostrar o gráfico</code></pre>
+                            
+                            <div class="element" style="width:38%; height:300px; position:relative;">
+                                <img class="fragment fade-out" data-fragment-index="3" alt="Plot de uma curva seno" src="imagens/numpy_part/sine_plot.png" style="background-color: white; width:100%; position:absolute;top:0;left:0;"/>
+                                <img class="fragment fade-in" data-fragment-index="3" alt="Plot de uma curva seno" src="imagens/numpy_part/sine_cosine_plot.png" style="background-color: white; width:100%; position:absolute;top:0;left:0;"/>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Plotando com Matplotlib</h2>
+
+                        <ul>
+                            <li>Podemos plotar curvas diferentes na mesma figura usando a função <code>subplot</code></li>
+                            <li>Na <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.subplot">documentação</a> há muito mais que se pode fazer com subplots</li>
+                        </ul>
+                        <div class="container">
+                            <pre class="element" style="width:58%;"><code class="python" data-noescape>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.arange(0, 3 * np.pi, 0.1)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+
+# Prepara um grid 2x1 para subplots e ativa o primeiro subplot
+plt.subplot(2, 1, 1)
+
+# Cria o primeiro plot
+plt.plot(x, y_sin)
+plt.title('Sine')
+
+# Ativa o segundo plot do grid e cria o segundo plot
+plt.subplot(2, 1, 2)
+plt.plot(x, y_cos)
+plt.title('Cosine')
+
+plt.show()</code></pre>
+
+                            <div class="element" style="background-color: white; width:38%;"><img alt="" src="imagens/numpy_part/sine_cosine_subplot.png"/></div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Mostrando imagens com Matplotlib</h2>
+
+                        <ul>
+                            <li>Matplotlib também possui a função <code>imshow</code> que pode ser usada para mostrar uma imagem</li>
+                            <li>Aqui usamos a função <code>imread</code> do scipy para ler a imagem</li>
+                        </ul>
+
+                        <div class="container">
+                            <pre class="element" style="width:58%;"><code class="python" data-noescape>import numpy as np
+from scipy.misc import imread, imresize
+import matplotlib.pyplot as plt
+
+img = imread('assets/cat.jpg')
+img_tinted = img * [1, 0.95, 0.9]
+
+# Show the original image
+plt.subplot(1, 2, 1)
+plt.imshow(img)
+
+# Show the tinted image
+plt.subplot(1, 2, 2)
+
+# Nota: imshow resulta em resultados estranhos se os dados
+# não são uint8. Para contornar esse problemas fazemos um
+# cast da imagem para uint8 antes de mostrá-la
+plt.imshow(np.uint8(img_tinted))
+plt.show()
+</code></pre>
+
+                            <div class="element" style="background-color: white; width:38%;"><img alt="" src="imagens/numpy_part/cat_tinted_imshow.png"/></div>
+                        </div>
+                    </section>
+                    
+                </section>
+
+                
 			</div>
 		</div>
 
@@ -973,28 +1274,37 @@ array([[   0,   10,   10,    3],
          // Veja de onde você tiroi isso em
          // https://github.com/ptamarit/slides-data-viz-web-d3/blob/master/src/js/reveal-to-d3.js
          Reveal.addEventListener('slidechanged', function(event) {
+             update_baterias();
              update_indexa_array();
              update_indexa_array2();
+             update_indexa_array3();
              update_manipulando_o_shape();
              update_C_order();
              update_fortran_order();
              update_broadcast();
+             update_axis_params();
          });
          Reveal.addEventListener('fragmentshown', function(event) {
+             update_baterias();
              update_indexa_array();
              update_indexa_array2();
+             update_indexa_array3();
              update_manipulando_o_shape();
              update_C_order();
              update_fortran_order();
              update_broadcast();
+             update_axis_params();
          });
          Reveal.addEventListener('fragmenthidden', function(event) {
+             update_baterias();
              update_indexa_array();
              update_indexa_array2();
+             update_indexa_array3();
              update_manipulando_o_shape();
              update_C_order();
              update_fortran_order()
              update_broadcast();
+             update_axis_params();
          });
         </script>
      

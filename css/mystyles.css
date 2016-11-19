@@ -70,7 +70,10 @@ code-terminal {
     }
 }
 
-.reveal .container,
+.reveal .container {
+    display: block;
+}
+
 .reveal .displayed {
     display: block;
     margin-left: auto;

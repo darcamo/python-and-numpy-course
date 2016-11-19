@@ -61,6 +61,7 @@ function cria_array_indexes(id, data, svg_widget, svg_height) {
     }
 
     var groups = svg.selectAll("g.elemento").data(data);
+    groups.exit().remove();
     groups = groups
         .enter()
         .append("g")
@@ -69,17 +70,19 @@ function cria_array_indexes(id, data, svg_widget, svg_height) {
             d3.select(this).append("rect").attr("width", w).attr("height", h);
             d3.select(this).append("text").attr("x", w/2 ).attr("y", h/2 ).attr("text-anchor", "middle").attr("alignment-baseline", "central");
         })
-    //.append("rect")
         .merge(groups);
-
+    
     // Atualiza a localização dos elementos (retângulos e textos)
-    groups.transition().duration(1000).attr("transform", function(d) {return "translate({x},{y})".replace("{x}", d.j * w).replace("{y}", d.i * h);});
+    groups.transition()
+        .duration(1000)
+        .delay(function(d) {return d.delay || null;})
+        .attr("transform", function(d) {return "translate({x},{y})".replace("{x}", d.j * w).replace("{y}", d.i * h);})
+        .attr("opacity", function(d) {return d.opacity || null;});
 
     // select não cria um novo grupo e nós mantemos os dados do parent (os "g"s no SVG)
     var rects = groups.select("rect");
     rects.transition().duration(1000)
-        .attr("fill", function(d) {return d.fill;})
-        .attr("opacity", function(d) {return d.opacity;});
+        .attr("fill", function(d) {return d.fill;});
     var texts = groups.select("text");
     texts.text(function(d) {return d.value;});
 }
@@ -224,6 +227,79 @@ function update_indexa_array2() {
 }
 
 
+function update_indexa_array3() {
+    "use strict";
+    var currentSlideId = Reveal.getCurrentSlide().id;
+    if (currentSlideId === "indexando_arrays3") {
+
+        var currentFragment = Reveal.getIndices().f;
+
+        var index_data = [
+            {i:0, j:0, value: 39, fill: "white"},
+            {i:0, j:1, value: 87, fill: "white"},
+            {i:0, j:2, value: 96, fill: "white"},
+            {i:0, j:3, value: 97, fill: "white"},
+            {i:0, j:4, value: 72, fill: "white"},
+            {i:1, j:0, value: 20, fill: "white"},
+            {i:1, j:1, value: 5,  fill: "white"},
+            {i:1, j:2, value: 68, fill: "white"},
+            {i:1, j:3, value: 48, fill: "white"},
+            {i:1, j:4, value: 23, fill: "white"},
+            {i:2, j:0, value: 83, fill: "white"},
+            {i:2, j:1, value: 70, fill: "white"},
+            {i:2, j:2, value: 12, fill: "white"},
+            {i:2, j:3, value: 73, fill: "white"},
+            {i:2, j:4, value: 31, fill: "white"},
+            {i:3, j:0, value: 0,  fill: "white"},
+            {i:3, j:1, value: 46, fill: "white"},
+            {i:3, j:2, value: 94, fill: "white"},
+            {i:3, j:3, value: 30, fill: "white"},
+            {i:3, j:4, value: 87, fill: "white"}
+        ];
+
+        function get_linear_idx(i, j) {
+            return i*5 + j;
+        }
+
+        var i, j;
+        switch (currentFragment) {
+        case 0:
+            for(i = 0; i < 5; i++) {
+                index_data[get_linear_idx(1, i)].fill = indexed_data_color;
+                index_data[get_linear_idx(2, i)].fill = indexed_data_color;
+            }
+            break;
+        case 1:
+            for(i = 0; i < 4; i++) {
+                for(j = 0; j < 5; j++) {
+                    if (index_data[get_linear_idx(i, j)].value < 30) {
+                        (index_data[get_linear_idx(i, j)]).fill = indexed_data_color;
+                    }
+                }
+            }
+            break;
+            // Case 1 é igual ao case 2
+        case 2:
+            for(i = 0; i < 4; i++) {
+                for(j = 0; j < 5; j++) {
+                    if (index_data[get_linear_idx(i, j)].value >= 30) {
+                        (index_data[get_linear_idx(i, j)]).fill = indexed_data_color;
+                    }
+                }
+            }
+            break;
+        case 3:
+            for(i = 0; i < 4; i++) {
+                index_data[get_linear_idx(i, 3)].fill = indexed_data_color;
+            }
+            break;
+        }
+        
+        cria_array_indexes("#indexando-arrays-placeholder3", index_data);
+    }
+}
+
+
 function update_manipulando_o_shape() {
     "use strict";
     var currentSlideId = Reveal.getCurrentSlide().id;
@@ -313,38 +389,38 @@ function update_C_order() {
         var currentFragment = Reveal.getIndices().f;
 
         var data_c_order = [
-                {i:0, j:0, value: "", fill: "DimGray"},
-                {i:0, j:1, value: "", fill: "DimGray"},
-                {i:0, j:2, value: "", fill: "DimGray"},
-                {i:1, j:0, value: "", fill: "gainsboro"},
-                {i:1, j:1, value: "", fill: "gainsboro"},
-                {i:1, j:2, value: "", fill: "gainsboro"},
-                // Metade que vai shiftar para a memória
-                {i:0, j:0, value: "", fill: "DimGray"},
-                {i:0, j:1, value: "", fill: "DimGray"},
-                {i:0, j:2, value: "", fill: "DimGray"},
-                {i:1, j:0, value: "", fill: "gainsboro"},
-                {i:1, j:1, value: "", fill: "gainsboro"},
-                {i:1, j:2, value: "", fill: "gainsboro"},
-            ];
+            {i:0, j:0, value: "1", fill: "DimGray"},
+            {i:0, j:1, value: "2", fill: "DimGray"},
+            {i:0, j:2, value: "3", fill: "DimGray"},
+            {i:1, j:0, value: "4", fill: "gainsboro"},
+            {i:1, j:1, value: "5", fill: "gainsboro"},
+            {i:1, j:2, value: "6", fill: "gainsboro"},
+            // Metade que vai shiftar para a memória
+            {i:0, j:0, value: "1", fill: "DimGray"},
+            {i:0, j:1, value: "2", fill: "DimGray"},
+            {i:0, j:2, value: "3", fill: "DimGray"},
+            {i:1, j:0, value: "4", fill: "gainsboro"},
+            {i:1, j:1, value: "5", fill: "gainsboro"},
+            {i:1, j:2, value: "6", fill: "gainsboro"},
+        ];
 
         switch (currentFragment) {
         case 2:
         case 3:
             data_c_order = [
-                {i:0, j:0, value: "", fill: "DimGray"},
-                {i:0, j:1, value: "", fill: "DimGray"},
-                {i:0, j:2, value: "", fill: "DimGray"},
-                {i:1, j:0, value: "", fill: "gainsboro"},
-                {i:1, j:1, value: "", fill: "gainsboro"},
-                {i:1, j:2, value: "", fill: "gainsboro"},
+                {i:0, j:0, value: "1", fill: "DimGray"},
+                {i:0, j:1, value: "2", fill: "DimGray"},
+                {i:0, j:2, value: "3", fill: "DimGray"},
+                {i:1, j:0, value: "4", fill: "gainsboro"},
+                {i:1, j:1, value: "5", fill: "gainsboro"},
+                {i:1, j:2, value: "6", fill: "gainsboro"},
                 // Metade que vai shiftar para a memória
-                {i:0.5, j:5, value: "", fill: "DimGray"},
-                {i:0.5, j:6, value: "", fill: "DimGray"},
-                {i:0.5, j:7, value: "", fill: "DimGray"},
-                {i:0.5, j:8, value: "", fill: "gainsboro"},
-                {i:0.5, j:9, value: "", fill: "gainsboro"},
-                {i:0.5, j:10, value: "", fill: "gainsboro"},
+                {i:0.5, j:5, value: "1", fill: "DimGray", delay:0},
+                {i:0.5, j:6, value: "2", fill: "DimGray", delay:200},
+                {i:0.5, j:7, value: "3", fill: "DimGray", delay:400},
+                {i:0.5, j:8, value: "4", fill: "gainsboro", delay:600},
+                {i:0.5, j:9, value: "5", fill: "gainsboro", delay:800},
+                {i:0.5, j:10, value: "6", fill: "gainsboro", delay:1000},
             ];
             break;
         }
@@ -362,37 +438,37 @@ function update_fortran_order() {
 
         var currentFragment = Reveal.getIndices().f;
         var data_fortran_order = [
-                {i:0, j:0, value: "", fill: "DimGray"},
-                {i:0, j:1, value: "", fill: "LightGray"},
-                {i:0, j:2, value: "", fill: "WhiteSmoke"},
-                {i:1, j:0, value: "", fill: "DimGray"},
-                {i:1, j:1, value: "", fill: "LightGray"},
-                {i:1, j:2, value: "", fill: "WhiteSmoke"},
-                // Metade que vai shiftar para memória
-                {i:0, j:0, value: "", fill: "DimGray"},
-                {i:0, j:1, value: "", fill: "LightGray"},
-                {i:0, j:2, value: "", fill: "WhiteSmoke"},
-                {i:1, j:0, value: "", fill: "DimGray"},
-                {i:1, j:1, value: "", fill: "LightGray"},
-                {i:1, j:2, value: "", fill: "WhiteSmoke"},
-            ];
+            {i:0, j:0, value: "1", fill: "DimGray"},
+            {i:0, j:1, value: "2", fill: "LightGray"},
+            {i:0, j:2, value: "3", fill: "WhiteSmoke"},
+            {i:1, j:0, value: "4", fill: "DimGray"},
+            {i:1, j:1, value: "5", fill: "LightGray"},
+            {i:1, j:2, value: "6", fill: "WhiteSmoke"},
+            // Metade que vai shiftar para memória
+            {i:0, j:0, value: "1", fill: "DimGray"},
+            {i:0, j:1, value: "2", fill: "LightGray"},
+            {i:0, j:2, value: "3", fill: "WhiteSmoke"},
+            {i:1, j:0, value: "4", fill: "DimGray"},
+            {i:1, j:1, value: "5", fill: "LightGray"},
+            {i:1, j:2, value: "6", fill: "WhiteSmoke"},
+        ];
         
         switch (currentFragment) {
         case 3:
             data_fortran_order = [
-                {i:0, j:0, value: "", fill: "DimGray"},
-                {i:0, j:1, value: "", fill: "LightGray"},
-                {i:0, j:2, value: "", fill: "WhiteSmoke"},
-                {i:1, j:0, value: "", fill: "DimGray"},
-                {i:1, j:1, value: "", fill: "LightGray"},
-                {i:1, j:2, value: "", fill: "WhiteSmoke"},
+                {i:0, j:0, value: "1", fill: "DimGray"},
+                {i:0, j:1, value: "3", fill: "LightGray"},
+                {i:0, j:2, value: "5", fill: "WhiteSmoke"},
+                {i:1, j:0, value: "2", fill: "DimGray"},
+                {i:1, j:1, value: "4", fill: "LightGray"},
+                {i:1, j:2, value: "6", fill: "WhiteSmoke"},
                 // Metade que vai shiftar para memória
-                {i:0.5, j:5, value: "", fill: "DimGray"},
-                {i:0.5, j:7, value: "", fill: "LightGray"},
-                {i:0.5, j:9, value: "", fill: "WhiteSmoke"},
-                {i:0.5, j:6, value: "", fill: "DimGray"},
-                {i:0.5, j:8, value: "", fill: "LightGray"},
-                {i:0.5, j:10, value: "", fill: "WhiteSmoke"},
+                {i:0.5, j:5, value: "1", fill: "DimGray", delay:0},
+                {i:0.5, j:7, value: "3", fill: "LightGray", delay:600},
+                {i:0.5, j:9, value: "5", fill: "WhiteSmoke", delay:1200},
+                {i:0.5, j:6, value: "2", fill: "DimGray", delay:300},
+                {i:0.5, j:8, value: "4", fill: "LightGray", delay:900},
+                {i:0.5, j:10, value: "6", fill: "WhiteSmoke", delay:1500},
             ];
             break;
         }
@@ -519,5 +595,159 @@ function update_broadcast() {
                 .attr("alignment-baseline", "central");
         }
         
+    }
+}
+
+
+function update_axis_params() {
+    "use strict";
+
+    var currentSlideId = Reveal.getCurrentSlide().id;
+    if (currentSlideId === "axis-params") {
+
+        var currentFragment = Reveal.getIndices().f;
+        var data = [
+            {i:0, j:0, value: "31", fill: "white", opacity:"1"},
+            {i:0, j:1, value: "11", fill: "white", opacity:"1"},
+            {i:0, j:2, value: "15", fill: "white", opacity:"1"},
+            {i:0, j:3, value: "69", fill: "white", opacity:"1"},
+            {i:1, j:0, value: "8 ", fill: "white", opacity:"1"},
+            {i:1, j:1, value: "75", fill: "white", opacity:"1"},
+            {i:1, j:2, value: "68", fill: "white", opacity:"1"},
+            {i:1, j:3, value: "54", fill: "white", opacity:"1"},
+            {i:2, j:0, value: "31", fill: "white", opacity:"1"},
+            {i:2, j:1, value: "47", fill: "white", opacity:"1"},
+            {i:2, j:2, value: "86", fill: "white", opacity:"1"},
+            {i:2, j:3, value: "23", fill: "white", opacity:"1"},
+            {i:1, j:1.5, value: "518", fill: "white", opacity:"0"},
+            {i:1, j:0, value: "70", fill: "white", opacity:"0"},
+            {i:1, j:1, value: "133", fill: "white", opacity:"0"},
+            {i:1, j:2, value: "169", fill: "white", opacity:"0"},
+            {i:1, j:3, value: "146", fill: "white", opacity:"0"},
+            {i:0, j:1.5, value: "126", fill: "white", opacity:"0"},
+            {i:1, j:1.5, value: "205", fill: "white", opacity:"0"},
+            {i:2, j:1.5, value: "187", fill: "white", opacity:"0"},
+        ];
+        
+        switch (currentFragment) {
+        case 0:
+            data = [
+                {i:1, j:1.5, value: "31", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "11", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "15", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "69", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "8", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "75", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "68", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "54", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "31", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "47", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "86", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "23", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "518", fill: "white", opacity:"1"},
+        ];
+            break;
+        case 2:
+            data = [
+                {i:1, j:0, value: "31", fill: "white", opacity:"0"},
+                {i:1, j:1, value: "11", fill: "white", opacity:"0"},
+                {i:1, j:2, value: "15", fill: "white", opacity:"0"},
+                {i:1, j:3, value: "69", fill: "white", opacity:"0"},
+                {i:1, j:0, value: "8", fill: "white", opacity:"0"},
+                {i:1, j:1, value: "75", fill: "white", opacity:"0"},
+                {i:1, j:2, value: "68", fill: "white", opacity:"0"},
+                {i:1, j:3, value: "54", fill: "white", opacity:"0"},
+                {i:1, j:0, value: "31", fill: "white", opacity:"0"},
+                {i:1, j:1, value: "47", fill: "white", opacity:"0"},
+                {i:1, j:2, value: "86", fill: "white", opacity:"0"},
+                {i:1, j:3, value: "23", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "518", fill: "white", opacity:"0"},
+                {i:1, j:0, value: "70", fill: "white", opacity:"1"},
+                {i:1, j:1, value: "133", fill: "white", opacity:"1"},
+                {i:1, j:2, value: "169", fill: "white", opacity:"1"},
+                {i:1, j:3, value: "146", fill: "white", opacity:"1"},
+            ];
+            break;
+        case 4:
+            data = [
+                {i:0, j:1.5, value: "31", fill: "white", opacity:"0"},
+                {i:0, j:1.5, value: "11", fill: "white", opacity:"0"},
+                {i:0, j:1.5, value: "15", fill: "white", opacity:"0"},
+                {i:0, j:1.5, value: "69", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "8", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "75", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "68", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "54", fill: "white", opacity:"0"},
+                {i:2, j:1.5, value: "31", fill: "white", opacity:"0"},
+                {i:2, j:1.5, value: "47", fill: "white", opacity:"0"},
+                {i:2, j:1.5, value: "86", fill: "white", opacity:"0"},
+                {i:2, j:1.5, value: "23", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "518", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "70", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "133", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "169", fill: "white", opacity:"0"},
+                {i:1, j:1.5, value: "146", fill: "white", opacity:"0"},
+                {i:0, j:1.5, value: "126", fill: "white", opacity:"1"},
+                {i:1, j:1.5, value: "205", fill: "white", opacity:"1"},
+                {i:2, j:1.5, value: "187", fill: "white", opacity:"1"},
+                
+        ];
+        }
+
+        cria_array_indexes("#axis-param-placeholder", data, 320, 150);
+    }
+}
+
+
+function update_baterias() {
+    "use strict";
+
+    var currentSlideId = Reveal.getCurrentSlide().id;
+    if (currentSlideId === "baterias") {
+        var svg = d3.select(document.getElementById("scientific_stack").contentDocument).select("svg");
+        var currentFragment = Reveal.getIndices().f;
+        svg.selectAll(".numpy").classed("hidden", true);
+        svg.selectAll(".scipy").classed("hidden", true);
+        svg.selectAll(".plots").classed("hidden", true);
+        svg.selectAll(".ipython").classed("hidden", true);
+        svg.selectAll(".ides").classed("hidden", true);
+        
+        switch (currentFragment) {
+        case 0:
+            svg.selectAll(".numpy").classed("hidden", false);
+            svg.selectAll(".scipy").classed("hidden", true);
+            svg.selectAll(".plots").classed("hidden", true);
+            svg.selectAll(".ipython").classed("hidden", true);
+            svg.selectAll(".ides").classed("hidden", true);
+            break;
+        case 1:
+            svg.selectAll(".numpy").classed("hidden", false);
+            svg.selectAll(".scipy").classed("hidden", false);
+            svg.selectAll(".plots").classed("hidden", true);
+            svg.selectAll(".ipython").classed("hidden", true);
+            svg.selectAll(".ides").classed("hidden", true);
+            break;
+        case 2:
+            svg.selectAll(".numpy").classed("hidden", false);
+            svg.selectAll(".scipy").classed("hidden", false);
+            svg.selectAll(".plots").classed("hidden", false);
+            svg.selectAll(".ipython").classed("hidden", true);
+            svg.selectAll(".ides").classed("hidden", true);
+            break;
+        case 3:
+            svg.selectAll(".numpy").classed("hidden", false);
+            svg.selectAll(".scipy").classed("hidden", false);
+            svg.selectAll(".plots").classed("hidden", false);
+            svg.selectAll(".ipython").classed("hidden", false);
+            svg.selectAll(".ides").classed("hidden", true);
+            break;
+        case 4:
+            svg.selectAll(".numpy").classed("hidden", false);
+            svg.selectAll(".scipy").classed("hidden", false);
+            svg.selectAll(".plots").classed("hidden", false);
+            svg.selectAll(".ipython").classed("hidden", false);
+            svg.selectAll(".ides").classed("hidden", false);
+            break;
+        }
     }
 }

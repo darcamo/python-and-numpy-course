@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="531.58" width="990.09" viewBox="0 0 990.09405 531.581">
+    <style>
+     /* .numpy { stroke:#42c842; fill:#42c842;} */
+     g {fill: none !important;}
+     text {fill:#fff; !important}
+     circle {stroke:#000 !important;}
+     /* circle:hover { fill:#555; } */
+
+     .hidden { visibility:hidden; }
+     .numpy { stroke:#42c842; fill:#42c842; }
+     /* .numpy:hover { stroke:#55d977; fill:#55d977;  } */
+     
+     .scipy { fill:#007dd4; stroke:#007dd4;}
+     .plots { fill:#ede000; stroke:#ede000;}
+     .ides { fill:#ffda8f; stroke:#ffda8f;}
+     .ipython { fill:#ff7a80; stroke:#ff7a80;}
+     .python { fill:#fff; stroke:#fff;}
+     
+     .texto-lateral {
+         fill:#ffffff;
+         font-size="25px";}
+    </style>
+
+    <!-- Filtro de Drop Shadow aplicado nos circulos com path -->
+    <filter id="dropshadow" height="130%">
+        <!-- stdDeviation is how much to blur -->
+        <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+        <feOffset dx="7" dy="10" result="offsetblur"/> <!-- how much to offset -->
+        <feMerge> 
+            <feMergeNode/> <!-- this contains the offset blurred image -->
+            <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
+        </feMerge>
+    </filter>
+    
+    <text font-size="20.613px" y="24.733719" x="146.86679" fill="#ffffff"><tspan y="40" x="147" font-size="30.919px" fill="#ffffff">Ecosistema Python para pesquisa científica</tspan></text>
+    <g transform="translate(205,300)">
+        <g stroke-width="2.0">
+            <circle cy="0" cx="0" r="204.48" class="ides hidden"/>
+            <circle cy="0" cx="0" r="173.28" class="ipython hidden"/>
+            <circle cy="0" cx="0" r="144.31" class="plots hidden"/>
+            <circle cy="0" cx="0" r="116.45" class="scipy hidden"/>
+            <circle cy="0" cx="0" r="88.588" class="numpy hidden"/>
+            <circle cy="0" cx="0" r="61.843" class="python"/>
+            <text font-size="25px" style="stroke-width:1.0;  stroke:#000; fill:#000;" x="0" text-anchor="middle" alignment-baseline="middle">Python</text>
+        </g>
+    </g>
+    
+    <g class="texto-lateral" font-size="25px" transform="translate(490,80)">
+        <g class="numpy hidden">
+            <text y="0" x="0">Numpy</text>
+            <text y="25" x="30">Array Multidimensional</text>
+            <text y="50" x="30">Álgebra Linear</text>
+            <text y="75" x="30">Operações matemáticas com matrizes, etc</text>
+        </g>
+        <g transform="translate(0,110)" class="scipy hidden">
+            <text>Scipy, Pandas, scikit-image, scikit-learn, Sympy</text>
+            <text y="25" x="30">Estatística, processamento de sinais/imagens</text>
+            <text y="50" x="30">Análise de dados, aprendizado de máquinas</text>
+            <text y="75" x="30">Computação simbólica (Sympy)</text>
+            <text y="100" x="30">Várias outras toolboxes</text>
+        </g>
+
+        <g transform="translate(0,250)" class="plots hidden">
+            <text>Matplotlib, Mayavi, Bokeh, etc.</text>
+            <text y="25" x="30">Poderosas ferramentas para plots</text>
+        </g>
+        
+        <g transform="translate(0,310)" class="ipython hidden">
+            <text>IPython, Jupyter Notebooks</text>
+            <text y="25" x="30">Terminal com recursos mais avançados</text>
+            <text y="50" x="30">Terminal Qt</text>
+            <text y="75" x="30">Jupyter Notebooks</text>
+        </g>
+        <g transform="translate(0,420)" class="ides hidden">
+            <text>Spyder, Canopy, PTVS, PyCharm</text>
+            <text y="25" x="30">Ambientes integrados de desenvolvimento</text>
+        </g>
+    </g>
+
+    <g style="filter:url(#dropshadow)">
+        <!-- Numpy -->
+        <g transform="translate(250, 240)" class="numpy hidden">
+            <path stroke-width="6" d="M0,0 L160,-168 h70"></path>
+            <circle cx="0" cy="0" r="8"/>
+        </g>
+        <!-- Scipy -->
+        <g transform="translate(290, 240)" class="scipy hidden">
+            <path stroke-width="6" d="M0,0 l120,-60 h70"></path>
+            <circle cx="0" cy="0" r="8"/>
+        </g>
+        <!-- Matplotlib -->
+        <g transform="translate(325,350)" class="plots hidden">
+            <path stroke-width="6" d="M0,0 l85,-30 h70"></path>
+            <circle cy="0" cx="0" r="8"/>
+        </g>
+        <!-- IPython -->
+        <g transform="translate(315, 415)" class="ipython hidden">
+            <path stroke-width="6" d="M0,0 l95,-35 h70"></path>
+            <circle cy="0" cx="0" r="8"/>
+        </g>
+        <!-- IDEs -->
+        <g transform="translate(290, 470)" class="ides hidden">
+            <path stroke-width="6" d="M0,0 l120,20 h70"></path>
+            <circle cy="0" cx="0" r="8"/>
+        </g>
+    </g>
+</svg>
