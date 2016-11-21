@@ -7,6 +7,10 @@
 }
 
 
+.fa {
+    margin-left:5px;
+    margin-right:5px;
+}
 
 /* Se tiver uma tag code dentro de um item de uma lista */
 li>code {
@@ -78,6 +82,8 @@ code-terminal {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border: none;
+    /* margin: auto; */
 }
 
 

@@ -44,14 +44,14 @@
                     <h3>Prof: Darlan Cavalcante Moreira</h3>
                 </section>
 
-                <section>
-                    <h2>Organização Desswa Apresentação</h2>
-                    <ul>
-                        <li>Conteúdo</li>
-                        <li>Exemplo</li>
-                        <li>Exercício</li>
-                    </ul>
-                </section>
+                <!-- <section>
+                     <h2>Organização Desswa Apresentação</h2>
+                     <ul>
+                     <li>Conteúdo</li>
+                     <li>Exemplo</li>
+                     <li>Exercício</li>
+                     </ul>
+                     </section> -->
                 
 				<section>
                     <h2>Objetivos</h2>
@@ -88,12 +88,14 @@
                         <li>Python possui duas versões: Python2 e <span class="green">Python3</span></li>
                         <!-- <li>Aqui usaremos a versão 3</li> -->
                         <li>Podem baixar a partir do site oficial em https://www.python.org/downloads/</li>
-                        <li>Ou podemos usar umas das <em>distribuições</em> disponíveis
+                        <li>No windows pode ser complicado instalar bibliotecas e suas dependências</li>
+                        <li>Um alternativa mais fácil é usar umas das <em class="green">distribuições python</em> disponíveis:
                             <ul>
-                                <li><a href="https://www.continuum.io/downloads/">Anaconda</a></li>
+                                <li><a href="https://www.continuum.io/downloads/">Anaconda</a> <i class="fa fa-hand-o-right"></i> Usamos essa para os computadores aqui do laboratório</li>
                                 <li><a href="https://www.enthought.com/products/canopy/">Canopy</a></li>
                                 <li><a href="https://winpython.github.io/">WinPython</a> (possui versão portable)</li>
                             </ul></li>
+                        <li><span class="red">Nota:</span> Podem me perguntar sobre o anaconda para mais detalhes depois</li>
                     </ul>
                 </section>
 
@@ -123,7 +125,7 @@
                         <li>Um dos recursos mais úteis do IPython é <a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#tab-completion">completar um comando</a></li>
                         <li>Após digitar parte do comando aperte <tt class="green">TAB</tt> para completar</li>
                         <li>Caso haja mais de uma opção uma lista de opções será mostrada</li>
-                        <img alt="TAB completion do IPython" src="imagens/numpy_part/ipython_tab_complete2.png"/ class="displayed">
+                        <img alt="TAB completion do IPython" src="imagens/numpy_part/ipython_tab_complete.png"/ class="displayed">
                         <li>Também acessar o shell do sistema usando <code>!commando</code> (muito útil para alternar entre pastas, remover arquivos, etc)</li>
                     </ul>
                     <code-terminal><in>!pwd  # Em que pasta estou agora (apenas pwd também funcionaria)</in>
@@ -151,15 +153,15 @@
                     </ul>
                 </section>
 
-                <section>
+                <section id="ipython_magic">
                     <h2>IPython</h2>
 
                     <ul>
                         <li>Outro recurso extremamente útil do IPython são os <a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#magic-functions">comandos mágicos</a></li>
                         <li>Alguns dos comandos mágicos mais úteis são:
                             <ul>
-                                <li><tt class="green">%whos</tt>: Lista variáveis e funções atuais (não mostra variáveis criadas pelo IPython como <code>_3</code>, <code>_i14</code>, etc)</li>
-                                <code-terminal dontshowcursor style="font-size:90%"><in>a = [1,2,3]</in>
+                                <li><tt class="fragment highlight-green">%whos</tt>: Lista variáveis e funções atuais (não mostra variáveis criadas pelo IPython como <code>_3</code>, <code>_i14</code>, etc)</li>
+                                <code-terminal id="code_terminal_whos" dontshowcursor style="font-size:90%;"><in>a = [1,2,3]</in>
 <in>b = "Olá Mundo"</in>
 <in>whos
 Variable   Type    Data/Info
@@ -171,57 +173,103 @@ b          str     Hello
 Variable   Type    Data/Info
 ----------------------------
 a          list    n=3</in></code-terminal>
-                                <li><tt class="green">%edit testando.py</tt>: Abre 'testando.py' e executa o código após sair</li>
-                                <li><tt class="green">%run testando.py</tt>: Executa testando.py como um script</li>
-                                <li><tt class="green">%paste</tt>: Cola e executa um bloco de código da área de transferência</li>
-                                <li><tt class="green">%timeit</tt>: Executa uma expressão e mostra tempo decorrido
-                                    <code-terminal dontshowcursor style="font-size:90%"><in>%timeit 4 * 5
-100000000 loops, best of 3: 12.3 ns per loop</in></code-terminal></li>
-                                <li><tt class="green">%macro</tt>: Define um macro para futura execução</li>
-                                    <li><tt class="green">%quickref</tt>: Cartão de referência do IPython <i class="green fa fa-hand-o-right"></i> Veja também <code>%comando?</code></li>
-                                    <li><tt class="green">%autocall</tt>: Dispensa os parêntesis em uma chamada de função</li>
+                                <li><tt class="fragment highlight-green">%edit testando.py</tt>: Abre 'testando.py' e executa o código após sair</li>
+                                <code-terminal id="code_terminal_edit" dontshowcursor><in>edit testando.py
+Editing... Waiting for Emacs...</in></code-terminal>
+                                <li><tt class="fragment highlight-green">%run testando.py</tt>: Executa testando.py como um script <span class="fragment highlight-green"><i class="fa fa-hand-o-right"></i> Também odemos pasasr opções como "-p" ou "-t"</span></li>
+                                <code-terminal id="code_terminal_run" dontshowcursor><in>cat testando.py  # Vamos ver o conteúdo que salvei no arquivo
+a = 10
+b = 20
+print(a * b)</in>
+<in>run testando.py  # TAB completa o nome do arquivo
+200
+</in>
+<in>whos
+Variable   Type    Data/Info
+----------------------------
+a          int     10
+b          int     20</in></code-terminal>
+                                <code-terminal id="code_terminal_run_profile" dontshowcursor><in>run -p testando.py</in>
+Ordered by: internal time
+
+ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     2    0.000    0.000    0.000    0.000 {built-in method io.open}
+     1    0.000    0.000    0.000    0.000 interactiveshell.py:2431(safe_execfile)
+     1    0.000    0.000    0.000    0.000 {built-in method builtins.compile}
+     2/1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
+     1    0.000    0.000    0.000    0.000 py3compat.py:182(execfile)
+     1    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+     1    0.000    0.000    0.000    0.000 posixpath.py:318(normpath)
+     1    0.000    0.000    0.000    0.000 posixpath.py:145(dirname)
+     1    0.000    0.000    0.000    0.000 _bootlocale.py:23(getpreferredenco
+     ... ... ...</code-terminal>
+                                <li><tt class="fragment highlight-green">%paste</tt>: Cola e executa um bloco de código da área de transferência</li>
+                                <li><tt class="fragment highlight-green">%timeit</tt>: Executa uma expressão e mostra tempo decorrido</li>
+                                <code-terminal id="code_terminal_timeit" dontshowcursor style="font-size:90%"><in>%timeit 4 * 5
+100000000 loops, best of 3: 12.3 ns per loop</in></code-terminal>
+                                <!-- <li><tt class="fragment highlight-green">%macro</tt>: Define um macro para futura execução</li> -->
+                                <li><tt class="fragment highlight-green">%autocall</tt>: Dispensa os parêntesis em uma chamada de função</li>
+                                <code-terminal id="code_terminal_autocall" dontshowcursor><in>sum [1,2,3]
+-------> sum([1,2,3])</in>
+<output>6</output></code-terminal>
+                                    
+                                <li><tt class="fragment highlight-green">%quickref</tt>: Cartão de referência do IPython <i class="green fa fa-hand-o-right"></i> Veja também <code>%comando?</code></li>
                             </ul>
                         </li>
                     </ul>
                     
                 </section>
 
-                </section>
-                
-                <section>
-                    <h2>IPython</h2>
-                    <ul>
-                        <li><a href="http://ipython.org/ipython-doc/stable/interactive/tutorial.html">IPython</a> é poderoso shell interativo para a linguagem python
-                            <ul>
-                                <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#tab-completion">Completar um comando</a> (após digitar parte dele) com <tt class="green">TAB</tt></li>
-                                <!-- <li>Sintaxe adicional para o shell</li> -->
-                                <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#history">Histórico de comandos</a></li>
-                                <li>Acesso ao shell do sistema: <code>!commando</code></li>
-                            </ul>
-                        </li>
-                        <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#exploring-your-objects">Obtendo Ajuda com "?"</a> <span style="font-size: 50%; float:right;">(se necessário aperte "q" para sair do help)</span>
-                            <code-terminal><span class="ipython-in">abs?</span>
-<span class="red">Docstring</span>: Return the absolute value of the argument.
-<span class="red">Type:</span>      builtin_function_or_method</code-terminal>
-                        </li>
-                        <li><a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#magic-functions">Funções mágicas</a> <i class="fa fa-hand-o-right"></i> <span class="green">Muito úteis</span>
-                            <ul>
-                                <li><tt class="green">%whos</tt>: Veja variáveis e funções atuais</li>
-                                <li><tt class="green">%run</tt>: Executa um arquivo como um script</li>
-                                <li><tt class="green">%paste</tt>: Cola e executa um bloco de código</li>
-                                <li><tt class="green">%timeit</tt>: Executa uma expressão e mostra tempo decorrido</li>
-                                
-                                <!-- <li><tt class="green">%macro</tt>: Define um macro para futura execução</li> -->
-                                <li><tt class="green">%quickref</tt>: Cartão de referência do IPython</li>
-                                <!-- <li class="fragment"><tt class="green">%autocall</tt>: Dispensa os parêntesis em uma chamada de função</li> -->
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
-                
-                <section>
-                    <h2>Jupyter Notebooks</h2>
+                <!-- <section>
+                     <h2>IPython</h2>
 
+                     <ul>
+                     <li>Outro recurso extremamente útil do IPython são os <a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#magic-functions">comandos mágicos</a></li>
+                     <li>Alguns dos comandos mágicos mais úteis são:
+                     <ul>
+                     </ul>
+                     </li>
+                     </ul>
+                     </section> -->
+                
+
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Jupyter Notebooks</h2>
+
+                        <ul>
+                            <li>Surgiu a partir do IPython, inspirado pelo Mathematica</li>
+                            <li>Pode ser usado online em <a href="https://try.jupyter.org">https://try.jupyter.org</a></li>
+                            <li>Pode ser instalado pelo Anaconda</li>
+                            <li>Rode o comando <code>jupyter notebook</code> para iniciar <span class="green"><i class="fa fa-hand-o-right"></i> Tentem agora</span></li>
+                            <li class="fragment"><span class="red">Nota:</span> Existem serviços que rodam na nuvem e permitem criar e executar notebooks como <a href="https://cloud.sagemath.com/settings">SageMathCloud</a> e <a href="https://wakari.io/">Wakario</a>
+                                <img alt="" src="imagens/numpy_part/sage_math_cloud.png" class="displayed" style="width: 700px;"/>
+                            </li>
+                        </ul>
+                        
+                    </section>
+
+                    <section>
+                        <h2>Jupyter Notebook</h2>
+                        <h3>Dashboard</h3>
+
+                        <ul>
+                            <li>Ao executar o notebook uma aba do navegador é aberta com o dashboard</li>
+                            <img alt="" src="imagens/numpy_part/jupyter_dashboard.png" style="border:none; margin:auto;"/>
+                        </ul>
+                        
+                    </section>
+
+                    <section>
+                        <h2>Jupyter Notebook</h2>
+                        <h3>Editor</h3>
+
+                        BLA BLA BLA
+                        
+                    </section>
+                    
                 </section>
                 
                 <section>
@@ -1275,6 +1323,7 @@ plt.show()
          // https://github.com/ptamarit/slides-data-viz-web-d3/blob/master/src/js/reveal-to-d3.js
          Reveal.addEventListener('slidechanged', function(event) {
              update_baterias();
+             update_ipython_magic();
              update_indexa_array();
              update_indexa_array2();
              update_indexa_array3();
@@ -1286,6 +1335,7 @@ plt.show()
          });
          Reveal.addEventListener('fragmentshown', function(event) {
              update_baterias();
+             update_ipython_magic();
              update_indexa_array();
              update_indexa_array2();
              update_indexa_array3();
@@ -1297,6 +1347,7 @@ plt.show()
          });
          Reveal.addEventListener('fragmenthidden', function(event) {
              update_baterias();
+             update_ipython_magic();
              update_indexa_array();
              update_indexa_array2();
              update_indexa_array3();

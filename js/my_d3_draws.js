@@ -751,3 +751,42 @@ function update_baterias() {
         }
     }
 }
+
+
+function update_ipython_magic() {
+    "use strict";
+
+    var currentSlideId = Reveal.getCurrentSlide().id;
+    if (currentSlideId === "ipython_magic") {
+        var svg = d3.select(document.getElementById("scientific_stack").contentDocument).select("svg");
+        var currentFragment = Reveal.getIndices().f;
+
+        var t = d3.select("#code_terminal_whos").style("display","none");
+        var t2 = d3.select("#code_terminal_edit").style("display","none");
+        var t3 = d3.select("#code_terminal_run").style("display","none");
+        var t4 = d3.select("#code_terminal_run_profile").style("display","none");
+        var t5 = d3.select("#code_terminal_timeit").style("display","none");
+        var t6 = d3.select("#code_terminal_autocall").style("display","none");
+        
+        switch (currentFragment) {
+        case 0:
+            t.style("display","block");
+            break;
+        case 1:
+            t2.style("display","block");
+            break;
+        case 2:
+            t3.style("display","block");
+            break;
+        case 3:
+            t4.style("display","block");
+            break;
+        case 5:
+            t5.style("display","block");
+            break;
+        case 6:
+            t6.style("display","block");
+            break;
+        }
+    }
+}
