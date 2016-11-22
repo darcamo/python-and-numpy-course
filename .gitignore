@@ -9,5 +9,7 @@ log/*.log
 tmp/**
 node_modules/
 .sass-cache
+*.log
 css/reveal.min.css
 js/reveal.min.js
+jupyter_notebooks/.ipynb_checkpoints/

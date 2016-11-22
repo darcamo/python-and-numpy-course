@@ -2,7 +2,7 @@
     <style>
      /* .numpy { stroke:#42c842; fill:#42c842;} */
      g {fill: none !important;}
-     text {fill:#fff; !important}
+     text {fill:#fff !important;}
      circle {stroke:#000 !important;}
      /* circle:hover { fill:#555; } */
 
@@ -18,7 +18,7 @@
      
      .texto-lateral {
          fill:#ffffff;
-         font-size="25px";}
+         font-size: 25px;}
     </style>
 
     <!-- Filtro de Drop Shadow aplicado nos circulos com path -->
@@ -32,7 +32,7 @@
         </feMerge>
     </filter>
     
-    <text font-size="20.613px" y="24.733719" x="146.86679" fill="#ffffff"><tspan y="40" x="147" font-size="30.919px" fill="#ffffff">Ecosistema Python para pesquisa científica</tspan></text>
+    <text font-size="20.613px" y="24.733719" x="146.86679" fill="#ffffff"><tspan y="40" x="147" font-size="32" fill="#ff8c00">Ecosistema Python para pesquisa científica</tspan></text>
     <g transform="translate(205,300)">
         <g stroke-width="2.0">
             <circle cy="0" cx="0" r="204.48" class="ides hidden"/>
@@ -41,11 +41,11 @@
             <circle cy="0" cx="0" r="116.45" class="scipy hidden"/>
             <circle cy="0" cx="0" r="88.588" class="numpy hidden"/>
             <circle cy="0" cx="0" r="61.843" class="python"/>
-            <text font-size="25px" style="stroke-width:1.0;  stroke:#000; fill:#000;" x="0" text-anchor="middle" alignment-baseline="middle">Python</text>
+            <text class="texto-lateral" style="stroke-width:1.0;  stroke:black; fill:black !important;" x="0" text-anchor="middle" alignment-baseline="middle">Python</text>
         </g>
     </g>
     
-    <g class="texto-lateral" font-size="25px" transform="translate(490,80)">
+    <g class="texto-lateral" transform="translate(490,80)">
         <g class="numpy hidden">
             <text y="0" x="0">Numpy</text>
             <text y="25" x="30">Array Multidimensional</text>

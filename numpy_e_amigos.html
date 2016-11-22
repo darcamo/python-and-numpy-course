@@ -39,9 +39,9 @@
 		<div class="reveal">
 			<div class="slides">
                 <section data-background-image="imagens/hello_python.png" data-background-size="30%" data-background-position="bottom">
-                    <h1>Programando Python</h1>
-                    <h2>Um Curso Relâmpago</h2>
-                    <h3>Prof: Darlan Cavalcante Moreira</h3>
+                    <h1>Ecossistema Python para Computação Numérica</h1>
+                    <!-- <h2>O Ecossistema Python para Computação Numérica</h2> -->
+                    <h3>Palestrante: Darlan Cavalcante Moreira</h3>
                 </section>
 
                 <!-- <section>
@@ -56,8 +56,9 @@
 				<section>
                     <h2>Objetivos</h2>
                     <ul>
-                        <li>Aprender como usar a pilha de bibliotecas para computação científica em python</li>
-                        <li>Fazer uma simulação em python e obter uma curva como abaixo
+                        <li>Aprender como usar a pilha de bibliotecas para computação científica em Python</li>
+                        <li>Aprender algumas ferramentas eficientes como IPython, Jupyter Notebook, debuggers, etc</li>
+                        <li>Aprender a criar plots em Python semelhantes a curva como abaixo
                             <img data-src="/imagens/numpy_part/comic_plot.png" width="600" class="displayed"/>
                         </li>
                     </ul>
@@ -69,7 +70,7 @@
                     <ul>
                         <li>Python é uma linguagem de programação de uso geral</li>
                         <!-- <li>Mas possui várias bibliotecas voltadas para computação científica</li> -->
-                        <li>O ecosistema para pesquisa científica em python pode ser visto como camadas que incluem: A linguagem Python, <span class="fragment highlight-green"> Numpy</span>, <span class="fragment highlight-green">bibliotecas baseadas no Numpy</span>, <span class="fragment highlight-green">bibliotecas para plot</span>, <span class="fragment highlight-green">terminais mais avançados</span>, <span class="fragment highlight-green">IDEs e similares</span></li>
+                        <li>O ecossistema para pesquisa científica em Python pode ser visto como diversas camadas que incluem: A linguagem Python, <span class="fragment highlight-green"> a biblioteca Numpy</span>, <span class="fragment highlight-green">bibliotecas baseadas no Numpy</span>, <span class="fragment highlight-green">bibliotecas para plot</span>, <span class="fragment highlight-green">terminais mais avançados</span>, <span class="fragment highlight-green">IDEs e similares</span></li>
                         <li>Nesse curso vamos ver parte dessas ferramentas</li>
                     </ul>
                     <!-- https://indranilsinharoy.com/2013/01/06/python-for-scientific-computing-a-collection-of-resources/ -->
@@ -89,7 +90,7 @@
                         <!-- <li>Aqui usaremos a versão 3</li> -->
                         <li>Podem baixar a partir do site oficial em https://www.python.org/downloads/</li>
                         <li>No windows pode ser complicado instalar bibliotecas e suas dependências</li>
-                        <li>Um alternativa mais fácil é usar umas das <em class="green">distribuições python</em> disponíveis:
+                        <li>Um alternativa mais fácil é usar umas das <em class="green">distribuições Python</em> disponíveis:
                             <ul>
                                 <li><a href="https://www.continuum.io/downloads/">Anaconda</a> <i class="fa fa-hand-o-right"></i> Usamos essa para os computadores aqui do laboratório</li>
                                 <li><a href="https://www.enthought.com/products/canopy/">Canopy</a></li>
@@ -104,10 +105,10 @@
                 <section>
                     <h2>IPython</h2>
                     <ul>
-                        <li><a href="http://ipython.org/ipython-doc/stable/interactive/tutorial.html">IPython</a> é poderoso shell interativo para a linguagem python, muito superior ao shell padrão</li>
+                        <li><a href="http://ipython.org/ipython-doc/stable/interactive/tutorial.html">IPython</a> é poderoso shell interativo para a linguagem Python, muito superior ao shell padrão</li>
                         <li>As entradas e saídas são numeradas e você pode recuperar seus valores</li>
                         <li>É possível acessar os valores das entradas com variáveis <code>_i1</code>, <code>_i2</code>, etc</li>
-                        <li>Os valores das saídas podem ser acessadas por <code>_1</code>, <code>_2</code>, onde <code>_</code>, <code>__</code> e <code>___</code> acessam a última, penúltima e anti-penúltima saída</li>
+                        <li>Os valores das saídas podem ser acessadas por <code>_1</code>, <code>_2</code>, onde <code>_</code>, <code>__</code> e <code>___</code> acessam a última, penúltima e antepenúltima saída</li>
                     </ul>
                     <code-terminal><in>a = 10</in>
 <in>a + 4  # Esqueci de salvar em uma variável</in>
@@ -123,10 +124,10 @@
 
                     <ul>
                         <li>Um dos recursos mais úteis do IPython é <a href="http://ipython.readthedocs.io/en/stable/interactive/tutorial.html#tab-completion">completar um comando</a></li>
-                        <li>Após digitar parte do comando aperte <tt class="green">TAB</tt> para completar</li>
+                        <li>Após digitar parte do comando aperte <kbd>TAB</kbd> para completar</li>
                         <li>Caso haja mais de uma opção uma lista de opções será mostrada</li>
                         <img alt="TAB completion do IPython" src="imagens/numpy_part/ipython_tab_complete.png"/ class="displayed">
-                        <li>Também acessar o shell do sistema usando <code>!commando</code> (muito útil para alternar entre pastas, remover arquivos, etc)</li>
+                        <li>Também acessar o shell do sistema usando <code>!comando</code> (muito útil para alternar entre pastas, remover arquivos, etc)</li>
                     </ul>
                     <code-terminal><in>!pwd  # Em que pasta estou agora (apenas pwd também funcionaria)</in>
 <output>/home/darlan/Desktop</output>
@@ -149,7 +150,7 @@
                         </li>
                         
                         
-                        <li>Através da introspecção com <code>?</code> e apertando <tt>TAB</tt> para completar comandos é possível realmente explorar bem funções, classes, etc.</li>
+                        <li>Através da introspecção com <code>?</code> e apertando <kbd>TAB</kbd> para completar comandos é possível realmente explorar bem funções, classes, etc.</li>
                     </ul>
                 </section>
 
@@ -176,7 +177,7 @@ a          list    n=3</in></code-terminal>
                                 <li><tt class="fragment highlight-green">%edit testando.py</tt>: Abre 'testando.py' e executa o código após sair</li>
                                 <code-terminal id="code_terminal_edit" dontshowcursor><in>edit testando.py
 Editing... Waiting for Emacs...</in></code-terminal>
-                                <li><tt class="fragment highlight-green">%run testando.py</tt>: Executa testando.py como um script <span class="fragment highlight-green"><i class="fa fa-hand-o-right"></i> Também odemos pasasr opções como "-p" ou "-t"</span></li>
+                                <li><tt class="fragment highlight-green">%run testando.py</tt>: Executa testando.py como um script <span class="fragment highlight-green"><i class="fa fa-hand-o-right"></i> Também podemos passar opções como "-p" ou "-t"</span></li>
                                 <code-terminal id="code_terminal_run" dontshowcursor><in>cat testando.py  # Vamos ver o conteúdo que salvei no arquivo
 a = 10
 b = 20
@@ -196,7 +197,7 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
      2    0.000    0.000    0.000    0.000 {built-in method io.open}
      1    0.000    0.000    0.000    0.000 interactiveshell.py:2431(safe_execfile)
      1    0.000    0.000    0.000    0.000 {built-in method builtins.compile}
-     2/1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
+     2/1  0.000    0.000    0.000    0.000 {built-in method builtins.exec}
      1    0.000    0.000    0.000    0.000 py3compat.py:182(execfile)
      1    0.000    0.000    0.000    0.000 {built-in method builtins.print}
      1    0.000    0.000    0.000    0.000 posixpath.py:318(normpath)
@@ -237,13 +238,15 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 
                 <section>
                     <section>
-                        <h2>Jupyter Notebooks</h2>
+                        <h2>Jupyter Notebook</h2>
 
                         <ul>
-                            <li>Surgiu a partir do IPython, inspirado pelo Mathematica</li>
-                            <li>Pode ser usado online em <a href="https://try.jupyter.org">https://try.jupyter.org</a></li>
-                            <li>Pode ser instalado pelo Anaconda</li>
-                            <li>Rode o comando <code>jupyter notebook</code> para iniciar <span class="green"><i class="fa fa-hand-o-right"></i> Tentem agora</span></li>
+                            <li class="fragment">Surgiu inicialmente como IPython Notebook, inspirado pelo Mathematica</li>
+                            <li class="fragment">Cada notebook quando aberto está associado a um <span class="green">kernel</span></li>
+                            <li class="fragment">Pode ser usado online em <a href="https://try.jupyter.org">https://try.jupyter.org</a></li>
+                            <li class="fragment"><a href="https://nbviewer.jupyter.org/">nbviewer</a>: Site com vários notebooks interessantes, como por exemplo <a href="https://nbviewer.jupyter.org/github/unpingco/Python-for-Signal-Processing/blob/master/Expectation_Maximization.ipynb">esse aqui</a> (<a href="http://localhost:8888/notebooks/Expectation_Maximization.ipynb">versão local</a>)</li>
+                            <li class="fragment">Pode ser instalado pelo Anaconda</li>
+                            <li class="fragment">Rode o comando <code>jupyter notebook</code> para iniciar <span class="green"><i class="fa fa-hand-o-right"></i> Tentem agora</span></li>
                             <li class="fragment"><span class="red">Nota:</span> Existem serviços que rodam na nuvem e permitem criar e executar notebooks como <a href="https://cloud.sagemath.com/settings">SageMathCloud</a> e <a href="https://wakari.io/">Wakario</a>
                                 <img alt="" src="imagens/numpy_part/sage_math_cloud.png" class="displayed" style="width: 700px;"/>
                             </li>
@@ -257,7 +260,8 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 
                         <ul>
                             <li>Ao executar o notebook uma aba do navegador é aberta com o dashboard</li>
-                            <img alt="" src="imagens/numpy_part/jupyter_dashboard.png" style="border:none; margin:auto;"/>
+                            <li>Vemos os arquivos na pasta onde o comando <code>jupyter notebook</code> foi executado</li>
+                            <img alt="" src="imagens/numpy_part/jupyter_dashboard.png" style="border:none;"/>
                         </ul>
                         
                     </section>
@@ -266,8 +270,42 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                         <h2>Jupyter Notebook</h2>
                         <h3>Editor</h3>
 
-                        BLA BLA BLA
-                        
+                        <ul>
+                            <li>No dashboard, cliquem em "New" e escolham o kernel indicado como Python3 para criar um novo notebook</li>
+                            <li class="fragment green">Executar o tour pela interface em "Help <i class="fa fa-arrow-right"></i> User Interface Tour" </li>
+                            <li class="fragment">As células podem ser de dois tipos: markdown e code</li>
+                            <li class="fragment">Células do tipo "markdown" contém texto que é renderizado usando a <a href="https://daringfireball.net/projects/markdown/syntax">notação markdown</a></li>
+                            <li class="fragment">Células do tipo "code" contém código que será executado, possivelmente resultando em alguma saída mostrada abaixo</li>
+                            <li class="fragment">Em alguns caso a saída será mostrada em um <span class="green">formato mais apropriado</span></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Jupyter Notebook</h2>
+                        <h3>Exercício</h3>
+                        <ul>
+                            <li>Crie uma célula markdown contendo texto com alguma formatação em markdown</li>
+                            <li>Uma célula abaixo definindo duas variáveis com números</li>
+                            <li>Crie uma célula abaixo somando as duas variáveis</li>
+                            <li>Faça um merge das duas células anteriores</li>
+                            <li>Crie uma célula vazia</li>
+                            <li>Delete a célula vazia recém criada</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Jupyter Notebook</h2>
+                        <h3>Mais que um terminal</h3>
+                        <ul>
+                            <li>O editor do Jupyter possui algumas melhorias que não são possíveis em um terminal</li>
+                            <ul>
+                                <li><code>obj?</code> mostra informações do objeto em um <em>pager</em></li>
+                                <li><kbd>Shift</kbd>+<kbd>Enter</kbd> em uma função mostra a docstring da função em um popup</li>
+                                <li><span class="green">Rich Display System</span>: Estende o método nativo <code>__repr__</code> do Python para outras representações e o notebook vai escolher a mais apropriada</li>
+                                <ul><li>Representações possíveis: HTML, JSON, PNG, JPEG, SVG, LaTeX</li></ul>
+                                <li>Etc.</li>
+                            </ul>
+                        </ul>
                     </section>
                     
                 </section>
@@ -285,7 +323,7 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                     <aside class="notes">
                         <ul>
                             <li>RANK: Não confundir a noção esse rank
-                                com o rank de algebra linear.</li>
+                                com o rank de álgebra linear.</li>
                             <li>Um array pode ter quantas dimensões
                                 forem desejadas. Aqui temos exemplos com
                                 uma, duas, e três dimensões.</li>
@@ -390,7 +428,7 @@ array([[  5.2,   2. ,  -9. ,  10. ],
 <output>dtype('float64')</output>
 <in>c = np.array([2, 4, 2-4j])</in>
 <output>dtype('complex128')</output>
-<in>d = np.array([-2,55.3, 22.1], <span class="green">dtype=complex</span>)  # Specifica o dtype</in>
+<in>d = np.array([-2,55.3, 22.1], <span class="green">dtype=complex</span>)  # Especifica o dtype</in>
 <in>d.dtype</in>
 <output>dtype('complex128')</output>
 </code-terminal>
@@ -498,12 +536,12 @@ array([[  8.6556823 ,  11.76621921,  13.06145845,  10.29941938],
                     <section>
                         <h2>Operações Básicas</h2>
                         <ul>
-                            <li>O operador <code>*</code> não é exceção e efetua uma multiplicação element-a-elemento</li>
+                            <li>O operador <code>*</code> não é exceção e efetua uma multiplicação elemento-a-elemento</li>
                             <li>Para produto matricial use <code>@</code> ou o método <code>dot</code></li>
                         </ul>
                         <code-terminal><in>A = np.array([[1,1], [0,1]])</in>
 <in>B = np.array([[2,0], [3,4]])</in>
-<in>A*B  # Produto element-a-elemento</in>
+<in>A*B  # Produto elemento-a-elemento</in>
 <output>
 array([[2, 0],
        [0, 4]])</output>
@@ -547,7 +585,7 @@ array([[ 3.417022  ,  3.72032449,  3.00011437],
                         <h2>Principais Operações em Arrays</h2>
                         <ul>
                             <li>As diversas funções matemáticas são implementadas como <code>np.nome_da_função</code> e algumas estão também disponíveis como métodos do array</li>
-                            <li class="fragment">Experimente digitar "a." no IPython e apertar TAB para ver as sugestões e use "?" para ver o help</li>
+                            <li class="fragment">Experimente digitar "a." no IPython e apertar <kbd>TAB</kbd> para ver as sugestões e use "?" para ver o help</li>
                         </ul>
 
                         <code-terminal><in>a = np.random.random((2,3))</in>
@@ -629,7 +667,7 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
 <span class="fragment" data-fragment-index="4"><in>print( b[1:3, : ] )
 [[10, 11, 12, 13],
  [20, 21, 22, 23]]</span></in>
-<span class="fragment" data-fragment-index="5"><in>print(b[0])  # slice completos p/ os que faltam</in>
+<span class="fragment" data-fragment-index="5"><in>print(b[0])  # slices completos p/ os que faltam</in>
 <output>[0, 1, 2, 3]</output></span>
 <span class="fragment" data-fragment-index="6"><in>print(b[-1])</in>
 <output>[40, 41, 42, 43]</output></span>
@@ -664,7 +702,7 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                             <li>Temos então que:</li>
                             <ul>
                                 <li><code>x[1,2,...]</code> equivale a <code>x[1,2,:,:,:]</code>,</li>
-                                <li><code>x[...,3]</code> equivale a <code>x[:,:,:,:,3]</code> and</li>
+                                <li><code>x[...,3]</code> equivale a <code>x[:,:,:,:,3]</code></li>
                                 <li><code>x[4,...,5,:]</code> equivale a <code>x[4,:,:,5,:]</code></li>
                                 <li>Etc.</li>
                             </ul>
@@ -674,7 +712,7 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                     <section>
                         <h2>Indexando Arrays</h2>
                         <ul>
-                            <li>Ao indexar uma dada dimensão o array resultante não possui aquela dimensão, mas para slices a dimensão continua existingo</li>
+                            <li>Ao indexar uma dada dimensão o array resultante não possui aquela dimensão, mas para slices a dimensão continua existindo</li>
                             <li>Compare os exemplos abaixo (especialmente o shape do resultado)</li>
                         </ul>
                         <!-- <div class="displayed"><img alt="" data-src="imagens/numpy_part/indexing.png" height="500px"/></div> -->
@@ -701,7 +739,7 @@ array([[20,  5, 68, 48, 23],
 <output>array([20,  5, 23, 12,  0])</output></span>
 <span class="fragment" data-fragment-index="3"><in>idx = (b >= 30); b[idx]  # Elementos >= 30</in>
     <output>array([39, 87, 96, ... ... , 94, 30, 87])</output></span>
-<span class="fragment" data-fragment-index="4"><in># Colunas com todos oselementos são >= 30</in>
+<span class="fragment" data-fragment-index="4"><in># Colunas com todos os elementos são >= 30</in>
 <in>b[:, idx.all(axis=0)]  # Indexa colunas</in>
 <output>
 array([[97],
@@ -715,7 +753,7 @@ array([[97],
                 </section>
                 
                 <section id="manipulando_o_shape">
-                    <h2>Manipulanto o <em>shape</em></h2>
+                    <h2>Manipulando o <em>shape</em></h2>
                     <ul>
                         <li><em>shape</em> define o número de elementos em cada dimensão</li>
                         <li>Há várias maneiras de manipular o shape de um array</li>
@@ -816,7 +854,7 @@ array([[ 8.,  8.,  1.,  8.],
                     <h2>Cópias e Views</h2>
                     <!-- https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#copies-and-views -->
                     <ul>
-                        <li>Quando operando e manuipulando arrays, as vezes os dados são copiados em um novo array e as vezes não</li>
+                        <li>Quando operando e manipulando arrays, as vezes os dados são copiados em um novo array e as vezes não</li>
                         <li>Casos sem cópia:</li>
                         <ul>
                             <li>Assinalamento (Python também funciona assim para tipos mutáveis)</li>
@@ -824,7 +862,7 @@ array([[ 8.,  8.,  1.,  8.],
                             <li>Argumentos de funções</li>
                         </ul>
                         <code-terminal dontshowcursor><in>a = np.arange(12)</in>
-<in>b = a            # Nenhum objecto novo é criado com um assinalamento</in>
+<in>b = a            # Nenhum objeto novo é criado com um assinalamento</in>
 <in>b is a           # "a" e "b" são dois nomes para o mesmo array</in>
 <output>True</output>
 <in>b.shape = 3,4    # Muda apenas o shape do array sem mudar os dados na memória</in>
@@ -844,20 +882,20 @@ array([[ 8.,  8.,  1.,  8.],
                     <ul>
                         <li>Diferentes arrays podem compartilhar os mesmos dados na memória</li>
                         <li>O método <code>view</code> de um array cria um novo objeto array que utiliza os mesmos dados</li>
-                        <li>Mudanças feitas nos dados de um são refletidas no outro array, mas os dois não são o mesmo objeto como ocorre em python com um assinalamento</li>
+                        <li>Mudanças feitas nos dados de um são refletidas no outro array, mas os dois não são o mesmo objeto como ocorre em Python com um assinalamento</li>
                         <li>Os dois objetos podem ter formas diferentes</li>
                     </ul>
                     <code-terminal dontshowcursor><in>c = a.view()</in>
 <in>c is a</in>
 <output>False</output>
-<in>c.base is a                        # c is a view of the data owned by a</in>
+<in>c.base is a                        # c é uma "view" dos dados de 'a'</in>
 <output>True</output>
 <in>c.flags.owndata</in>
 <output>False</output>
-<in>c.shape = 2,6                      # a's shape doesn't change</in>
+<in>c.shape = 2,6                      # o shape de 'a' não muda</in>
 <in>a.shape</in>
 <output>(3, 4)</output>
-<in>c[0,4] = 1234                      # a's data changes</in>
+<in>c[0,4] = 1234                      # o shape de 'a' muda</in>
 <in>a</in>
 <output>
 array([[   0,    1,    2,    3],
@@ -879,7 +917,7 @@ array([[   0,    1,    2,    3],
 array([[   0,   10,   10,    3],
        [1234,   10,   10,    7],
        [   8,   10,   10,   11]])</output>
-<in>d = a.copy()  # um novo objeto array com dados novoes é criado</in>
+<in>d = a.copy()  # um novo objeto array com dados novos é criado</in>
 <in>d is a</in>
 <output>False</output>
 <in>d.base is a  # "d" não compartilha nada com "a"</in>
@@ -898,7 +936,7 @@ array([[   0,   10,   10,    3],
                     <h2>Operações matemáticas</h2>
                     <ul>
                         <li>Já vimos alguns métodos que operam elemento-a-elemento, onde o resultado possui o mesmo rank que a entrada</li>
-                        <li>Alguns métodos resuzem a dimensão obtendo um
+                        <li>Alguns métodos reduzem a dimensão obtendo um
                         resultado de rank menor</li>
                         <li>Exemplo: <code>mean</code>, <code>var</code>, <code>sum</code>, etc.</li>
                         <!-- <li>Obtemos um escalar</li> -->
@@ -908,7 +946,7 @@ array([[   0,   10,   10,    3],
                         <div class="element" style="width: 65%;">
                     <code-terminal dontshowcursor><in>a = np.random.randint(3, 4)</in>
 <in>a</in>
-<output>Ver matrix ao lado
+<output>Ver matriz ao lado
 array([[31, 11, 15, 69],
        [ 8, 75, 68, 54],
        [31, 47, 86, 23]])</output>
@@ -924,26 +962,26 @@ array([[31, 11, 15, 69],
                 </section>
 
                 
-                <section>
-                    <h2>Functions and Methods Overview</h2>
-                    <!-- https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#functions-and-methods-overview -->
-                    <ul>
-                        <li>Chequem a <a href="http://docs.scipy.org/doc/numpy/reference/">referência no numpy</a> para muito mais informações sobre o numpy</li>
-                        <li>o <a href="https://docs.scipy.org/doc/scipy/reference/">Scipy</a> fornece mais funções para matemática, ciência e engenharia</li>
-                        <li>Here is a list of some useful NumPy functions and methods names ordered in categories. See Routines for the full list.</li>
-                        <ul>
-                            <li>Array Creation: arange, array, copy, empty, empty_like, eye, fromfile, fromfunction, identity, linspace, logspace, mgrid, ogrid, ones, ones_like, r, zeros, zeros_like</li>
-                            <li>Conversions: ndarray.astype, atleast_1d, atleast_2d, atleast_3d, mat</li>
-                            <li>Manipulations: array_split, column_stack, concatenate, diagonal, dsplit, dstack, hsplit, hstack, ndarray.item, newaxis, ravel, repeat, reshape, resize, squeeze, swapaxes, take, transpose, vsplit, vstack</li>
-                            <li>Questions: all, any, nonzero, where</li>
-                            <li>Ordering: argmax, argmin, argsort, max, min, ptp, searchsorted, sort</li>
-                            <li>Operations: choose, compress, cumprod, cumsum, inner, ndarray.fill, imag, prod, put, putmask, real, sum</li>
-                            <li>Basic Statistics: cov, mean, std, var</li>
-                            <li>Basic Linear Algebra: cross, dot, outer, linalg.svd, vdot </li>
-                        </ul>
-                    </ul>
-                    
-                </section>
+                <!-- <section>
+                     <h2>Functions and Methods Overview</h2>
+                     https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#functions-and-methods-overview
+                     <ul>
+                     <li>Chequem a <a href="http://docs.scipy.org/doc/numpy/reference/">referência no numpy</a> para muito mais informações sobre o numpy</li>
+                     <li>o <a href="https://docs.scipy.org/doc/scipy/reference/">Scipy</a> fornece mais funções para matemática, ciência e engenharia</li>
+                     <li>Here is a list of some useful NumPy functions and methods names ordered in categories. See Routines for the full list.</li>
+                     <ul>
+                     <li>Array Creation: arange, array, copy, empty, empty_like, eye, fromfile, fromfunction, identity, linspace, logspace, mgrid, ogrid, ones, ones_like, r, zeros, zeros_like</li>
+                     <li>Conversions: ndarray.astype, atleast_1d, atleast_2d, atleast_3d, mat</li>
+                     <li>Manipulations: array_split, column_stack, concatenate, diagonal, dsplit, dstack, hsplit, hstack, ndarray.item, newaxis, ravel, repeat, reshape, resize, squeeze, swapaxes, take, transpose, vsplit, vstack</li>
+                     <li>Questions: all, any, nonzero, where</li>
+                     <li>Ordering: argmax, argmin, argsort, max, min, ptp, searchsorted, sort</li>
+                     <li>Operations: choose, compress, cumprod, cumsum, inner, ndarray.fill, imag, prod, put, putmask, real, sum</li>
+                     <li>Basic Statistics: cov, mean, std, var</li>
+                     <li>Basic Linear Algebra: cross, dot, outer, linalg.svd, vdot </li>
+                     </ul>
+                     </ul>
+                     
+                     </section> -->
 
                 <section>
 
@@ -972,14 +1010,14 @@ array([[31, 11, 15, 69],
                         <ul>
                             <li>Além da praticidade o broadcast fornece outras vantagens:</li>
                             <ul>
-                                <li class="fragment" data-fragment-index="2">É um meio de vetorizar operações com arrays tal que os <span class="green">loops ocorram em C</span>, ao inves de Python</li>
-                                <li class="fragment" data-fragment-index="3"><span class="green">Sem cópias desnecessárias dos dados</span> <i class="fa fa-hand-o-right"></i> implementações eficientes de algorithmos</li>
+                                <li class="fragment" data-fragment-index="2">É um meio de vetorizar operações com arrays tal que os <span class="green">loops ocorram em C</span>, ao invés de Python</li>
+                                <li class="fragment" data-fragment-index="3"><span class="green">Sem cópias desnecessárias dos dados</span> <i class="fa fa-hand-o-right"></i> implementações eficientes de algoritmos</li>
                             </ul>
-                            <aside class="notes">Multiplicar por um escalar é intuitivo. Podemos estender para umm caso com mais dimensões</aside>
-                            <li class="fragment" data-fragment-index="4"> Exemplo: somar uma matrix (3,3) com um vetor (3,)?
+                            <aside class="notes">Multiplicar por um escalar é intuitivo. Podemos estender para um caso com mais dimensões</aside>
+                            <li class="fragment" data-fragment-index="4"> Exemplo: somar uma matriz (3,3) com um vetor (3,)?
                                 <ul class="fragment" data-fragment-index="5">
                                     <li>Adicionamos uma dimensão extra no vetor <i class="fa fa-hand-o-right"></i> novo shape de (1, 3)</li>
-                                    <li>Replicamos o "vetor" para ter o mesmo shape que a matrix <i class="fa fa-hand-o-right"></i> (3,3)</li>
+                                    <li>Replicamos o "vetor" para ter o mesmo shape que a matriz <i class="fa fa-hand-o-right"></i> (3,3)</li>
                                 </ul></li>
                         </ul>
                         <svg id="broadcast-placeholder" class="displayed fragment" data-fragment-index="4" style="margin-top:20px"></svg>
@@ -1043,11 +1081,11 @@ array([[ 0.        ,  5.22015325,  5.        ,  2.23606798,  3.89101529],
                 </section>  <!-- End of broadcast -->
 
                 <section>
-                    <h2>Algebra Linear</h2>
+                    <h2>Álgebra Linear</h2>
 
                     <ul>
-                        <li>Numpy fornece diversos métodos para manipulação de matrizes de maneira efficiente</li>
-                        <li>Por baixo dos panos bibliotecas eficientes como BLAS e LAPACK são utilizadas, tornando operações de algebra linear eficiente</li>
+                        <li>Numpy fornece diversos métodos para manipulação de matrizes de maneira eficiente</li>
+                        <li>Por baixo dos panos bibliotecas eficientes como BLAS e LAPACK são utilizadas, tornando operações de álgebra linear eficiente</li>
                         <li>Algumas das operações mais comuns são:</li>
                         <code-terminal><in>A @ B  # Multiplica duas matrizes A e B</in>
 <in>A.T  # Transposta de A</in>
@@ -1062,13 +1100,13 @@ array([[ 0.        ,  5.22015325,  5.        ,  2.23606798,  3.89101529],
                     </ul>
                 </section>
                 
-                <section>
-                    <h2>Datatypes Estruturados</h2>
+                <!-- <section>
+                     <h2>Datatypes Estruturados</h2>
 
-                    Structured datatypes
+                     Structured datatypes
 
-                    https://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html
-                </section>
+                     https://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html
+                     </section> -->
 
                 <section>
                     
@@ -1076,11 +1114,11 @@ array([[ 0.        ,  5.22015325,  5.        ,  2.23606798,  3.89101529],
                         <h2>Plotando com Matplotlib</h2>
 
                         <ul>
-                            <aside class="notes">Existem várias bibliotecas para plot em python</aside>
-                            <li>A biblioteca mais conhecida para plot no python é a <a href="http://matplotlib.org/">Matplotlib</a></li>
-                            <li class="fragment" data-fragment-index="1">A função mais importante é a função <code>plt.plot</code></li>
+                            <aside class="notes">Existem várias bibliotecas para plot em Python</aside>
+                            <li>A biblioteca mais conhecida para plot no Python é a <a href="http://matplotlib.org/">Matplotlib</a></li>
+                            <li class="fragment" data-fragment-index="1">A função mais importante é a função <code>plt.plot</code>, que recebe arrays com os valores para plotar</li>
                             <li class="fragment" data-fragment-index="2">Chame a função <code>plt.show</code> no final para mostrar o plot</li>
-                            <li class="fragment" data-fragment-index="3">Com um pouco esforço a mais podemos facilmente plotar multiplas linhas de uma só vez, adicionar um título, legenda e labels para os eixos</li>
+                            <li class="fragment" data-fragment-index="3">Com um pouco esforço a mais podemos facilmente plotar múltiplas linhas de uma só vez, adicionar um título, legenda e labels para os eixos</li>
                             <li class="fragment" data-fragment-index="4"><i class="fa fa-lightbulb-o"></i> Dica: coloque <code>%matplotlib inline</code> ou <code>%matplotlib notebook</code> na primeira célula do Jupyter notebook</li>
                         </ul>
                         <div class="container">
@@ -1090,7 +1128,7 @@ import matplotlib.pyplot as plt
 # Computa as coordenadas 'x' e 'y' para ambas as curvas
 x = np.arange(0, 3 * np.pi, 0.1)
 y_sin = np.sin(x)
-<span class="fragment" data-fragment-index=2">y_cos = np.cos(x)</span>
+<span class="fragment" data-fragment-index=4">y_cos = np.cos(x)</span>
 
 # Plota os pontos usando matplotlib
 <span class="fragment highlight-green" data-fragment-index="1">plt.plot(x, y_sin)</span>
@@ -1108,6 +1146,16 @@ plt.legend(['Sine', 'Cosine'])</span>
                         </div>
                     </section>
 
+                    <section>
+                        <h2>Plotando com Matplotlib</h2>
+                        <h3>Exercício</h3>
+
+                        <ul>
+                            <li>Repita o plot anterior no notebook, mas agora incluindo círculos nos pontos</li>
+                            <li><span class="red">Dica</span>: rode o comando plt.plot? para ver a ajuda do comando</li>
+                        </ul>
+                    </section>
+                    
                     <section>
                         <h2>Plotando com Matplotlib</h2>
 
@@ -1157,11 +1205,11 @@ import matplotlib.pyplot as plt
 img = imread('assets/cat.jpg')
 img_tinted = img * [1, 0.95, 0.9]
 
-# Show the original image
+# Mostra a imagem original
 plt.subplot(1, 2, 1)
 plt.imshow(img)
 
-# Show the tinted image
+# Mostra a imagem modificada
 plt.subplot(1, 2, 2)
 
 # Nota: imshow resulta em resultados estranhos se os dados
@@ -1177,10 +1225,28 @@ plt.show()
                     
                 </section>
 
+
+                <section>
+                    <section>
+                        <h2>Exercícios de Fixação</h2>
+
+                        <ol>
+                            <li> Crie uma matriz A com dimensão 3 × 4 de números inteiros menores que 10</li>
+                            <li> Calcule a matriz transposta de A</li>
+                            <li> Calcule a soma de cada linha da matriz A usando a função sum</li>
+                            <li> Calcule a soma de cada coluna da matriz A usando a função sum</li>
+                            <li> Calcule a pseudo-inversa \(A^\dagger = A^T(AA^T)^{-1}\)</li>
+                            <li> Defina B = AA T e calcule os autovalores e os autovetores de B usando a função eig</li>
+                            <li> Calcule a inversa de B usando a função inv</li>
+                        </ol>
+                    </section>
+                </section>
+
                 
 			</div>
 		</div>
 
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
 
@@ -1289,7 +1355,7 @@ plt.show()
                  // Zoom in and out with Alt+click
                  { src: 'plugin/zoom-js/zoom.js', async: true },
                  // MathJax
-                 /* { src: 'plugin/math/math.js', async: true },*/
+                 { src: 'plugin/math/math.js', async: true },
                  /*                  { src: 'js/MathJax_local.js', async: true },*/
 			 ]
 		 });
