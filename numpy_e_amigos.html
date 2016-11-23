@@ -75,7 +75,7 @@
                     </ul>
                     <!-- https://indranilsinharoy.com/2013/01/06/python-for-scientific-computing-a-collection-of-resources/ -->
                     <!-- <img data-src="/imagens/numpy_part/scientific_stack.png" class="displayed"/> -->
-                    <object width="80%" id="scientific_stack" type="image/svg+xml" data="imagens/numpy_part/scientific_stack.svg"></object>
+                    <object width="60%" id="scientific_stack" type="image/svg+xml" data="imagens/numpy_part/scientific_stack.svg"></object>
                     <!-- svg = d3.select(document.getElementById("scientific_stack").contentDocument).select("svg") -->
                     
                     <!-- <ul><li><span class="red">Nota:</span> A biblioteca <a href="http://www.numpy.org/">Numpy</a> é o núcleo da computação científica em Python e é a mais importante de se aprender bem</li></ul> -->
@@ -241,14 +241,14 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                         <h2>Jupyter Notebook</h2>
 
                         <ul>
-                            <li class="fragment">Surgiu inicialmente como IPython Notebook, inspirado pelo Mathematica</li>
+                            <li>Surgiu inicialmente como IPython Notebook, inspirado pelo Mathematica</li>
                             <li class="fragment">Cada notebook quando aberto está associado a um <span class="green">kernel</span></li>
                             <li class="fragment">Pode ser usado online em <a href="https://try.jupyter.org">https://try.jupyter.org</a></li>
                             <li class="fragment"><a href="https://nbviewer.jupyter.org/">nbviewer</a>: Site com vários notebooks interessantes, como por exemplo <a href="https://nbviewer.jupyter.org/github/unpingco/Python-for-Signal-Processing/blob/master/Expectation_Maximization.ipynb">esse aqui</a> (<a href="http://localhost:8888/notebooks/Expectation_Maximization.ipynb">versão local</a>)</li>
                             <li class="fragment">Pode ser instalado pelo Anaconda</li>
                             <li class="fragment">Rode o comando <code>jupyter notebook</code> para iniciar <span class="green"><i class="fa fa-hand-o-right"></i> Tentem agora</span></li>
                             <li class="fragment"><span class="red">Nota:</span> Existem serviços que rodam na nuvem e permitem criar e executar notebooks como <a href="https://cloud.sagemath.com/settings">SageMathCloud</a> e <a href="https://wakari.io/">Wakario</a>
-                                <img alt="" src="imagens/numpy_part/sage_math_cloud.png" class="displayed" style="width: 700px;"/>
+                                <img alt="" src="imagens/numpy_part/sage_math_cloud.png" class="displayed" style="width: 600px;"/>
                             </li>
                         </ul>
                         
@@ -261,9 +261,8 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                         <ul>
                             <li>Ao executar o notebook uma aba do navegador é aberta com o dashboard</li>
                             <li>Vemos os arquivos na pasta onde o comando <code>jupyter notebook</code> foi executado</li>
-                            <img alt="" src="imagens/numpy_part/jupyter_dashboard.png" style="border:none;"/>
+                            <img alt="" src="imagens/numpy_part/jupyter_dashboard.png" class="displayed" style="border:none; width:850px"/>
                         </ul>
-                        
                     </section>
 
                     <section>
@@ -655,7 +654,7 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                             <li class="fragment" data-fragment-index="5">Podemos fornecer menos índices que eixos</li>
                             <li class="fragment" data-fragment-index="6">Também podemos usar índices negativos</li>
                         </ul>
-                        <div class="container" style="width:1000px;">
+                        <div class="container" style="width:100%;">
                             <div class="element" style="width:650px;"><code-terminal dontshowcursor style="font-size:90%;"><in>def f(x,y): return 10*x+y</in>
 <in>b = np.fromfunction(f, (5,4), dtype=int)</in>
 <span class="fragment" data-fragment-index="1"><in>b[2,3]</in>
@@ -728,7 +727,7 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                             <li>Isso é especialmente útil para pegar elementos obedecendo certas condições</li>
                             <li>Exemplo:</li>
                         </ul>
-                        <div class="container" style="width:1000px;">
+                        <div class="container" style="width:100%;">
                             <div class="element" style="width:570px;"><code-terminal dontshowcursor style="font-size:95%;"><in>b = np.random.randint(0,100, size=(4,5))</in>
 <in>linhas = np.array([False, True, True, False])</in>
 <span class="fragment" data-fragment-index="1"><in>b[linhas]</in>
@@ -761,7 +760,7 @@ array([[97],
                         <li><i class="fa fa-lightbulb-o"></i> Dica: Use "-1" em uma dimensão e o numpy vai detectar o valor correto</li>
                     </ul>
 
-                    <div class="container" style="width:1000px;">
+                    <div class="container" style="width:100%;">
                         <div class="element" style="width:700px;">
                             <code-terminal style="font-size:84%;" dontshowcursor><in>a = np.floor(10*np.random.random((3,4)))</in>
 <in>a</in>
@@ -800,7 +799,7 @@ array([[ 2.,  0.,  4.,  1.,  8.,  3.],
                         <li>Vários arrays podem ser empilhados ao longo de um determinado eixo</li>
                         <li>Algumas das funções para isso são <code>hstack</code>, <code>vstack</code>, <code>concatenate</code> e <code>stack</code>, np.concatenate</li>
                     </ul>
-                    <code-terminal><in>a = np.floor(10*np.random.random((2,2)));  a</in>
+                    <code-terminal dontshowcursor><in>a = np.floor(10*np.random.random((2,2)));  a</in>
 <output>
 array([[ 8.,  8.],
        [ 0.,  0.]])</output>
@@ -942,7 +941,7 @@ array([[   0,   10,   10,    3],
                         <!-- <li>Obtemos um escalar</li> -->
                         <li class="fragment" data-fragment-index="2">É possível indicar sobre qual dimensão efetuar a operação</li>
                     </ul>
-                    <div class="container" style="min-width:1000px;">
+                    <div class="container" style="min-width:100%;">
                         <div class="element" style="width: 65%;">
                     <code-terminal dontshowcursor><in>a = np.random.randint(3, 4)</in>
 <in>a</in>
@@ -1253,7 +1252,7 @@ plt.show()
 		<script>
 		 // More info https://github.com/hakimel/reveal.js#configuration
 		 Reveal.initialize({
-             width: 1100,
+             width: 1280,
              
              
              minScale: 0.3,
