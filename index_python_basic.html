@@ -3,7 +3,7 @@
 	<head>
         <meta name="description" content="Uma apresentação sobre Python para quem já tem noção de programação">
 		<meta name="author" content="Darlan Cavalcante Moreira">
-        
+
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -32,11 +32,11 @@
              content: "";
          }
         </style>
-        
+
         <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
         <!-- My custom polymer element with a terminal and inside python code -->
-        <link rel="import" href="/my_polymer_elements/terminal-tag.html">
-        <link rel="import" href="/my_polymer_elements/code-terminal.html">
+        <link rel="import" href="./my_polymer_elements/terminal-tag.html">
+        <link rel="import" href="./my_polymer_elements/code-terminal.html">
 	</head>
 	<body>
 		<div class="reveal">
@@ -77,7 +77,7 @@
                         <li><a href="https://www.coursera.org/learn/interactive-python-1">An Introduction to Interactive Programming in Python</a></li>
                         <li><a href="https://www.coursera.org/learn/python">Programming for Everybody (Getting Started with Python)</a></li>
                         <li><a href="http://www.pythontutor.com/">Python Tutor</a></li>
-                        
+
                     </ul>
                 </section>
 
@@ -141,7 +141,7 @@
                             <li>Falamos em maiores detalhes de cada um deles</li>
                         </ul>
                     </section>
-                    
+
                     <section>
                         <h2>Tipos Simples</h2>
                         <!-- <div style="display:flex; align-items: center;"> -->
@@ -164,7 +164,7 @@ str</code-terminal>
                             </li>
                         </ul>
                     </section>
-                    
+
                     <section>
                         <h2>Tipos Compostos (contêineres)</h2>
                         <pre><code class="python">uma_lista = [2, 3, 5.5, 7, 11, "lala"] # Lista (list, [])
@@ -173,12 +173,12 @@ um_dict = {'nome': "Silvio Santos",    # Dicionário (dict)
           'idade': 86,
           "profissões": ["apresentador", "empresário"]}
 um_conjunto = {1, 4, 8, 10, "lala"}    # Conjunto (set)</code></pre>
-                        <ul>    
+                        <ul>
                             <li>Python possui vários estruturas de dados flexíveis como listas, tuplas, dicionários e conjuntos</li>
                             <li>Podemos armazenar valores de diferentes tipos nesses contêineres</li>
                         </ul>
                     </section>
-                    
+
                 </section>
 
                 <section>
@@ -203,7 +203,7 @@ Ele tinha 10 anos</code-terminal></li>
 John Doe tem 20 anos</code-terminal></li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <section><h2>Operadores em Python</h2></section>
                     <section>
@@ -228,7 +228,7 @@ John Doe tem 20 anos</code-terminal></li>
 2
 >>> print(a**2)
 25</span></code-terminal>
-                        
+
                     </section>
 
                     <section>
@@ -259,7 +259,7 @@ True
 True
 >>> 4 in l  # O número 4 está na lista 'l'?
 False</span></code-terminal>
-                        
+
                     </section>
 
                     <section>
@@ -288,9 +288,9 @@ False
 15
 >>> ~7  # Invertemos cada bit de 7 (incluindo o bit de sinal)
 -8</span></code-terminal>
-                        
+
                     </section>
-                    
+
                 </section>
 
                 <section>
@@ -308,7 +308,7 @@ False
                                     <li><code>elif</code> corresponde a um <code>else</code> seguido de um <code>if</code> e existe para evitar indentação excessiva</li>
                                 </ul></li>
                         </ul>
-                        
+
                         <pre class="fragment python"><code>if x == 42:
     # Código executado de x for igual a 42
     print("x vale 42")
@@ -318,7 +318,7 @@ else:
     print("Nenhuma das condições anteriores foi verdadeira")</code></pre>
 
                         <p class="fragment">Nota: Não existe "switch case" em Python, mas temos uma alternativa</p>
-                        
+
                     </section>
 
                     <section>
@@ -361,11 +361,11 @@ while N > 1:
                                 <pre><code class=python">while True:
     pass</code></pre></li></li>
                         </ul>
-                        
+
                     </section>
-                    
+
                 </section>
-                
+
                 <section>
                     <section>
                         <h2>Mais sobre os tipos de dados em Python</h2>
@@ -415,9 +415,9 @@ Darlan é o professor de "Fundamentos de Programação"</code-terminal></li>
                             <li class="fragment">Veja a <a href="https://docs.python.org/3/library/stdtypes.html#string-methods">documentação</a> de
                                 strings para métodos úteis</li>
                         </ul>
-                        
+
                     </section>
-                    
+
                     <section>
                         <h2>Índices e Slices</h2>
 
@@ -467,7 +467,7 @@ ace</spam></code-terminal>
                                     <li>Precisamos criar uma nova string nesse caso</li>
                             </li>
                                 </ul>
-                                
+
                         </ul>
                     </section>
 
@@ -490,7 +490,7 @@ ace</spam></code-terminal>
 >>> a.extend(b)  # Adiciona os elementos da lista 'b' na lista 'a'
 >>> print(a)
 [1, 5, 10, 15, 100, 200]</code-terminal>
-                        
+
                     </section>
 
                     <section>
@@ -537,7 +537,7 @@ ace</spam></code-terminal>
                         <p class="fragment">Veja mais na <a href="https://docs.python.org/3/tutorial/introduction.html#lists">documentação oficial</a>
 
                     </section>
-                    
+
                     <section>
                         <h2>Tuplas</h2>
                         <ul>
@@ -562,7 +562,7 @@ ace</spam></code-terminal>
 2
 >>> print(e)
 já</span></code-terminal>
-                        
+
                     </section>
                     <section>
                         <h2>Dicionários</h2>
@@ -610,7 +610,7 @@ pi: 3.141592
 número de ouro: 1.618</code-terminal></p>
 
                     </section>
-                    
+
                     <section>
                         <h2>Conjuntos</h2>
 
@@ -647,10 +647,10 @@ False
                     <section>
                         <h2>Funções</h2>
                     </section>
-                    
+
                     <section>
                         <h2>Definindo novas Funções</h2>
-                        
+
                         <!-- <pre><code data-trim>
                              def shout(message="Hi"):
                              print("%s!".format(message))
@@ -686,7 +686,7 @@ False
                                     <li> Pode ser vista com <code class="python">fib?</code> no IPython ou <code class="python">help(fib)</code></li>
                                 </ul></li>
                             <li class="fragment" data-fragment-index="3">Definir uma função introduz a mesma na tabela de símbolos atual</li>
-                            
+
                             <!-- <li>Os argumentos das funções podem ter valores padrão</li>
                                  <li>Argumentos adicionais com valores padrão podem ser nomeados quando chamados (argumento com palavra chave</li> -->
                         </ul>
@@ -706,7 +706,7 @@ False
 ...         result.append(a)  # Adiciona um elemento na lista
 ...         a, b = b, a+b
 ...     return result
-...   
+...
 >>> f100 = fib2(100)    # chama a função
 >>> f100  # Notem que f100 é uma lista
 [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]</code-terminal>
@@ -722,13 +722,13 @@ False
                             <!-- <li>Considere a função que retorna a posição de um
                                  móvel dada uma posição inicial, velocidade e
                                  aceleração \[s = s_0+v_0 t + \frac{1}{2}a t^2\]</li> -->
-                            <li class="fragment" data-fragment-index="1">Exemplo: <span class="green" style="margin-left: 3%;">\(s = s_0+v_0 t + \frac{1}{2}a t^2\)</span> 
+                            <li class="fragment" data-fragment-index="1">Exemplo: <span class="green" style="margin-left: 3%;">\(s = s_0+v_0 t + \frac{1}{2}a t^2\)</span>
                                 <pre><code class="python">def calc_s(t, s0=0, v0=1, a=0.5):
     """Calcula posição final dados s0, v0, a e t."""
     return s0 + v0*t + 0.5 * a * t**2</code></pre></li>
                             <li class="fragment" data-fragment-index="4">Também é possível especificar um parâmetro pelo nome</li>
                         </ul>
-                        
+
                         <code-terminal class="fragment" data-fragment-index="3">>>> calc_s(5)  # Chama a função apenas com o parâmetro obrigatório
 11.25
 >>> calc_s(5, 10)  # Passa os 2 primeiros parâmetros
@@ -745,7 +745,7 @@ False
                             <li>Funções podem aceitar uma quantidade
                                 variável de argumentos tanto via posição quanto
                                 via palavra chave</li>
-                            <li class="fragment">Para isso use o prefixo 
+                            <li class="fragment">Para isso use o prefixo
                                 <code>*</code> e/ou <code>**</code> antes
                                 do argumento final</li>
                             <li class="fragment">Se houverem multiplos
@@ -755,7 +755,7 @@ False
 def my_func(a, b, *args, **kwargs):  # 'a' é um 'b' são parâmetros obrigatórios
     print(a)
     print(b)
-    # tupla de todos os parâmetros via posição 
+    # tupla de todos os parâmetros via posição
     print(args)
 
     # Dicionário com todos os parâmetros fornecidos via palavra chave
@@ -770,7 +770,7 @@ def my_func(a, b, *args, **kwargs):  # 'a' é um 'b' são parâmetros obrigatór
 {'cor': 'Amarelo', 'modelo': 'Fusca'}</code-terminal>
 
                     </section>
-                    
+
                     <section>
                         <h2>Funções Anônimas: lambda functions</h2>
 
@@ -789,20 +789,20 @@ def my_func(a, b, *args, **kwargs):  # 'a' é um 'b' são parâmetros obrigatór
 >>> f(4)
 16</code-terminal></li>
 
-                            
+
                         </ul>
                     </section>
-                    
+
                 </section>  <!-- Fim de funções -->
 
                 <!-- <section>
                      <section>
                      <h2>Iteração</h2>
                      </section>
-                     
+
                      <section>
                      <h2>Iteração</h2>
-                     
+
                      <ul>
                      <li>Todos os contêineres podem ser iterados com <br/><code>for ... in ....</code>
                      <pre><code data-trim class="python">
@@ -814,7 +814,7 @@ def my_func(a, b, *args, **kwargs):  # 'a' é um 'b' são parâmetros obrigatór
                      if not bebida:
                      shout("Onde está minha Coca!?")</code></pre></li>
                      </ul>
-                     
+
                      </section>
 
                      <section>
@@ -854,7 +854,7 @@ def my_func(a, b, *args, **kwargs):  # 'a' é um 'b' são parâmetros obrigatór
                                         <ul class="fragment">
                                             <li>Mas isso será perdido se fecharmos o terminal</li>
                                         </ul></li>
-                                    
+
                                     <li class="fragment">Se salvarmos o código em
                                         um arquivo (script) poderemos <span class="green">rodar
                                         o programa</span> sempre que quisermos</li>
@@ -862,7 +862,7 @@ def my_func(a, b, *args, **kwargs):  # 'a' é um 'b' são parâmetros obrigatór
                             <li class="fragment">Para criar um script basta colocar o código em
                                 um arquivo com extensão <code>.py</code></li>
                             <li class="fragment">Rode o interpretador python passando o
-                                script como parâmetro 
+                                script como parâmetro
                                 <!-- <pre><code class="bash">python meu_script.py</code></pre> -->
                                 <code-terminal codeclass="bash">~$ python meu_script.py</code-terminal>
                             </li>
@@ -950,10 +950,10 @@ minhas_compras = {"banana prata": 1.2,
 # Usa um list comprehension para gerar uma lista e soma os seus valores
 conta = sum([precos[fruta] * minhas_compras[fruta] for fruta in minhas_compras])
 print("Eu precisei pagar o total de R$ {0:.2f} em frutas".format(conta))</code></pre>
-                    
+
                 </section>
 
-                
+
                 <section>
                     <h2>Exemplos de Programas</h2>
 
@@ -969,7 +969,7 @@ print("O texto tem {0} palavras, sendo {1} delas diferentes.".format(
     len(palavras),      # Número de palavras
     len(set(palavras))  # Número de palavras únicas
 ))</code></pre>
-                    
+
                 </section>
 
 
@@ -1008,9 +1008,9 @@ print("O texto tem {0} palavras, sendo {1} delas diferentes.".format(
                             <li><code>hex</code>: converte para representação em base 16</li>
                             <li><code>int('0b1010', base=2)</code>: converte a partir de uma base para um inteiro (em base 10)</li>
                             <li>Podemos entrar com um número em uma base com prefixos <code>0b</code>, <code>0o</code> e <code>0x</code><br/>Ex: <code>x = 0o20</code>  (20 em octal -> 16 em decimal)</li>
-                            
+
                         </ul>
-                        
+
                     </section>
 
                     <section>
@@ -1050,7 +1050,7 @@ print("O texto tem {0} palavras, sendo {1} delas diferentes.".format(
 
              // Display the page number of the current slide
              slideNumber: true,
-             
+
 			 history: true,
 
              // Enable keyboard shortcuts for navigation
@@ -1129,7 +1129,7 @@ print("O texto tem {0} palavras, sendo {1} delas diferentes.".format(
                  mathjax: 'node_modules/mathjax/MathJax.js',
                  config: 'TeX-AMS_HTML-full,http://localhost:8000/js/MathJax_local.js' // See http://docs.mathjax.org/en/latest/config-files.html
              },
-             
+
 			 // More info https://github.com/hakimel/reveal.js#dependencies
 			 dependencies: [
 				 { src: 'plugin/markdown/marked.js' },

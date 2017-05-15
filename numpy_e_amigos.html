@@ -3,7 +3,7 @@
 	<head>
         <meta name="description" content="Uma apresentação sobre Python para quem já tem noção de programação">
 		<meta name="author" content="Darlan Cavalcante Moreira">
-        
+
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -28,9 +28,9 @@
 
         <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
         <!-- My custom polymer element with a terminal and inside python code -->
-        <link rel="import" href="/my_polymer_elements/terminal-tag.html">
-        <link rel="import" href="/my_polymer_elements/code-terminal.html">
-        <link rel="import" href="/my_polymer_elements/cursor-tag.html">
+        <link rel="import" href="./my_polymer_elements/terminal-tag.html">
+        <link rel="import" href="./my_polymer_elements/code-terminal.html">
+        <link rel="import" href="./my_polymer_elements/cursor-tag.html">
 
         <!-- <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script> -->
         <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
@@ -52,14 +52,14 @@
                      <li>Exercício</li>
                      </ul>
                      </section> -->
-                
+
 				<section>
                     <h2>Objetivos</h2>
                     <ul>
                         <li>Aprender como usar a pilha de bibliotecas para computação científica em Python</li>
                         <li>Aprender algumas ferramentas eficientes como IPython, Jupyter Notebook, debuggers, etc</li>
                         <li>Aprender a criar plots em Python semelhantes a curva como abaixo
-                            <img data-src="/imagens/numpy_part/comic_plot.png" width="600" class="displayed"/>
+                            <img data-src="imagens/numpy_part/comic_plot.png" width="600" class="displayed"/>
                         </li>
                     </ul>
                 </section>
@@ -77,7 +77,7 @@
                     <!-- <img data-src="/imagens/numpy_part/scientific_stack.png" class="displayed"/> -->
                     <object width="60%" id="scientific_stack" type="image/svg+xml" data="imagens/numpy_part/scientific_stack.svg"></object>
                     <!-- svg = d3.select(document.getElementById("scientific_stack").contentDocument).select("svg") -->
-                    
+
                     <!-- <ul><li><span class="red">Nota:</span> A biblioteca <a href="http://www.numpy.org/">Numpy</a> é o núcleo da computação científica em Python e é a mais importante de se aprender bem</li></ul> -->
                     <aside class="notes">A biblioteca <a href="http://www.numpy.org/">Numpy</a> é o núcleo da computação científica em Python e é a mais importante de se aprender bem</aside>
                 </section>
@@ -101,7 +101,7 @@
                 </section>
 
                 <section>
-                
+
                 <section>
                     <h2>IPython</h2>
                     <ul>
@@ -148,8 +148,8 @@
 <span class="red">Type:</span>      builtin_function_or_method</code-terminal>
                             </ul>
                         </li>
-                        
-                        
+
+
                         <li>Através da introspecção com <code>?</code> e apertando <kbd>TAB</kbd> para completar comandos é possível realmente explorar bem funções, classes, etc.</li>
                     </ul>
                 </section>
@@ -213,12 +213,12 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                                 <code-terminal id="code_terminal_autocall" dontshowcursor><in>sum [1,2,3]
 -------> sum([1,2,3])</in>
 <output>6</output></code-terminal>
-                                    
+
                                 <li><tt class="fragment highlight-green">%quickref</tt>: Cartão de referência do IPython <i class="green fa fa-hand-o-right"></i> Veja também <code>%comando?</code></li>
                             </ul>
                         </li>
                     </ul>
-                    
+
                 </section>
 
                 <!-- <section>
@@ -232,7 +232,7 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                      </li>
                      </ul>
                      </section> -->
-                
+
 
                 </section>
 
@@ -251,7 +251,7 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                                 <img alt="" src="imagens/numpy_part/sage_math_cloud.png" class="displayed" style="width: 600px;"/>
                             </li>
                         </ul>
-                        
+
                     </section>
 
                     <section>
@@ -306,9 +306,9 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                             </ul>
                         </ul>
                     </section>
-                    
+
                 </section>
-                
+
                 <section>
                     <h2>Numpy Arrays</h2>
 
@@ -327,7 +327,7 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                                 forem desejadas. Aqui temos exemplos com
                                 uma, duas, e três dimensões.</li>
                         </ul>
-                    </aside>                        
+                    </aside>
                     <div class="container fragment" data-fragment-index="1">
                         <div class="element">
                             <div>1D numpy array</div>
@@ -350,12 +350,12 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                             <div>Shape: (4,3,2)</div>
                             <div>Tipo: int</div>
                         </div>
-                        
+
                     </div>
-                    
-                    
+
+
                     <!-- <img src="imagens/numpy_part/numpy_1d_array.svg"/> -->
-                    
+
                     <!-- <div class="numpy_table">
                          <div>1d Numpy Array</div>
                          <table><tbody>
@@ -386,8 +386,8 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                          </div> -->
                 </section>
 
-                <section>    
-                    
+                <section>
+
                 <section>
                     <h2>Criando Arrays</h2>
                     <ul>
@@ -410,7 +410,7 @@ array([[  5.2,   2. ,  -9. ,  10. ],
 <in>b.shape</in>
 <output>(2,4)</output></code-terminal>
                 </section>
-                    
+
                 <section>
                     <h2>Datatype</h2>
                     <ul>
@@ -452,8 +452,8 @@ array([[  5.2,   2. ,  -9. ,  10. ],
 <in>a.shape</in>
 <output>(2, 3, 2)</output></code-terminal>
                 </section>
-                
-                
+
+
                     <section>
                         <h2>Criando Arrays</h2>
 
@@ -461,7 +461,7 @@ array([[  5.2,   2. ,  -9. ,  10. ],
                             <li>Há várias funções que retornam arrays no numpy</li>
                             <li>Mais comuns: <code>zeros</code>, <code>ones</code>, <code>eye</code>, <code>empty</code></li>
                         </ul>
-                        
+
                         <code-terminal><in>a = np.zeros((2,2))  # Cria um arra de zeros</in>
 <in>b = np.ones((2,3))</in>
 <in>c = np.eye(2, dtype=complex) # Especificamos o dtype como complex</in>
@@ -529,9 +529,9 @@ array([[  8.6556823 ,  11.76621921,  13.06145845,  10.29941938],
 <output>array([ 9.12945251, -9.88031624,  7.4511316 , -2.62374854])</output>
 <in>a<35</in>
 <output>array([ True, True, False, False], dtype=bool)</output></code-terminal>
-                        
+
                     </section>
-                
+
                     <section>
                         <h2>Operações Básicas</h2>
                         <ul>
@@ -621,7 +621,7 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
 <output>array([ 2.,  0.,  6.])</output></code-terminal>
                     </section>
                 </section>
-                
+
                 <section>
                     <section id="indexando_arrays">
                         <h2>Indexando Arrays</h2>
@@ -630,7 +630,7 @@ array([[ 0.18626021,  0.34556073,  0.39676747],
                             <li>Arrays com uma dimensão podem ser indexados,
                             fatiados, e iterados de forma semelhante a listas</li>
                         </ul>
-                        
+
                         <code-terminal dontshowcursor><in>a = np.arange(10)**3</in>
 <in>a</in>
 <output>array([  0,   1,   8,  27,  64, 125, 216, 343, 512, 729])</output>
@@ -748,9 +748,9 @@ array([[97],
                             <div class="element" style="transform: scale(0.8) translate(-50px,0);"><svg id="indexando-arrays-placeholder3"></svg></div>
                         </div>
                     </section>
-                    
+
                 </section>
-                
+
                 <section id="manipulando_o_shape">
                     <h2>Manipulando o <em>shape</em></h2>
                     <ul>
@@ -819,7 +819,7 @@ array([[ 8.,  8.],
 array([[ 8.,  8.,  1.,  8.],
        [ 0.,  0.,  0.,  4.]])</output></code-terminal>
                 </section>
-                
+
                 <section id="memory_order">
                     <h2>Representação de um Array na Memória</h2>
 
@@ -836,7 +836,7 @@ array([[ 8.,  8.,  1.,  8.],
                             <div style="position: absolute; left: 120px; top: -40px; transform: translate(-25%, 0);">Representação no Numpy</div>
                             <div style="position: absolute; right: 160px; top: -40px;">Representação na Memória</div>
                             <svg id="c_order" class="displayed" style="margin-top: 50px;"></svg></div></li>
-                        
+
                         <li class="fragment" data-fragment-index="4"><span class="green">Ordem do Fortran</span>: A primeira dimensão varia mais rapidamente
 
                         <div style="position: relative;">
@@ -930,7 +930,7 @@ array([[   0,   10,   10,    3],
                 </section>
 
                 </section>
-                
+
                 <section id="axis-params">
                     <h2>Operações matemáticas</h2>
                     <ul>
@@ -960,7 +960,7 @@ array([[31, 11, 15, 69],
                     </div>
                 </section>
 
-                
+
                 <!-- <section>
                      <h2>Functions and Methods Overview</h2>
                      https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#functions-and-methods-overview
@@ -979,7 +979,7 @@ array([[31, 11, 15, 69],
                      <li>Basic Linear Algebra: cross, dot, outer, linalg.svd, vdot </li>
                      </ul>
                      </ul>
-                     
+
                      </section> -->
 
                 <section>
@@ -1003,7 +1003,7 @@ array([[31, 11, 15, 69],
 <in>a * b</in></span>
 <span class="fragment" data-fragment-index="4"><output>array([ 2.,  4.,  6.])</output></span></code-terminal>
                     </section>
-                    
+
                     <section id="broadcast">
                         <h2>Broadcast</h2>
                         <ul>
@@ -1076,7 +1076,7 @@ array([[ 0.        ,  5.22015325,  5.        ,  2.23606798,  3.89101529],
        [ 2.23606798,  3.90512484,  2.82842712,  0.        ,  3.08868904],
        [ 3.89101529,  1.5132746 ,  4.72652092,  3.08868904,  0.        ]])</output></code-terminal>
                     </section>
-                    
+
                 </section>  <!-- End of broadcast -->
 
                 <section>
@@ -1098,7 +1098,7 @@ array([[ 0.        ,  5.22015325,  5.        ,  2.23606798,  3.89101529],
 
                     </ul>
                 </section>
-                
+
                 <!-- <section>
                      <h2>Datatypes Estruturados</h2>
 
@@ -1108,7 +1108,7 @@ array([[ 0.        ,  5.22015325,  5.        ,  2.23606798,  3.89101529],
                      </section> -->
 
                 <section>
-                    
+
                     <section>
                         <h2>Plotando com Matplotlib</h2>
 
@@ -1137,7 +1137,7 @@ plt.ylabel('y axis label')
 plt.title('Sine and Cosine')
 plt.legend(['Sine', 'Cosine'])</span>
 <span class="fragment highlight-green" data-fragment-index="2">plt.show()</span>  # Necessário para mostrar o gráfico</code></pre>
-                            
+
                             <div class="element" style="width:38%; height:300px; position:relative;">
                                 <img class="fragment fade-out" data-fragment-index="3" alt="Plot de uma curva seno" src="imagens/numpy_part/sine_plot.png" style="background-color: white; width:100%; position:absolute;top:0;left:0;"/>
                                 <img class="fragment fade-in" data-fragment-index="3" alt="Plot de uma curva seno" src="imagens/numpy_part/sine_cosine_plot.png" style="background-color: white; width:100%; position:absolute;top:0;left:0;"/>
@@ -1154,7 +1154,7 @@ plt.legend(['Sine', 'Cosine'])</span>
                             <li><span class="red">Dica</span>: rode o comando plt.plot? para ver a ajuda do comando</li>
                         </ul>
                     </section>
-                    
+
                     <section>
                         <h2>Plotando com Matplotlib</h2>
 
@@ -1221,7 +1221,7 @@ plt.show()
                             <div class="element" style="background-color: white; width:38%;"><img alt="" src="imagens/numpy_part/cat_tinted_imshow.png"/></div>
                         </div>
                     </section>
-                    
+
                 </section>
 
 
@@ -1241,7 +1241,7 @@ plt.show()
                     </section>
                 </section>
 
-                
+
 			</div>
 		</div>
 
@@ -1253,8 +1253,8 @@ plt.show()
 		 // More info https://github.com/hakimel/reveal.js#configuration
 		 Reveal.initialize({
              width: 1280,
-             
-             
+
+
              minScale: 0.3,
              maxScale: 1.0,
              // Display controls in the bottom right corner
@@ -1265,7 +1265,7 @@ plt.show()
 
              // Display the page number of the current slide
              slideNumber: true,
-             
+
 			 history: true,
 
              // Enable keyboard shortcuts for navigation
@@ -1344,7 +1344,7 @@ plt.show()
                  mathjax: 'node_modules/mathjax/MathJax.js',
                  config: 'TeX-AMS_HTML-full,http://localhost:8000/js/MathJax_local.js' // See http://docs.mathjax.org/en/latest/config-files.html
              },
-             
+
 			 // More info https://github.com/hakimel/reveal.js#dependencies
 			 dependencies: [
 				 { src: 'plugin/markdown/marked.js' },
@@ -1382,7 +1382,7 @@ plt.show()
          /*          create_1d2d_array("#numpy-3darray", data2);*/
         </script>
 
-        
+
         <script>
          // Veja de onde você tiroi isso em
          // https://github.com/ptamarit/slides-data-viz-web-d3/blob/master/src/js/reveal-to-d3.js
@@ -1423,19 +1423,19 @@ plt.show()
              update_axis_params();
          });
         </script>
-     
+
         <!-- <script>
              function create_3d_array(id, data, data3_top) {
              "use strict";
 
              var max_x = d3.max(data, function (d) {return (d.x+1)*width;});
              var min_x = d3.min(data, function (d) {return (d.x)*width;});
-             
+
              var max_y = d3.max([
              d3.max(data, function (d) {return (d.y+1)*height;}),
              d3.max(data3_top, function (d) {return (d.y+1)*height;})
              ]);
-             
+
              var min_y = d3.min([
              d3.min(data, function (d) {return (d.y+1)*height;}),
              d3.min(data3_top, function (d) {return (d.y+1)*height;})
@@ -1443,14 +1443,14 @@ plt.show()
 
              var svg_width = 300;
              var svg_height = 300;
-             
+
              var xScale = d3.scaleLinear()
              .domain([min_x, max_x+2*width])
              .range([0, svg_width]);
              var yScale = d3.scaleLinear()
              .domain([min_y, max_y+2*height])
              .range([svg_height, 0]);
-             
+
              var svg = d3.select(id)
              .append("svg")
              .attr("width", svg_width)
@@ -1467,7 +1467,7 @@ plt.show()
              * console.log(yScale(3*height));
              * console.log(yScale(min_y));
              * console.log(yScale(max_y));*/
-             
+
              rects.style("fill", "white")
              .style("stroke", "black")
              .attr("height", function(d) {return yScale(0)-yScale(height);})
@@ -1497,12 +1497,12 @@ plt.show()
              .attr("x", function(d) {return xScale(d.x*width);})
              .attr("y", function(d) {return yScale((d.y+2)*height);});
              g.attr("transform", "matrix(1,0,-0.5,0.8660254,0,0)");
-             
+
              function create_losangle_path(x, y, num_x, num_y, width, height) {
              "use strict"
              var x_skew = 0.5;
              var new_height = 0.7*height;
-             
+
              for (var i=0; i < num_x; i++) {
              for(var j=0; j < num_y; j++) {
              var x_value = x*width+i*width + j*x_skew*width;
@@ -1522,8 +1522,8 @@ plt.show()
              .style("fill", "white")
              .attr("d", s);
              }}
-             
-             /* 
+
+             /*
              * var s2 = "M{x1} {y1} L{x2} {y2} L{x3} {y3} L{x4} {y4} Z"
              *     .replace("{x1}", xScale(x_value))
              *     .replace("{y1}", yScale(y_value))
@@ -1539,7 +1539,7 @@ plt.show()
              *      .style("fill", "white")
              *      .attr("d", s);*/
              }
-             
+
              /*              create_losangle_path(0, 4, 3, 2, width, height);*/
              }
 
@@ -1566,7 +1566,7 @@ plt.show()
              * {"x": 0, "y":1, "height":height, "skewX":skewX, "value":0},
              * {"x": 1, "y":1, "height":height, "skewX":skewX, "value":1},
              * {"x": 2, "y":1, "height":height, "skewX":skewX, "value":2},*/
-             
+
              create_3d_array("#numpy-3darray", data3, data3_top);
              </script> -->
 
@@ -1602,7 +1602,7 @@ plt.show()
              {"x": 50, "y"=0, "width"=width, "height"=height},
              {"x": 100, "y"=0, "width"=width, "height"=height},
              {"x": 150, "y"=0, "width"=width, "height"=height}]
-             
+
              var svg = d3.select("#numpy-1darray")
              .append("svg")
              .attr("width", 500)
